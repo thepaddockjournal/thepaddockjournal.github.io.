@@ -1,1768 +1,1961 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 | The Paddock Journal</title>
 
-    <title>Formula 1 | The Paddock Journal</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <meta name="description"
-        content="Formula 1 news, calendar, standings, results, drivers and teams — The Paddock Journal.">
+    :root {
+        --pink: #F4A6C7;
+        --black: #050505;
+        --dark: #0b0b0b;
+        --grey: #999;
+        --border: rgba(255,255,255,0.12);
+        --white: #fff;
+    }
 
-    <style>
+    html {
+        scroll-behavior: smooth;
+    }
 
-        /* =========================
-           GENERAL
-        ========================= */
+    body {
+        background: var(--black);
+        color: var(--white);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.4;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    /* =========================
+       HEADER
+    ========================= */
 
-        body {
-            background: #050505;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5;
-        }
+    header {
+        height: 78px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        position: sticky;
+        top: 0;
+        background: rgba(5,5,5,0.96);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    .logo {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        white-space: nowrap;
+    }
 
+    nav {
+        display: flex;
+        gap: 27px;
+        align-items: center;
+    }
 
-        /* =========================
-           HEADER
-        ========================= */
+    nav a {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #bdbdbd;
+        transition: 0.25s ease;
+    }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+    nav a:hover,
+    nav a.active {
+        color: var(--pink);
+    }
 
-            background: rgba(5, 5, 5, 0.96);
-            border-bottom: 1px solid #222;
+    /* =========================
+       PAGE INTRO
+    ========================= */
 
-            backdrop-filter: blur(10px);
-        }
+    .page-intro {
+        padding: 100px 7% 70px;
+        border-bottom: 1px solid var(--border);
+    }
 
-        .header-inner {
-            max-width: 1400px;
-            margin: auto;
+    .eyebrow {
+        color: var(--pink);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
 
-            padding: 20px 40px;
+    .page-intro h1 {
+        font-size: clamp(52px, 8vw, 105px);
+        line-height: 0.9;
+        letter-spacing: -5px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    .page-intro p {
+        margin-top: 30px;
+        max-width: 600px;
+        color: #999;
+        font-size: 14px;
+    }
 
-            gap: 30px;
-        }
+    /* =========================
+       GENERAL
+    ========================= */
 
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
+    .section {
+        padding: 90px 7%;
+        border-bottom: 1px solid var(--border);
+    }
 
-            letter-spacing: 2px;
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 35px;
+    }
 
-            white-space: nowrap;
-        }
+    .section-title {
+        font-size: 34px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
 
-        .logo span {
-            color: #F4A6C7;
-        }
+    .section-number {
+        font-size: 10px;
+        color: var(--pink);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .loading {
+        color: #777;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* =========================
+       NEWS
+    ========================= */
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) 0.55fr;
+        gap: 12px;
+    }
+
+    .news-card {
+        min-height: 300px;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        background: #0c0c0c;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 22px;
+        transition: 0.35s ease;
+    }
+
+    .news-card:hover {
+        border-color: var(--pink);
+        transform: translateY(-4px);
+    }
+
+    .news-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.96) 0%,
+                rgba(0,0,0,0.45) 50%,
+                rgba(0,0,0,0.05) 100%
+            );
+        z-index: 1;
+    }
+
+    .news-image {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(25%);
+        transition: 0.5s ease;
+    }
+
+    .news-card:hover .news-image {
+        transform: scale(1.05);
+    }
+
+    .news-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .news-category {
+        color: var(--pink);
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    .news-card h3 {
+        font-size: 18px;
+        line-height: 1.05;
+        text-transform: uppercase;
+    }
+
+    .news-date {
+        margin-top: 12px;
+        font-size: 9px;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .see-more {
+        min-height: 300px;
+        border: 1px solid var(--border);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transition: 0.3s ease;
+        background: #090909;
+    }
+
+    .see-more:hover {
+        background: var(--pink);
+        color: #000;
+        border-color: var(--pink);
+    }
+
+    .see-more span {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    /* =========================
+       NEXT RACE
+    ========================= */
+
+    .next-race {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        border: 1px solid var(--border);
+        min-height: 440px;
+    }
+
+    .race-main {
+        padding: 55px;
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .race-round {
+        font-size: 10px;
+        color: var(--pink);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .race-name {
+        font-size: clamp(45px, 6vw, 85px);
+        line-height: 0.88;
+        letter-spacing: -4px;
+        text-transform: uppercase;
+        margin-top: 20px;
+    }
+
+    .race-location {
+        margin-top: 20px;
+        color: #999;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .race-countdown {
+        margin-top: 35px;
+        display: inline-block;
+        width: fit-content;
+        border-top: 1px solid var(--pink);
+        padding-top: 12px;
+        color: var(--pink);
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .race-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .race-stat {
+        padding: 28px;
+        border-bottom: 1px solid var(--border);
+        border-left: 1px solid transparent;
+    }
+
+    .race-stat:nth-child(odd) {
+        border-right: 1px solid var(--border);
+    }
+
+    .race-stat:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+
+    .race-stat-label {
+        font-size: 9px;
+        color: #777;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+    }
+
+    .race-stat-value {
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+    .race-stat-value.highlight {
+        color: var(--pink);
+    }
+
+    /* =========================
+       CALENDAR
+    ========================= */
+
+    .calendar-list {
+        border-top: 1px solid var(--border);
+    }
+
+    .race-row {
+        display: grid;
+        grid-template-columns: 70px 1fr 1fr 130px;
+        gap: 20px;
+        align-items: center;
+        min-height: 90px;
+        border-bottom: 1px solid var(--border);
+        transition: 0.25s ease;
+    }
+
+    .race-row:hover {
+        padding-left: 10px;
+        border-color: var(--pink);
+    }
+
+    .race-round-number {
+        color: var(--pink);
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .race-row-name {
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+    .race-row-circuit {
+        color: #777;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .race-row-date {
+        font-size: 10px;
+        color: #aaa;
+        text-align: right;
+        text-transform: uppercase;
+    }
+
+    .past-race {
+        opacity: 0.58;
+    }
+
+    .current-race {
+        opacity: 1;
+        background: rgba(244,166,199,0.04);
+    }
+
+    .calendar-more-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 35px;
+    }
+
+    .more-button {
+        border: 1px solid var(--border);
+        background: transparent;
+        color: white;
+        padding: 14px 35px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .more-button:hover {
+        background: var(--pink);
+        border-color: var(--pink);
+        color: black;
+    }
+
+    /* =========================
+       STANDINGS
+    ========================= */
+
+    .standings-table {
+        width: 100%;
+        border-top: 1px solid var(--border);
+    }
+
+    .standing-row {
+        display: grid;
+        grid-template-columns: 60px 1fr 180px 80px;
+        align-items: center;
+        min-height: 68px;
+        border-bottom: 1px solid var(--border);
+        transition: 0.25s ease;
+    }
+
+    .standing-row:hover {
+        background: rgba(244,166,199,0.035);
+        padding-left: 8px;
+    }
+
+    .standing-position {
+        color: var(--pink);
+        font-size: 11px;
+    }
+
+    .standing-driver {
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .standing-team {
+        color: #777;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .standing-points {
+        font-size: 14px;
+        text-align: right;
+    }
+
+    /* =========================
+       DRIVERS
+    ========================= */
+
+    .drivers-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+    }
+
+    .driver-card {
+        position: relative;
+        height: 180px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        background: #090909;
+        cursor: default;
+    }
+
+    .driver-default {
+        position: absolute;
+        inset: 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.35s ease;
+        z-index: 2;
+        background: linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.025),
+            transparent
+        );
+    }
+
+    .driver-team {
+        color: #777;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .driver-number {
+        font-size: 34px;
+        font-weight: 700;
+        color: #333;
+        line-height: 1;
+    }
+
+    .driver-name-small {
+        font-size: 13px;
+        text-transform: uppercase;
+        line-height: 1;
+    }
+
+    .driver-hover {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        z-index: 3;
+        transition: 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 15px;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.97),
+            rgba(0,0,0,0.15)
+        );
+    }
+
+    .driver-photo {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center top;
+        transform: scale(1.05);
+        transition: 0.5s ease;
+        z-index: -1;
+        filter: grayscale(10%);
+    }
+
+    .driver-card:hover .driver-hover {
+        opacity: 1;
+    }
+
+    .driver-card:hover .driver-photo {
+        transform: scale(1);
+    }
+
+    .driver-card:hover .driver-default {
+        opacity: 0;
+    }
+
+    .driver-nationality {
+        color: var(--pink);
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 5px;
+    }
+
+    .driver-full-name {
+        font-size: 15px;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .driver-details {
+        font-size: 8px;
+        color: #ccc;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        padding: 60px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    footer .logo {
+        font-size: 12px;
+    }
+
+    footer p {
+        color: #555;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1100px) {
 
         nav {
-            display: flex;
-            align-items: center;
-
-            gap: 25px;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            transition: 0.25s ease;
-        }
-
-        nav a:hover {
-            color: #F4A6C7;
-        }
-
-        .active {
-            color: #F4A6C7;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .page-hero {
-            min-height: 500px;
-
-            display: flex;
-            align-items: flex-end;
-
-            position: relative;
-
-            background:
-                linear-gradient(
-                    to top,
-                    #050505 5%,
-                    rgba(5,5,5,0.55) 55%,
-                    rgba(5,5,5,0.15) 100%
-                ),
-                radial-gradient(
-                    circle at 70% 35%,
-                    #333333 0%,
-                    #141414 35%,
-                    #050505 75%
-                );
-
-            border-bottom: 1px solid #222;
-        }
-
-        .page-hero-content {
-            width: 100%;
-            max-width: 1400px;
-
-            margin: auto;
-
-            padding: 70px 40px;
-
-            position: relative;
-            z-index: 2;
-        }
-
-        .page-label {
-            color: #F4A6C7;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            letter-spacing: 4px;
-            text-transform: uppercase;
-
-            margin-bottom: 18px;
-        }
-
-        .page-hero h1 {
-            font-size: clamp(70px, 12vw, 150px);
-
-            line-height: 0.85;
-
-            letter-spacing: -6px;
-
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        .page-hero h1 span {
-            color: #F4A6C7;
-        }
-
-        .page-hero-text {
-            max-width: 600px;
-
-            margin-top: 28px;
-
-            color: #a5a5a5;
-
-            font-size: 15px;
-        }
-
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        main {
-            max-width: 1400px;
-
-            margin: auto;
-
-            padding: 90px 40px;
-        }
-
-        .section {
-            margin-bottom: 110px;
-        }
-
-        .section-header {
-            display: flex;
-
-            align-items: flex-end;
-            justify-content: space-between;
-
-            margin-bottom: 35px;
-
-            border-bottom: 1px solid #222;
-
-            padding-bottom: 15px;
-        }
-
-        .section-number {
-            color: #F4A6C7;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 3px;
-        }
-
-        .section-title {
-            margin-top: 5px;
-
-            font-size: 38px;
-
-            line-height: 1;
-
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-
-        /* =========================
-           NEWS
-        ========================= */
-
-        .news-grid {
-            display: grid;
-
-            grid-template-columns: 2fr 1fr;
-
-            gap: 20px;
-
-            min-height: 500px;
-        }
-
-        .news-card {
-            position: relative;
-
-            overflow: hidden;
-
-            border: 1px solid #262626;
-
-            background: #101010;
-
-            transition: 0.3s ease;
-        }
-
-        .news-card:hover {
-            border-color: #F4A6C7;
-        }
-
-        .news-background {
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                radial-gradient(
-                    circle at 70% 30%,
-                    #333333,
-                    #111111 50%,
-                    #050505 100%
-                );
-
-            transition: 0.4s ease;
-        }
-
-        .news-card:hover .news-background {
-            transform: scale(1.04);
-        }
-
-        .news-card::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0,0,0,0.95),
-                    rgba(0,0,0,0.05) 75%
-                );
-        }
-
-        .news-content {
-            position: absolute;
-
-            z-index: 2;
-
-            left: 30px;
-            right: 30px;
-            bottom: 30px;
-        }
-
-        .category {
-            color: #F4A6C7;
-
-            font-size: 10px;
-            font-weight: 700;
-
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .news-content h3 {
-            margin-top: 10px;
-
-            font-size: 32px;
-
-            line-height: 1.05;
-        }
-
-        .news-date {
-            color: #888;
-
-            font-size: 10px;
-
-            margin-top: 12px;
-        }
-
-        .news-side {
-            display: grid;
-
-            grid-template-rows: 1fr 1fr;
-
-            gap: 20px;
-        }
-
-        .news-side .news-content h3 {
-            font-size: 22px;
-        }
-
-
-        /* =========================
-           CALENDAR
-        ========================= */
-
-        .calendar {
-            border-top: 1px solid #222;
-        }
-
-        .race {
-            display: grid;
-
-            grid-template-columns: 70px 1fr 180px 120px;
-
-            align-items: center;
-
-            gap: 20px;
-
-            padding: 22px 15px;
-
-            border-bottom: 1px solid #222;
-
-            transition: 0.25s ease;
-        }
-
-        .race:hover {
-            background: #101010;
-        }
-
-        .race-number {
-            color: #666;
-
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .race-name {
-            font-size: 18px;
-            font-weight: 700;
-
-            text-transform: uppercase;
-        }
-
-        .race-location {
-            color: #888;
-
-            font-size: 12px;
-        }
-
-        .race-date {
-            color: #F4A6C7;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            text-align: right;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================
-           STANDINGS
-        ========================= */
-
-        .standings-grid {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 20px;
-        }
-
-        .standings-card {
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-        }
-
-        .standings-title {
-            padding: 20px 25px;
-
-            border-bottom: 1px solid #252525;
-
-            color: #F4A6C7;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-        .driver-row {
-            display: grid;
-
-            grid-template-columns: 45px 1fr 70px;
-
-            align-items: center;
-
-            padding: 16px 25px;
-
-            border-bottom: 1px solid #1c1c1c;
-
-            transition: 0.2s ease;
-        }
-
-        .driver-row:last-child {
-            border-bottom: none;
-        }
-
-        .driver-row:hover {
-            background: #141414;
-        }
-
-        .position {
-            color: #666;
-
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .driver-name {
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .driver-team {
-            color: #777;
-
-            font-size: 10px;
-
-            margin-top: 3px;
-        }
-
-        .points {
-            color: #F4A6C7;
-
-            font-size: 13px;
-            font-weight: 700;
-
-            text-align: right;
-        }
-
-
-        /* =========================
-           DRIVERS & TEAMS
-        ========================= */
-
-        .drivers-grid {
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
             gap: 15px;
         }
 
-        .driver-card {
-            min-height: 250px;
-
-            padding: 25px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-
-            border: 1px solid #252525;
-
-            background:
-                radial-gradient(
-                    circle at 70% 30%,
-                    #292929,
-                    #0b0b0b 65%
-                );
-
-            position: relative;
-
-            overflow: hidden;
-
-            transition: 0.3s ease;
+        .news-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .driver-card:hover {
-            border-color: #F4A6C7;
-
-            transform: translateY(-4px);
+        .see-more {
+            min-height: 160px;
         }
 
-        .driver-number {
-            position: absolute;
-
-            top: 20px;
-            right: 20px;
-
-            color: #444;
-
-            font-size: 38px;
-            font-weight: 900;
-        }
-
-        .driver-team {
-            color: #F4A6C7;
-
-            font-size: 10px;
-            font-weight: 700;
-
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .driver-card h3 {
-            font-size: 25px;
-
-            margin-top: 6px;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =========================
-           ARTICLES
-        ========================= */
-
-        .articles-grid {
-            display: grid;
-
+        .drivers-grid {
             grid-template-columns: repeat(3, 1fr);
+        }
+    }
 
+    @media (max-width: 800px) {
+
+        header {
+            height: auto;
+            padding: 22px 5%;
+            align-items: flex-start;
             gap: 20px;
         }
 
-        .article-card {
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-
-            overflow: hidden;
-
-            transition: 0.3s ease;
+        nav {
+            display: none;
         }
 
-        .article-card:hover {
-            border-color: #F4A6C7;
-
-            transform: translateY(-4px);
+        .page-intro {
+            padding: 70px 6% 55px;
         }
 
-        .article-image {
-            height: 220px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #292929,
-                    #0d0d0d
-                );
+        .section {
+            padding: 65px 6%;
         }
 
-        .article-content {
-            padding: 22px;
+        .news-grid {
+            grid-template-columns: 1fr;
         }
 
-        .article-content h3 {
-            margin-top: 8px;
-
-            font-size: 20px;
-
-            line-height: 1.1;
+        .news-card,
+        .see-more {
+            min-height: 260px;
         }
 
-        .article-content p {
-            color: #777;
-
-            font-size: 12px;
-
-            margin-top: 10px;
+        .next-race {
+            grid-template-columns: 1fr;
         }
 
+        .race-main {
+            border-right: none;
+            border-bottom: 1px solid var(--border);
+            padding: 35px;
+        }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        .race-info {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .race-stat:nth-child(odd) {
+            border-right: none;
+        }
+
+        .race-row {
+            grid-template-columns: 45px 1fr;
+            gap: 8px;
+            padding: 18px 0;
+        }
+
+        .race-row-circuit,
+        .race-row-date {
+            grid-column: 2;
+            text-align: left;
+        }
+
+        .standing-row {
+            grid-template-columns: 40px 1fr 70px;
+        }
+
+        .standing-team {
+            display: none;
+        }
+
+        .drivers-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         footer {
-            border-top: 1px solid #222;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
 
-            padding: 45px 40px;
+    @media (max-width: 480px) {
+
+        .drivers-grid {
+            grid-template-columns: 1fr 1fr;
         }
 
-        .footer-inner {
-            max-width: 1400px;
-
-            margin: auto;
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            gap: 30px;
+        .driver-card {
+            height: 165px;
         }
 
-        .footer-logo {
-            font-size: 18px;
-
-            font-weight: 800;
-
-            letter-spacing: 2px;
+        .race-name {
+            font-size: 48px;
         }
-
-        .footer-logo span {
-            color: #F4A6C7;
-        }
-
-        .footer-text {
-            color: #666;
-
-            font-size: 11px;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 1000px) {
-
-            nav {
-                gap: 15px;
-            }
-
-            .drivers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-
-        @media (max-width: 750px) {
-
-            .header-inner {
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                padding: 18px 25px;
-            }
-
-            nav {
-                width: 100%;
-
-                overflow-x: auto;
-
-                white-space: nowrap;
-
-                padding-bottom: 5px;
-            }
-
-            .page-hero-content {
-                padding: 60px 25px;
-            }
-
-            .page-hero h1 {
-                letter-spacing: -3px;
-            }
-
-            main {
-                padding: 65px 25px;
-            }
-
-            .section {
-                margin-bottom: 80px;
-            }
-
-            .section-title {
-                font-size: 30px;
-            }
-
-
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .news-card {
-                min-height: 320px;
-            }
-
-
-            .race {
-                grid-template-columns: 45px 1fr;
-
-                gap: 10px;
-            }
-
-            .race-location {
-                display: none;
-            }
-
-            .race-date {
-                text-align: left;
-            }
-
-
-            .standings-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .drivers-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
-
-
-            .footer-inner {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-        }
-
-
-        @media (max-width: 500px) {
-
-            .drivers-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
-
+    }
+</style>
 </head>
-
 
 <body>
 
+<header>
+    <a href="index.html" class="logo">THE PADDOCK JOURNAL</a>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header>
-
-        <div class="header-inner">
-
-            <a href="index.html" class="logo">
-                THE <span>PADDOCK</span> JOURNAL
-            </a>
-
-            <nav>
-
-                <a href="f1.html" class="active">F1</a>
-
-                <a href="f2.html">F2</a>
-
-                <a href="f3.html">F3</a>
-
-                <a href="f4.html">F4</a>
-
-                <a href="f1-academy.html">F1 Academy</a>
-
-                <a href="women.html">Women</a>
-
-                <a href="live.html">Live</a>
-
-                <a href="about.html">About Me</a>
-
-            </nav>
-
-        </div>
-
-    </header>
+    <nav>
+        <a href="f1.html" class="active">F1</a>
+        <a href="f2.html">F2</a>
+        <a href="f3.html">F3</a>
+        <a href="f4.html">F4</a>
+        <a href="f1-academy.html">F1 Academy</a>
+        <a href="women.html">Women</a>
+        <a href="live.html">Live</a>
+        <a href="about.html">About Me</a>
+    </nav>
+</header>
 
 
+<!-- =========================
+     INTRO
+========================= -->
 
-    <!-- =========================
-         HERO
-    ========================== -->
+<section class="page-intro">
+    <div class="eyebrow">Formula 1 · 2026 Season</div>
+    <h1>FORMULA<br>ONE.</h1>
+    <p>
+        The latest news, race calendar, championship standings and
+        driver grid — all in one place.
+    </p>
+</section>
 
-    <section class="page-hero">
 
-        <div class="page-hero-content">
+<!-- =========================
+     NEWS
+========================= -->
 
-            <div class="page-label">
-                The pinnacle of motorsport
+<section class="section">
+
+    <div class="section-header">
+        <h2 class="section-title">News</h2>
+        <span class="section-number">01 / F1</span>
+    </div>
+
+    <div class="news-grid">
+
+        <a class="news-card"
+           href="news.html">
+            <div class="news-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=80');">
             </div>
 
-            <h1>
-                Formula <span>1.</span>
-            </h1>
-
-            <p class="page-hero-text">
-                News, results, standings, drivers, teams and everything
-                happening across the world of Formula 1.
-            </p>
-
-        </div>
-
-    </section>
+            <div class="news-content">
+                <div class="news-category">F1</div>
+                <h3>The latest from the world of Formula 1</h3>
+                <div class="news-date">The Paddock Journal</div>
+            </div>
+        </a>
 
 
+        <a class="news-card"
+           href="news.html">
 
-    <main>
-
-
-        <!-- =========================
-             LATEST F1 NEWS
-        ========================== -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        01 / FORMULA 1
-                    </div>
-
-                    <h2 class="section-title">
-                        Latest News
-                    </h2>
-
-                </div>
-
+            <div class="news-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&w=1000&q=80');">
             </div>
 
-
-            <div class="news-grid">
-
-
-                <article class="news-card">
-
-                    <div class="news-background"></div>
-
-                    <div class="news-content">
-
-                        <span class="category">
-                            Formula 1
-                        </span>
-
-                        <h3>
-                            Everything happening in the world of Formula 1
-                        </h3>
-
-                        <div class="news-date">
-                            SEPTEMBER 2026
-                        </div>
-
-                    </div>
-
-                </article>
+            <div class="news-content">
+                <div class="news-category">Race Weekend</div>
+                <h3>Everything you need to know before lights out</h3>
+                <div class="news-date">Latest updates</div>
+            </div>
+        </a>
 
 
-                <div class="news-side">
+        <a class="news-card"
+           href="news.html">
 
-
-                    <article class="news-card">
-
-                        <div class="news-background"></div>
-
-                        <div class="news-content">
-
-                            <span class="category">
-                                Paddock
-                            </span>
-
-                            <h3>
-                                Inside the paddock
-                            </h3>
-
-                            <div class="news-date">
-                                SEPTEMBER 2026
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="news-card">
-
-                        <div class="news-background"></div>
-
-                        <div class="news-content">
-
-                            <span class="category">
-                                Analysis
-                            </span>
-
-                            <h3>
-                                What to watch next
-                            </h3>
-
-                        </div>
-
-                    </article>
-
-
-                </div>
-
+            <div class="news-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1612831812721-4b9a7d9b9b6d?auto=format&fit=crop&w=1000&q=80');">
             </div>
 
-        </section>
+            <div class="news-content">
+                <div class="news-category">Championship</div>
+                <h3>The fight at the top of the standings</h3>
+                <div class="news-date">2026 Season</div>
+            </div>
+        </a>
 
 
+        <a class="news-card"
+           href="news.html">
 
-        <!-- =========================
-             CALENDAR
-        ========================== -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        02 / 2026 SEASON
-                    </div>
-
-                    <h2 class="section-title">
-                        Calendar
-                    </h2>
-
-                </div>
-
+            <div class="news-image"
+                 style="background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80');">
             </div>
 
+            <div class="news-content">
+                <div class="news-category">The Paddock</div>
+                <h3>Inside the latest Formula 1 stories</h3>
+                <div class="news-date">Read more</div>
+            </div>
+        </a>
 
-            <div class="calendar">
+
+        <a class="see-more" href="news.html">
+            <span>See More →</span>
+        </a>
+
+    </div>
+
+</section>
 
 
-                <div class="race">
+<!-- =========================
+     NEXT RACE
+========================= -->
 
-                    <div class="race-number">01</div>
+<section class="section">
 
-                    <div class="race-name">
-                        Australian Grand Prix
-                    </div>
+    <div class="section-header">
+        <h2 class="section-title">Next Race</h2>
+        <span class="section-number">02 / F1</span>
+    </div>
 
-                    <div class="race-location">
-                        Melbourne
-                    </div>
+    <div id="nextRace" class="next-race">
 
-                    <div class="race-date">
-                        MAR 13–15
-                    </div>
+        <div class="race-main">
 
+            <div>
+                <div id="raceRound" class="race-round">
+                    LOADING
                 </div>
 
-
-                <div class="race">
-
-                    <div class="race-number">02</div>
-
-                    <div class="race-name">
-                        Chinese Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Shanghai
-                    </div>
-
-                    <div class="race-date">
-                        MAR 20–22
-                    </div>
-
+                <div id="raceName" class="race-name">
+                    NEXT<br>RACE
                 </div>
 
-
-                <div class="race">
-
-                    <div class="race-number">03</div>
-
-                    <div class="race-name">
-                        Japanese Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Suzuka
-                    </div>
-
-                    <div class="race-date">
-                        APR 3–5
-                    </div>
-
+                <div id="raceLocation" class="race-location">
+                    Loading circuit information...
                 </div>
-
-
-                <div class="race">
-
-                    <div class="race-number">04</div>
-
-                    <div class="race-name">
-                        Bahrain Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Sakhir
-                    </div>
-
-                    <div class="race-date">
-                        APR 10–12
-                    </div>
-
-                </div>
-
-
-                <div class="race">
-
-                    <div class="race-number">05</div>
-
-                    <div class="race-name">
-                        Saudi Arabian Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Jeddah
-                    </div>
-
-                    <div class="race-date">
-                        APR 17–19
-                    </div>
-
-                </div>
-
-
-                <div class="race">
-
-                    <div class="race-number">06</div>
-
-                    <div class="race-name">
-                        Miami Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Miami
-                    </div>
-
-                    <div class="race-date">
-                        MAY 1–3
-                    </div>
-
-                </div>
-
-
-                <div class="race">
-
-                    <div class="race-number">07</div>
-
-                    <div class="race-name">
-                        Emilia-Romagna Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Imola
-                    </div>
-
-                    <div class="race-date">
-                        MAY 15–17
-                    </div>
-
-                </div>
-
-
-                <div class="race">
-
-                    <div class="race-number">08</div>
-
-                    <div class="race-name">
-                        Monaco Grand Prix
-                    </div>
-
-                    <div class="race-location">
-                        Monte Carlo
-                    </div>
-
-                    <div class="race-date">
-                        MAY 22–24
-                    </div>
-
-                </div>
-
-
             </div>
 
-        </section>
-
-
-
-        <!-- =========================
-             STANDINGS
-        ========================== -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        03 / CHAMPIONSHIP
-                    </div>
-
-                    <h2 class="section-title">
-                        Standings
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="standings-grid">
-
-
-                <!-- DRIVERS -->
-
-                <div class="standings-card">
-
-                    <div class="standings-title">
-                        Drivers Championship
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">01</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Driver Name
-                            </div>
-
-                            <div class="driver-team">
-                                Team
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">02</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Driver Name
-                            </div>
-
-                            <div class="driver-team">
-                                Team
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">03</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Driver Name
-                            </div>
-
-                            <div class="driver-team">
-                                Team
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">04</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Driver Name
-                            </div>
-
-                            <div class="driver-team">
-                                Team
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">05</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Driver Name
-                            </div>
-
-                            <div class="driver-team">
-                                Team
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- CONSTRUCTORS -->
-
-                <div class="standings-card">
-
-                    <div class="standings-title">
-                        Constructors Championship
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">01</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Team Name
-                            </div>
-
-                            <div class="driver-team">
-                                Constructor
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">02</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Team Name
-                            </div>
-
-                            <div class="driver-team">
-                                Constructor
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">03</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Team Name
-                            </div>
-
-                            <div class="driver-team">
-                                Constructor
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">04</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Team Name
-                            </div>
-
-                            <div class="driver-team">
-                                Constructor
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <div class="driver-row">
-
-                        <div class="position">05</div>
-
-                        <div>
-
-                            <div class="driver-name">
-                                Team Name
-                            </div>
-
-                            <div class="driver-team">
-                                Constructor
-                            </div>
-
-                        </div>
-
-                        <div class="points">
-                            —
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             DRIVERS
-        ========================== -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        04 / THE GRID
-                    </div>
-
-                    <h2 class="section-title">
-                        Drivers
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="drivers-grid">
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        01
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        02
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        03
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        04
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        05
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        06
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        07
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="driver-card">
-
-                    <span class="driver-number">
-                        08
-                    </span>
-
-                    <div>
-
-                        <div class="driver-team">
-                            Team
-                        </div>
-
-                        <h3>
-                            Driver Name
-                        </h3>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             ARTICLES
-        ========================== -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        05 / JOURNAL
-                    </div>
-
-                    <h2 class="section-title">
-                        F1 Stories
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="articles-grid">
-
-
-                <article class="article-card">
-
-                    <div class="article-image"></div>
-
-                    <div class="article-content">
-
-                        <span class="category">
-                            Analysis
-                        </span>
-
-                        <h3>
-                            What makes a Formula 1 weekend?
-                        </h3>
-
-                        <p>
-                            From practice to the chequered flag,
-                            a closer look at what happens inside a
-                            Grand Prix weekend.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="article-card">
-
-                    <div class="article-image"></div>
-
-                    <div class="article-content">
-
-                        <span class="category">
-                            Paddock
-                        </span>
-
-                        <h3>
-                            Beyond the race track
-                        </h3>
-
-                        <p>
-                            The people, stories and details that
-                            make the F1 paddock unique.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <article class="article-card">
-
-                    <div class="article-image"></div>
-
-                    <div class="article-content">
-
-                        <span class="category">
-                            Motorsport
-                        </span>
-
-                        <h3>
-                            The road to Formula 1
-                        </h3>
-
-                        <p>
-                            Discover the journey that young drivers
-                            take before reaching the pinnacle.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer>
-
-        <div class="footer-inner">
-
-            <div class="footer-logo">
-                THE <span>PADDOCK</span> JOURNAL
-            </div>
-
-            <div class="footer-text">
-                © 2026 The Paddock Journal · Motorsport beyond the grid.
+            <div id="raceCountdown" class="race-countdown">
+                Loading...
             </div>
 
         </div>
 
-    </footer>
 
+        <div class="race-info">
+
+            <div class="race-stat">
+                <div class="race-stat-label">Circuit</div>
+                <div id="raceCircuit" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Race Start</div>
+                <div id="raceStart" class="race-stat-value highlight">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Circuit Length</div>
+                <div id="raceLength" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Laps</div>
+                <div id="raceLaps" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Last Winner</div>
+                <div id="lastWinner" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Last Polesitter</div>
+                <div id="lastPole" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Fastest Lap</div>
+                <div id="fastestLap" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+            <div class="race-stat">
+                <div class="race-stat-label">Race Distance</div>
+                <div id="raceDistance" class="race-stat-value">
+                    —
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CALENDAR
+========================= -->
+
+<section class="section">
+
+    <div class="section-header">
+        <h2 class="section-title">Calendar</h2>
+        <span class="section-number">03 / 24</span>
+    </div>
+
+    <div id="calendarList" class="calendar-list">
+        <div class="loading">Loading 2026 calendar...</div>
+    </div>
+
+    <div class="calendar-more-wrapper">
+        <button id="calendarButton"
+                class="more-button"
+                onclick="toggleCalendar()"
+                style="display:none;">
+            More
+        </button>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STANDINGS
+========================= -->
+
+<section class="section">
+
+    <div class="section-header">
+        <h2 class="section-title">Standings</h2>
+        <span class="section-number">04 / Drivers</span>
+    </div>
+
+    <div id="standings" class="standings-table">
+        <div class="loading">Loading championship standings...</div>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DRIVERS
+========================= -->
+
+<section class="section">
+
+    <div class="section-header">
+        <h2 class="section-title">Drivers</h2>
+        <span class="section-number">05 / Grid</span>
+    </div>
+
+    <div id="driversGrid" class="drivers-grid">
+        <div class="loading">Loading drivers...</div>
+    </div>
+
+</section>
+
+
+<footer>
+    <div class="logo">THE PADDOCK JOURNAL</div>
+
+    <p>
+        Motorsport. Beyond the grid.
+    </p>
+</footer>
+
+
+<script>
+
+/* =========================================================
+   THE PADDOCK JOURNAL
+   F1 AUTOMATIC DATA SYSTEM
+   ========================================================= */
+
+const API = "https://api.jolpi.ca/ergast/f1";
+const SEASON = "2026";
+
+let allRaces = [];
+let calendarExpanded = false;
+
+
+/* =========================================================
+   API HELPER
+   ========================================================= */
+
+async function getAPI(endpoint) {
+
+    try {
+
+        const response = await fetch(
+            `${API}/${endpoint}/?limit=100&_=${Date.now()}`
+        );
+
+        if (!response.ok) {
+            throw new Error("API error");
+        }
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.error("F1 API error:", error);
+
+        return null;
+    }
+}
+
+
+/* =========================================================
+   CALENDAR
+   ========================================================= */
+
+async function loadCalendar() {
+
+    const data = await getAPI(`${SEASON}`);
+
+    if (!data) return;
+
+    const races =
+        data.MRData.RaceTable.Races || [];
+
+    allRaces = races;
+
+    renderCalendar();
+    loadNextRace(races);
+}
+
+
+function renderCalendar() {
+
+    const container =
+        document.getElementById("calendarList");
+
+    if (!allRaces.length) {
+
+        container.innerHTML =
+            `<div class="loading">
+                Calendar unavailable.
+            </div>`;
+
+        return;
+    }
+
+
+    const visibleRaces =
+        calendarExpanded
+            ? allRaces
+            : allRaces.slice(0, 5);
+
+
+    const today = new Date();
+
+
+    container.innerHTML =
+        visibleRaces.map(race => {
+
+            const raceDate =
+                new Date(`${race.date}T${race.time || "00:00:00"}`);
+
+            let state = "";
+
+            if (raceDate < today) {
+                state = "past-race";
+            }
+
+            return `
+                <a
+                    class="race-row ${state}"
+                    href="#nextRace"
+                >
+
+                    <div class="race-round-number">
+                        ${String(race.round).padStart(2,"0")}
+                    </div>
+
+                    <div class="race-row-name">
+                        ${formatRaceName(race.raceName)}
+                    </div>
+
+                    <div class="race-row-circuit">
+                        ${race.Circuit.circuitName}
+                    </div>
+
+                    <div class="race-row-date">
+                        ${formatDate(race.date)}
+                    </div>
+
+                </a>
+            `;
+
+        }).join("");
+
+
+    const button =
+        document.getElementById("calendarButton");
+
+
+    if (allRaces.length > 5) {
+
+        button.style.display = "block";
+
+        button.textContent =
+            calendarExpanded
+                ? "Show Less"
+                : "More";
+
+    } else {
+
+        button.style.display = "none";
+    }
+}
+
+
+function toggleCalendar() {
+
+    calendarExpanded =
+        !calendarExpanded;
+
+    renderCalendar();
+}
+
+
+/* =========================================================
+   NEXT RACE
+   ========================================================= */
+
+async function loadNextRace(races) {
+
+    const now = new Date();
+
+    const nextRace =
+        races.find(race => {
+
+            const date =
+                new Date(`${race.date}T${race.time || "00:00:00"}`);
+
+            return date > now;
+
+        });
+
+
+    if (!nextRace) {
+
+        document.getElementById("raceName")
+            .innerHTML = "SEASON<br>COMPLETE";
+
+        return;
+    }
+
+
+    const previousRaceIndex =
+        races.findIndex(
+            race => race.round === nextRace.round
+        ) - 1;
+
+
+    const previousRace =
+        previousRaceIndex >= 0
+            ? races[previousRaceIndex]
+            : null;
+
+
+    document.getElementById("raceRound")
+        .textContent =
+        `ROUND ${String(nextRace.round).padStart(2,"0")}`;
+
+
+    document.getElementById("raceName")
+        .textContent =
+        cleanGrandPrixName(nextRace.raceName);
+
+
+    document.getElementById("raceLocation")
+        .textContent =
+        `${nextRace.Circuit.Location.locality}, ${nextRace.Circuit.Location.country}`;
+
+
+    document.getElementById("raceCircuit")
+        .textContent =
+        nextRace.Circuit.circuitName;
+
+
+    document.getElementById("raceStart")
+        .textContent =
+        formatDateTime(
+            nextRace.date,
+            nextRace.time
+        );
+
+
+    /*
+       Circuit information.
+
+       The API gives us the circuit and location.
+       The technical data below provides the detailed
+       circuit information for known F1 circuits.
+    */
+
+    const details =
+        circuitDetails[nextRace.Circuit.circuitId];
+
+
+    if (details) {
+
+        document.getElementById("raceLength")
+            .textContent =
+            details.length;
+
+        document.getElementById("raceLaps")
+            .textContent =
+            details.laps;
+
+        document.getElementById("raceDistance")
+            .textContent =
+            details.distance;
+
+    }
+
+
+    /*
+       Previous race information
+    */
+
+    if (previousRace) {
+
+        await loadPreviousRaceData(
+            previousRace,
+            nextRace
+        );
+
+    } else {
+
+        document.getElementById("lastWinner")
+            .textContent = "—";
+
+        document.getElementById("lastPole")
+            .textContent = "—";
+
+        document.getElementById("fastestLap")
+            .textContent = "—";
+    }
+
+
+    startCountdown(
+        new Date(
+            `${nextRace.date}T${nextRace.time || "00:00:00"}`
+        )
+    );
+}
+
+
+/* =========================================================
+   PREVIOUS RACE
+   ========================================================= */
+
+async function loadPreviousRaceData(
+    previousRace,
+    nextRace
+) {
+
+    const round =
+        previousRace.round;
+
+
+    const resultsData =
+        await getAPI(
+            `${SEASON}/${round}/results`
+        );
+
+
+    if (
+        resultsData &&
+        resultsData.MRData.RaceTable.Races.length
+    ) {
+
+        const race =
+            resultsData
+                .MRData
+                .RaceTable
+                .Races[0];
+
+
+        const results =
+            race.Results || [];
+
+
+        if (results.length) {
+
+            const winner =
+                results[0];
+
+            document.getElementById("lastWinner")
+                .textContent =
+                `${winner.Driver.givenName} ${winner.Driver.familyName}`;
+
+
+            const fastest =
+                results
+                    .filter(r => r.FastestLap)
+                    .sort(
+                        (a,b) =>
+                        parseFloat(
+                            a.FastestLap.rank
+                        ) -
+                        parseFloat(
+                            b.FastestLap.rank
+                        )
+                    )[0];
+
+
+            if (fastest && fastest.FastestLap.Time) {
+
+                document.getElementById("fastestLap")
+                    .textContent =
+                    `${fastest.Driver.familyName} · ${fastest.FastestLap.Time.time}`;
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Qualifying / pole
+    */
+
+    const qualifyingData =
+        await getAPI(
+            `${SEASON}/${round}/qualifying`
+        );
+
+
+    if (
+        qualifyingData &&
+        qualifyingData.MRData.RaceTable.Races.length
+    ) {
+
+        const race =
+            qualifyingData
+                .MRData
+                .RaceTable
+                .Races[0];
+
+
+        const results =
+            race.QualifyingResults || [];
+
+
+        if (results.length) {
+
+            document.getElementById("lastPole")
+                .textContent =
+                `${results[0].Driver.givenName} ${results[0].Driver.familyName}`;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   STANDINGS
+   ========================================================= */
+
+async function loadStandings() {
+
+    const data =
+        await getAPI(
+            `${SEASON}/driverstandings`
+        );
+
+
+    if (!data) return;
+
+
+    const lists =
+        data
+            .MRData
+            .StandingsTable
+            .StandingsLists;
+
+
+    if (!lists || !lists.length) return;
+
+
+    const standings =
+        lists[0].DriverStandings;
+
+
+    const container =
+        document.getElementById("standings");
+
+
+    container.innerHTML =
+        standings.map(driver => {
+
+            return `
+                <div class="standing-row">
+
+                    <div class="standing-position">
+                        ${String(driver.position).padStart(2,"0")}
+                    </div>
+
+                    <div class="standing-driver">
+                        ${driver.Driver.givenName}
+                        ${driver.Driver.familyName}
+                    </div>
+
+                    <div class="standing-team">
+                        ${driver.Constructors?.[0]?.name || "—"}
+                    </div>
+
+                    <div class="standing-points">
+                        ${driver.points}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================================
+   DRIVERS
+   ========================================================= */
+
+async function loadDrivers() {
+
+    const data =
+        await getAPI(
+            `${SEASON}/driverstandings`
+        );
+
+
+    if (!data) return;
+
+
+    const lists =
+        data
+            .MRData
+            .StandingsTable
+            .StandingsLists;
+
+
+    if (!lists || !lists.length) return;
+
+
+    const drivers =
+        lists[0].DriverStandings;
+
+
+    const container =
+        document.getElementById("driversGrid");
+
+
+    container.innerHTML = "";
+
+
+    for (const driver of drivers) {
+
+        const d =
+            driver.Driver;
+
+
+        const constructor =
+            driver.Constructors?.[0];
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "driver-card";
+
+
+        card.innerHTML = `
+
+            <div class="driver-default">
+
+                <div class="driver-team">
+                    ${constructor?.name || "Formula 1"}
+                </div>
+
+                <div class="driver-number">
+                    #${d.permanentNumber || d.number || "—"}
+                </div>
+
+                <div class="driver-name-small">
+                    ${d.givenName}
+                    ${d.familyName}
+                </div>
+
+            </div>
+
+
+            <div class="driver-hover">
+
+                <div
+                    class="driver-photo"
+                    id="photo-${d.driverId}">
+                </div>
+
+                <div class="driver-nationality">
+                    ${d.nationality || "International"}
+                </div>
+
+                <div class="driver-full-name">
+                    ${d.givenName}
+                    ${d.familyName}
+                </div>
+
+                <div class="driver-details">
+                    #${d.permanentNumber || "—"}
+                    ·
+                    ${constructor?.name || "—"}
+                </div>
+
+            </div>
+        `;
+
+
+        container.appendChild(card);
+
+
+        /*
+           Find driver image automatically
+           using Wikipedia's public API.
+        */
+
+        loadDriverPhoto(
+            d,
+            `photo-${d.driverId}`
+        );
+    }
+}
+
+
+/* =========================================================
+   DRIVER PHOTOS
+   ========================================================= */
+
+async function loadDriverPhoto(
+    driver,
+    elementId
+) {
+
+    const title =
+        `${driver.givenName}_${driver.familyName}`;
+
+
+    try {
+
+        const response =
+            await fetch(
+                `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
+            );
+
+
+        if (!response.ok) return;
+
+
+        const data =
+            await response.json();
+
+
+        const image =
+            data.thumbnail?.source;
+
+
+        if (image) {
+
+            const element =
+                document.getElementById(elementId);
+
+
+            if (element) {
+
+                element.style.backgroundImage =
+                    `url("${image}")`;
+            }
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Driver photo unavailable:",
+            driver.familyName
+        );
+    }
+}
+
+
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
+
+function startCountdown(targetDate) {
+
+    function update() {
+
+        const now =
+            new Date();
+
+
+        const difference =
+            targetDate - now;
+
+
+        const element =
+            document.getElementById("raceCountdown");
+
+
+        if (difference <= 0) {
+
+            element.textContent =
+                "RACE WEEKEND";
+
+            return;
+        }
+
+
+        const days =
+            Math.floor(
+                difference / 86400000
+            );
+
+
+        const hours =
+            Math.floor(
+                (difference % 86400000)
+                / 3600000
+            );
+
+
+        const minutes =
+            Math.floor(
+                (difference % 3600000)
+                / 60000
+            );
+
+
+        element.textContent =
+            `${days} DAYS · ${hours} HRS · ${minutes} MIN TO LIGHTS OUT`;
+    }
+
+
+    update();
+
+
+    setInterval(
+        update,
+        60000
+    );
+}
+
+
+/* =========================================================
+   CIRCUIT DATA
+   ========================================================= */
+
+const circuitDetails = {
+
+    albert_park: {
+        length: "5.278 KM",
+        laps: "58",
+        distance: "306.124 KM"
+    },
+
+    shanghai: {
+        length: "5.451 KM",
+        laps: "56",
+        distance: "305.066 KM"
+    },
+
+    suzuka: {
+        length: "5.807 KM",
+        laps: "53",
+        distance: "307.471 KM"
+    },
+
+    miami: {
+        length: "5.412 KM",
+        laps: "57",
+        distance: "308.326 KM"
+    },
+
+    villeneuve: {
+        length: "4.361 KM",
+        laps: "70",
+        distance: "305.270 KM"
+    },
+
+    monaco: {
+        length: "3.337 KM",
+        laps: "78",
+        distance: "260.286 KM"
+    },
+
+    catalunya: {
+        length: "4.657 KM",
+        laps: "66",
+        distance: "307.236 KM"
+    },
+
+    red_bull_ring: {
+        length: "4.326 KM",
+        laps: "71",
+        distance: "307.146 KM"
+    },
+
+    silverstone: {
+        length: "5.891 KM",
+        laps: "52",
+        distance: "306.332 KM"
+    },
+
+    spa: {
+        length: "7.004 KM",
+        laps: "44",
+        distance: "308.052 KM"
+    },
+
+    hungaroring: {
+        length: "4.381 KM",
+        laps: "70",
+        distance: "306.630 KM"
+    },
+
+    zandvoort: {
+        length: "4.259 KM",
+        laps: "72",
+        distance: "306.648 KM"
+    },
+
+    monza: {
+        length: "5.793 KM",
+        laps: "53",
+        distance: "306.720 KM"
+    },
+
+    baku: {
+        length: "6.003 KM",
+        laps: "51",
+        distance: "306.049 KM"
+    },
+
+    marina_bay: {
+        length: "4.940 KM",
+        laps: "62",
+        distance: "306.143 KM"
+    },
+
+    americas: {
+        length: "5.513 KM",
+        laps: "56",
+        distance: "308.405 KM"
+    },
+
+    rodriguez: {
+        length: "4.304 KM",
+        laps: "71",
+        distance: "305.354 KM"
+    },
+
+    interlagos: {
+        length: "4.309 KM",
+        laps: "71",
+        distance: "305.879 KM"
+    },
+
+    vegas: {
+        length: "6.201 KM",
+        laps: "50",
+        distance: "310.050 KM"
+    },
+
+    losail: {
+        length: "5.419 KM",
+        laps: "57",
+        distance: "308.611 KM"
+    },
+
+    yas_marina: {
+        length: "5.281 KM",
+        laps: "58",
+        distance: "306.183 KM"
+    }
+
+};
+
+
+/* =========================================================
+   FORMAT HELPERS
+   ========================================================= */
+
+function formatRaceName(name) {
+
+    return name
+        .replace("FORMULA 1 ", "")
+        .replace("GRAND PRIX", "GP")
+        .replace("GRAN PREMIO", "GP")
+        .replace("GRANDE PRÊMIO", "GP")
+        .replace("QATAR AIRWAYS ", "")
+        .replace("MOËT & CHANDON ", "")
+        .replace("ETIHAD AIRWAYS ", "")
+        .replace("HEINEKEN ", "")
+        .replace("AWS ", "")
+        .replace("PIRELLI ", "")
+        .replace("LENOVO ", "")
+        .replace("LOUIS VUITTON ", "")
+        .replace("ARAMCO ", "")
+        .replace("CRYPTO.COM ", "")
+        .replace("MSC CRUISES ", "")
+        .replace("TAG HEUER ", "")
+        .replace("GULF AIR ", "")
+        .trim();
+}
+
+
+function cleanGrandPrixName(name) {
+
+    return formatRaceName(name)
+        .replace(" 2026", "");
+}
+
+
+function formatDate(dateString) {
+
+    const date =
+        new Date(
+            `${dateString}T00:00:00`
+        );
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+}
+
+
+function formatDateTime(
+    dateString,
+    timeString
+) {
+
+    const date =
+        new Date(
+            `${dateString}T${timeString || "00:00:00"}`
+        );
+
+
+    return date.toLocaleString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        }
+    );
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+async function loadEverything() {
+
+    await loadCalendar();
+
+    await loadStandings();
+
+    await loadDrivers();
+}
+
+
+/*
+   Initial load
+*/
+
+loadEverything();
+
+
+/*
+   Automatically refresh F1 data every 5 minutes.
+
+   This means that when the API receives new results,
+   the website will update without us having to edit
+   the HTML manually.
+*/
+
+setInterval(
+    loadEverything,
+    5 * 60 * 1000
+);
+
+</script>
 
 </body>
-
 </html>
