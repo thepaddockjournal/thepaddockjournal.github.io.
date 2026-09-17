@@ -1,48 +1,80 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Paddock Journal | Motorsport</title>
+    <title>The Paddock Journal</title>
+
+    <meta name="description" content="The Paddock Journal — Motorsport beyond the grid. F1, F2, F3, F4, F1 Academy and Women in Motorsport.">
 
     <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080808;
-            color: #ffffff;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* HEADER */
+        body {
+            background: #050505;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
-            border-bottom: 1px solid #292929;
             position: sticky;
             top: 0;
-            background: rgba(8, 8, 8, 0.96);
-            z-index: 100;
+            z-index: 1000;
+
+            background: rgba(5, 5, 5, 0.96);
+            border-bottom: 1px solid #222;
+
+            backdrop-filter: blur(10px);
         }
 
-        .header-container {
-            max-width: 1200px;
+        .header-inner {
+            max-width: 1400px;
             margin: auto;
-            padding: 22px 30px;
+
+            padding: 20px 40px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 30px;
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 20px;
             font-weight: 800;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -51,227 +83,457 @@
 
         nav {
             display: flex;
+            align-items: center;
             gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: 0.3s;
+            transition: 0.25s ease;
         }
 
         nav a:hover {
             color: #F4A6C7;
         }
 
-        /* HERO */
-
-        .hero {
-            max-width: 1200px;
-            margin: auto;
-            padding: 90px 30px 80px;
+        .live-link {
+            color: #F4A6C7;
         }
 
-        .hero small {
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 680px;
+
+            display: flex;
+            align-items: flex-end;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #050505 5%,
+                    rgba(5,5,5,0.65) 45%,
+                    rgba(5,5,5,0.15) 100%
+                ),
+                radial-gradient(
+                    circle at 70% 35%,
+                    #292929 0%,
+                    #111111 35%,
+                    #050505 75%
+                );
+
+            border-bottom: 1px solid #222;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    transparent 0%,
+                    rgba(244,166,199,0.04) 45%,
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 1400px;
+
+            margin: auto;
+            padding: 80px 40px;
+        }
+
+        .hero-small {
             color: #F4A6C7;
-            font-weight: bold;
-            letter-spacing: 3px;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
         }
 
         .hero h1 {
-            font-size: clamp(50px, 8vw, 105px);
-            line-height: 0.9;
-            margin-top: 18px;
             max-width: 900px;
-            letter-spacing: -4px;
+
+            font-size: clamp(55px, 9vw, 125px);
+            line-height: 0.9;
+
+            letter-spacing: -5px;
+            font-weight: 900;
+
+            text-transform: uppercase;
         }
 
         .hero h1 span {
             color: #F4A6C7;
         }
 
-        .hero p {
+        .hero-text {
+            max-width: 650px;
+
             margin-top: 30px;
-            color: #a7a7a7;
-            max-width: 600px;
-            font-size: 17px;
-            line-height: 1.7;
+
+            color: #bdbdbd;
+
+            font-size: 16px;
         }
 
-        /* SECTIONS */
 
-        section {
-            max-width: 1200px;
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 1400px;
             margin: auto;
-            padding: 70px 30px;
+
+            padding: 90px 40px;
+        }
+
+        .section {
+            margin-bottom: 120px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+        }
+
+        .section-number {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
         }
 
         .section-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px;
+            margin-top: 5px;
+
+            font-size: 38px;
+            line-height: 1;
+
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        .section-title h2 {
-            font-size: 30px;
+        .section-link {
+            color: #999;
+
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 1px;
+            text-transform: uppercase;
+
+            transition: 0.25s ease;
         }
 
-        .section-title span {
+        .section-link:hover {
             color: #F4A6C7;
-            font-size: 11px;
-            letter-spacing: 2px;
         }
 
-        /* LATEST NEWS */
 
-        .news-grid {
+        /* =========================
+           LATEST NEWS
+        ========================= */
+
+        .latest-news-grid {
             display: grid;
+
             grid-template-columns: 2fr 1fr;
+
             gap: 20px;
+
+            height: 540px;
         }
 
-        .news-card {
-            background: #111111;
-            border: 1px solid #222222;
-            padding: 30px;
-            min-height: 220px;
-            transition: 0.3s;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+        .latest-card {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid #262626;
+
+            background: #101010;
+
+            transition: 0.3s ease;
         }
 
-        .news-card:hover {
+        .latest-card:hover {
             border-color: #F4A6C7;
-            transform: translateY(-4px);
         }
 
-        .news-card.featured {
-            min-height: 460px;
+        .latest-card::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.9),
+                    rgba(0,0,0,0.05) 70%
+                );
+
+            pointer-events: none;
         }
 
-        .news-card .category {
+        .latest-card-bg {
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    #333,
+                    #111 50%,
+                    #050505 100%
+                );
+
+            transition: 0.4s ease;
+        }
+
+        .latest-card:hover .latest-card-bg {
+            transform: scale(1.04);
+        }
+
+        .latest-content {
+            position: absolute;
+
+            z-index: 2;
+
+            left: 30px;
+            right: 30px;
+            bottom: 28px;
+        }
+
+        .category {
+            display: inline-block;
+
             color: #F4A6C7;
-            font-size: 11px;
-            font-weight: bold;
+
+            font-size: 10px;
+            font-weight: 700;
+
             letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
+            text-transform: uppercase;
 
-        .news-card h3 {
-            font-size: 29px;
-            line-height: 1.15;
-            margin-bottom: 15px;
-        }
-
-        .news-card p {
-            color: #999999;
-            line-height: 1.6;
-        }
-
-        .news-side {
-            display: grid;
-            gap: 20px;
-        }
-
-        .news-side .news-card {
-            min-height: 220px;
-        }
-
-        /* SEE MORE */
-
-        .see-more {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: #F4A6C7;
-            color: #080808;
-            border-color: #F4A6C7;
-        }
-
-        .see-more:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-        }
-
-        .see-more h3 {
-            font-size: 25px;
-            margin: 0;
-        }
-
-        .see-more span {
-            display: block;
-            margin-top: 10px;
-            font-size: 12px;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
-        /* EXPLORE THE GRID */
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-        }
-
-        .category-box {
-            padding: 35px 22px;
-            background: #111111;
-            border: 1px solid #222222;
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .category-box:hover {
-            border-color: #F4A6C7;
-            transform: translateY(-4px);
-        }
-
-        .category-box h3 {
-            font-size: 25px;
             margin-bottom: 10px;
         }
 
-        .category-box p {
-            color: #777777;
-            font-size: 12px;
+        .latest-content h3 {
+            font-size: 27px;
+            line-height: 1.05;
+
+            max-width: 650px;
         }
 
-        .academy h3 {
-            color: #F4A6C7;
+        .large-card .latest-content h3 {
+            font-size: 40px;
         }
 
-        /* WOMEN IN MOTORSPORT */
+        .latest-date {
+            margin-top: 12px;
 
-        .women-grid {
+            color: #999;
+
+            font-size: 11px;
+        }
+
+        .latest-right {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-rows: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .latest-bottom {
+            display: grid;
+
+            grid-template-columns: 3fr 1fr;
+
+            gap: 20px;
+        }
+
+        .medium-card .latest-content h3 {
+            font-size: 25px;
+        }
+
+        .small-card .latest-content h3 {
+            font-size: 20px;
+        }
+
+        .see-more-card {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background: #F4A6C7;
+            color: #050505;
+
+            transition: 0.3s ease;
+        }
+
+        .see-more-card:hover {
+            background: #ffffff;
+        }
+
+        .see-more-card h3 {
+            font-size: 18px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .see-more-arrow {
+            display: block;
+
+            font-size: 30px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           EXPLORE THE GRID
+        ========================= */
+
+        .grid-championships {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
             gap: 15px;
         }
 
-        .women-card {
-            background: #111111;
-            border: 1px solid #222222;
-            padding: 25px;
+        .championship-card {
             min-height: 260px;
+
+            padding: 25px;
+
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
+            justify-content: space-between;
+
+            border: 1px solid #252525;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #151515,
+                    #090909
+                );
+
+            transition: 0.3s ease;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .championship-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            right: -40px;
+            top: -40px;
+
+            border-radius: 50%;
+
+            background: #F4A6C7;
+
+            opacity: 0.08;
+        }
+
+        .championship-card:hover {
+            border-color: #F4A6C7;
+            transform: translateY(-5px);
+        }
+
+        .championship-number {
+            color: #666;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .championship-card h3 {
+            font-size: 32px;
+
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .championship-card p {
+            color: #888;
+
+            font-size: 12px;
+        }
+
+        .championship-arrow {
+            color: #F4A6C7;
+
+            font-size: 22px;
+
+            align-self: flex-end;
+        }
+
+
+        /* =========================
+           WOMEN IN MOTORSPORT
+        ========================= */
+
+        .women-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .women-card {
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+
+            overflow: hidden;
+
+            transition: 0.3s ease;
         }
 
         .women-card:hover {
@@ -279,513 +541,926 @@
             transform: translateY(-4px);
         }
 
-        .women-card .tag {
-            color: #F4A6C7;
-            font-size: 10px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            margin-bottom: 12px;
+        .women-image {
+            height: 230px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #292929,
+                    #0d0d0d
+                );
         }
 
-        .women-card h3 {
-            font-size: 21px;
-            line-height: 1.25;
+        .women-content {
+            padding: 22px;
         }
 
-        .women-card p {
-            color: #888888;
-            font-size: 13px;
-            line-height: 1.5;
-            margin-top: 10px;
+        .women-content h3 {
+            font-size: 20px;
+            line-height: 1.1;
+
+            margin-bottom: 10px;
         }
 
-        /* SOCIAL */
+        .women-content p {
+            color: #8e8e8e;
 
-        .social-section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 70px 30px;
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           SOCIAL
+        ========================= */
+
+        .social-grid {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 20px;
         }
 
         .social-card {
-            padding: 55px 40px;
-            border: 1px solid #222222;
-            background: #111111;
+            min-height: 260px;
+
+            padding: 35px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+
+            transition: 0.3s ease;
         }
 
-        .social-card h2 {
-            font-size: 30px;
-            margin-bottom: 12px;
+        .social-card:hover {
+            border-color: #F4A6C7;
+        }
+
+        .social-label {
+            color: #F4A6C7;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .social-card h3 {
+            font-size: 35px;
+
+            margin-top: 15px;
         }
 
         .social-card p {
-            color: #999999;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            color: #888;
+
+            font-size: 13px;
+
+            max-width: 450px;
         }
 
-        .social-card a {
-            display: inline-block;
-            padding: 13px 22px;
+        .social-button {
+            align-self: flex-start;
+
+            margin-top: 25px;
+
+            padding: 12px 20px;
+
+            border: 1px solid #F4A6C7;
+
+            color: #F4A6C7;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+
+            transition: 0.25s ease;
+        }
+
+        .social-button:hover {
             background: #F4A6C7;
-            color: #080808;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            transition: 0.3s;
+            color: #050505;
         }
 
-        .social-card a:hover {
-            background: #ffffff;
-        }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            text-align: center;
-            padding: 35px;
-            border-top: 1px solid #222222;
-            color: #666666;
-            font-size: 12px;
+            border-top: 1px solid #222;
+
+            padding: 45px 40px;
         }
 
-        footer strong {
-            color: #ffffff;
+        .footer-inner {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 30px;
         }
 
-        /* MOBILE */
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 800;
 
-        @media (max-width: 900px) {
+            letter-spacing: 2px;
+        }
 
-            .header-container {
-                flex-direction: column;
-                gap: 20px;
+        .footer-logo span {
+            color: #F4A6C7;
+        }
+
+        .footer-text {
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .header-inner {
+                padding: 18px 25px;
             }
 
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
+            nav {
+                gap: 15px;
+            }
+
+            .grid-championships {
+                grid-template-columns: repeat(3, 1fr);
             }
 
             .women-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .social-section {
-                grid-template-columns: 1fr;
-            }
         }
 
-        @media (max-width: 600px) {
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
             nav {
-                gap: 12px;
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 5px;
+
+                gap: 20px;
+
+                white-space: nowrap;
             }
 
             .hero {
-                padding-top: 60px;
+                min-height: 600px;
             }
 
-            .news-grid {
+            .hero-content {
+                padding: 60px 25px;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            main {
+                padding: 65px 25px;
+            }
+
+            .section {
+                margin-bottom: 80px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+
+            /* NEWS MOBILE */
+
+            .latest-news-grid {
+                height: auto;
+
                 grid-template-columns: 1fr;
             }
 
-            .categories {
-                grid-template-columns: 1fr 1fr;
+            .latest-right {
+                grid-template-rows: 300px 300px;
             }
+
+            .latest-card {
+                min-height: 300px;
+            }
+
+            .large-card {
+                min-height: 400px;
+            }
+
+            .latest-bottom {
+                grid-template-columns: 3fr 1fr;
+            }
+
+            .large-card .latest-content h3 {
+                font-size: 32px;
+            }
+
+
+            /* CHAMPIONSHIPS */
+
+            .grid-championships {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            /* WOMEN */
 
             .women-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero h1 {
-                letter-spacing: -2px;
+
+            /* SOCIAL */
+
+            .social-grid {
+                grid-template-columns: 1fr;
             }
+
+
+            /* FOOTER */
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
         }
+
+
+        @media (max-width: 500px) {
+
+            .grid-championships {
+                grid-template-columns: 1fr;
+            }
+
+            .latest-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .see-more-card {
+                min-height: 180px;
+            }
+
+        }
+
     </style>
 </head>
 
 
 <body>
 
-<header>
 
-    <div class="header-container">
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-        <div class="logo">
-            THE PADDOCK <span>JOURNAL</span>
+    <header>
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </a>
+
+            <nav>
+
+                <a href="#latest-news">F1</a>
+                <a href="#grid">F2</a>
+                <a href="#grid">F3</a>
+                <a href="#grid">F4</a>
+                <a href="#grid">F1 Academy</a>
+                <a href="#women">Women</a>
+
+                <a href="live.html" class="live-link">
+                    Live
+                </a>
+
+                <a href="about.html">
+                    About Me
+                </a>
+
+            </nav>
+
         </div>
 
-        <nav>
-            <a href="#">F1</a>
-            <a href="#">F2</a>
-            <a href="#">F3</a>
-            <a href="#">F4</a>
-            <a href="#">F1 ACADEMY</a>
-            <a href="#">WOMEN</a>
-            <a href="#">LIVE</a>
-            <a href="#">ABOUT ME</a>
-        </nav>
-
-    </div>
-
-</header>
+    </header>
 
 
-<main>
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================== -->
 
-    <div class="hero">
+    <section class="hero">
 
-        <small>THE WORLD OF MOTORSPORT</small>
+        <div class="hero-content">
 
-        <h1>
-            BEYOND<br>
-            THE <span>GRID.</span>
-        </h1>
+            <div class="hero-small">
+                Motorsport journalism · 2026
+            </div>
 
-        <p>
-            News, stories and the people behind the world of
-            single-seater racing. From Formula 1 to Formula 4.
-        </p>
+            <h1>
+                Beyond<br>
+                the <span>Grid.</span>
+            </h1>
 
-    </div>
+            <p class="hero-text">
+                The Paddock Journal explores the world of motorsport
+                beyond the race itself — from Formula 1 to the next
+                generation of drivers and the women shaping the sport.
+            </p>
 
+        </div>
 
- ```html
-<!-- LATEST NEWS -->
-
-<section>
-
-    <div class="section-title">
-
-        <h2>Latest News</h2>
-
-        <span>THE PADDOCK JOURNAL</span>
-
-    </div>
+    </section>
 
 
-    <div class="latest-news-grid">
 
-        <!-- LARGE NEWS -->
+    <main>
 
-        <a href="#" class="latest-card large-card">
 
-            <div class="latest-content">
+        <!-- =========================
+             LATEST NEWS
+        ========================== -->
 
-                <div class="category">
-                    FORMULA 1
+        <section class="section" id="latest-news">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        01 / THE PADDOCK
+                    </div>
+
+                    <h2 class="section-title">
+                        Latest News
+                    </h2>
+
                 </div>
 
-                <h3>
-                    Your latest F1 story will appear here
-                </h3>
-
-                <p>
-                    This space will be used for your most important
-                    and recent motorsport news.
-                </p>
+                <a href="news.html" class="section-link">
+                    View all news →
+                </a>
 
             </div>
 
-        </a>
+
+            <div class="latest-news-grid">
 
 
-        <!-- RIGHT COLUMN -->
+                <!-- LARGE NEWS -->
 
-        <div class="latest-right">
+                <article class="latest-card large-card">
 
-            <!-- MEDIUM NEWS -->
-
-            <a href="#" class="latest-card medium-card">
-
-                <div class="latest-content">
-
-                    <div class="category">
-                        FORMULA 2
-                    </div>
-
-                    <h3>
-                        The latest from Formula 2
-                    </h3>
-
-                    <p>
-                        News and stories from the championship.
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <!-- BOTTOM ROW -->
-
-            <div class="latest-bottom">
-
-                <!-- SMALL NEWS -->
-
-                <a href="#" class="latest-card small-card">
+                    <div class="latest-card-bg"></div>
 
                     <div class="latest-content">
 
-                        <div class="category">
-                            FORMULA 3
-                        </div>
+                        <span class="category">
+                            Formula 1
+                        </span>
 
                         <h3>
-                            The next generation of racing
+                            The latest stories from the world of Formula 1
                         </h3>
 
+                        <div class="latest-date">
+                            SEPTEMBER 2026
+                        </div>
+
                     </div>
+
+                </article>
+
+
+
+                <!-- RIGHT SIDE -->
+
+                <div class="latest-right">
+
+
+                    <!-- MEDIUM -->
+
+                    <article class="latest-card medium-card">
+
+                        <div class="latest-card-bg"></div>
+
+                        <div class="latest-content">
+
+                            <span class="category">
+                                F1 Academy
+                            </span>
+
+                            <h3>
+                                The next generation is ready to make its mark
+                            </h3>
+
+                            <div class="latest-date">
+                                SEPTEMBER 2026
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- BOTTOM -->
+
+                    <div class="latest-bottom">
+
+
+                        <!-- SMALL -->
+
+                        <article class="latest-card small-card">
+
+                            <div class="latest-card-bg"></div>
+
+                            <div class="latest-content">
+
+                                <span class="category">
+                                    Women
+                                </span>
+
+                                <h3>
+                                    Women shaping the future of motorsport
+                                </h3>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- SEE MORE -->
+
+                        <a href="news.html" class="latest-card see-more-card">
+
+                            <div>
+
+                                <h3>
+                                    See<br>
+                                    More
+                                </h3>
+
+                                <span class="see-more-arrow">
+                                    →
+                                </span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             EXPLORE THE GRID
+        ========================== -->
+
+        <section class="section" id="grid">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        02 / CHAMPIONSHIPS
+                    </div>
+
+                    <h2 class="section-title">
+                        Explore the Grid
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid-championships">
+
+
+                <a href="f1.html" class="championship-card">
+
+                    <span class="championship-number">
+                        01
+                    </span>
+
+                    <div>
+
+                        <h3>F1</h3>
+
+                        <p>
+                            The pinnacle of motorsport.
+                        </p>
+
+                    </div>
+
+                    <span class="championship-arrow">
+                        →
+                    </span>
 
                 </a>
 
 
-                <!-- SEE MORE -->
 
-                <a href="#" class="latest-card see-more-card">
+                <a href="f2.html" class="championship-card">
+
+                    <span class="championship-number">
+                        02
+                    </span>
 
                     <div>
 
-                        <h3>SEE MORE</h3>
+                        <h3>F2</h3>
 
-                        <span>ALL NEWS →</span>
+                        <p>
+                            The road to Formula 1.
+                        </p>
 
                     </div>
 
+                    <span class="championship-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a href="f3.html" class="championship-card">
+
+                    <span class="championship-number">
+                        03
+                    </span>
+
+                    <div>
+
+                        <h3>F3</h3>
+
+                        <p>
+                            Where future stars emerge.
+                        </p>
+
+                    </div>
+
+                    <span class="championship-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a href="f4.html" class="championship-card">
+
+                    <span class="championship-number">
+                        04
+                    </span>
+
+                    <div>
+
+                        <h3>F4</h3>
+
+                        <p>
+                            The first step into single-seaters.
+                        </p>
+
+                    </div>
+
+                    <span class="championship-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <a href="f1-academy.html" class="championship-card">
+
+                    <span class="championship-number">
+                        05
+                    </span>
+
+                    <div>
+
+                        <h3>F1 Academy</h3>
+
+                        <p>
+                            Building the future of women in racing.
+                        </p>
+
+                    </div>
+
+                    <span class="championship-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             WOMEN IN MOTORSPORT
+        ========================== -->
+
+        <section class="section" id="women">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        03 / WOMEN IN MOTORSPORT
+                    </div>
+
+                    <h2 class="section-title">
+                        Beyond the Driver
+                    </h2>
+
+                </div>
+
+                <a href="women.html" class="section-link">
+                    Explore women in motorsport →
                 </a>
 
             </div>
 
-        </div>
 
-    </div>
-
-</section>
-```
+            <div class="women-grid">
 
 
+                <a href="women.html" class="women-card">
 
-    <!-- EXPLORE THE GRID -->
+                    <div class="women-image"></div>
 
-    <section>
+                    <div class="women-content">
 
-        <div class="section-title">
+                        <span class="category">
+                            Engineering
+                        </span>
 
-            <h2>Explore the Grid</h2>
+                        <h3>
+                            The women engineering the future
+                        </h3>
 
-            <span>CHAMPIONSHIPS</span>
+                        <p>
+                            Behind every racing car is a team of people
+                            pushing technology forward.
+                        </p>
 
-        </div>
+                    </div>
 
-
-        <div class="categories">
-
-            <a href="#" class="category-box">
-
-                <h3>F1</h3>
-
-                <p>Formula 1</p>
-
-            </a>
-
-
-            <a href="#" class="category-box">
-
-                <h3>F2</h3>
-
-                <p>Formula 2</p>
-
-            </a>
+                </a>
 
 
-            <a href="#" class="category-box">
 
-                <h3>F3</h3>
+                <a href="women.html" class="women-card">
 
-                <p>Formula 3</p>
+                    <div class="women-image"></div>
 
-            </a>
+                    <div class="women-content">
 
+                        <span class="category">
+                            Strategy
+                        </span>
 
-            <a href="#" class="category-box">
+                        <h3>
+                            Making the decisions behind the pit wall
+                        </h3>
 
-                <h3>F4</h3>
+                        <p>
+                            Strategy can change the outcome of a race
+                            in a matter of seconds.
+                        </p>
 
-                <p>Formula 4</p>
+                    </div>
 
-            </a>
-
-
-            <a href="#" class="category-box academy">
-
-                <h3>F1 Academy</h3>
-
-                <p>Women in single-seaters</p>
-
-            </a>
-
-        </div>
-
-    </section>
+                </a>
 
 
-    <!-- WOMEN IN MOTORSPORT -->
 
-    <section>
+                <a href="women.html" class="women-card">
 
-        <div class="section-title">
+                    <div class="women-image"></div>
 
-            <h2>Women in Motorsport</h2>
+                    <div class="women-content">
 
-            <span>THE WOMEN BEHIND THE GRID</span>
+                        <span class="category">
+                            Media
+                        </span>
 
-        </div>
+                        <h3>
+                            The voices telling motorsport's stories
+                        </h3>
+
+                        <p>
+                            Journalists, photographers and creators
+                            shaping how we experience racing.
+                        </p>
+
+                    </div>
+
+                </a>
 
 
-        <div class="women-grid">
 
-            <a href="#" class="women-card">
+                <a href="women.html" class="women-card">
+
+                    <div class="women-image"></div>
+
+                    <div class="women-content">
+
+                        <span class="category">
+                            Paddock
+                        </span>
+
+                        <h3>
+                            The people who keep racing moving
+                        </h3>
+
+                        <p>
+                            Mechanics, managers and professionals
+                            working behind the scenes.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SOCIAL
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
 
                 <div>
 
-                    <div class="tag">
-                        ENGINEERING
+                    <div class="section-number">
+                        04 / FOLLOW THE JOURNAL
                     </div>
 
-                    <h3>
-                        The women behind the machines
-                    </h3>
-
-                    <p>
-                        Stories from women working in motorsport engineering.
-                    </p>
+                    <h2 class="section-title">
+                        Join the Paddock
+                    </h2>
 
                 </div>
 
-            </a>
+            </div>
 
 
-            <a href="#" class="women-card">
+            <div class="social-grid">
 
-                <div>
 
-                    <div class="tag">
-                        JOURNALISM
+                <!-- INSTAGRAM -->
+
+                <div class="social-card">
+
+                    <div>
+
+                        <span class="social-label">
+                            Instagram
+                        </span>
+
+                        <h3>
+                            @racingwithchar
+                        </h3>
+
+                        <p>
+                            Follow the visual side of motorsport,
+                            from the paddock to the grandstands.
+                        </p>
+
                     </div>
 
-                    <h3>
-                        Women telling the story of racing
-                    </h3>
-
-                    <p>
-                        Meet the journalists and communicators behind the sport.
-                    </p>
+                    <a
+                        href="https://www.instagram.com/racingwithchar/"
+                        target="_blank"
+                        class="social-button"
+                    >
+                        Follow on Instagram →
+                    </a>
 
                 </div>
 
-            </a>
 
 
-            <a href="#" class="women-card">
+                <!-- WHATSAPP -->
 
-                <div>
+                <div class="social-card">
 
-                    <div class="tag">
-                        BEHIND THE SCENES
+                    <div>
+
+                        <span class="social-label">
+                            WhatsApp Channel
+                        </span>
+
+                        <h3>
+                            The Paddock Journal
+                        </h3>
+
+                        <p>
+                            News, updates and motorsport stories
+                            directly on your phone.
+                        </p>
+
                     </div>
 
-                    <h3>
-                        More than what we see on track
-                    </h3>
-
-                    <p>
-                        The people working behind every race weekend.
-                    </p>
+                    <a
+                        href="https://whatsapp.com/channel/0029Vb8PYXe90x2uP4oWnT3b"
+                        target="_blank"
+                        class="social-button"
+                    >
+                        Join the channel →
+                    </a>
 
                 </div>
 
-            </a>
+
+            </div>
+
+        </section>
 
 
-            <a href="#" class="women-card">
+    </main>
 
-                <div>
 
-                    <div class="tag">
-                        WOMEN IN MOTORSPORT
-                    </div>
 
-                    <h3>
-                        Discover their stories
-                    </h3>
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-                    <p>
-                        Explore all our Women in Motorsport articles.
-                    </p>
+    <footer>
 
-                </div>
+        <div class="footer-inner">
 
-            </a>
+            <div class="footer-logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </div>
+
+            <div class="footer-text">
+                © 2026 The Paddock Journal · Motorsport beyond the grid.
+            </div>
 
         </div>
 
-    </section>
+    </footer>
 
-
-    <!-- SOCIAL -->
-
-    <div class="social-section">
-
-        <div class="social-card">
-
-            <h2>RacingWithChar</h2>
-
-            <p>
-                Follow our motorsport journey on Instagram and
-                discover more content from the paddock.
-            </p>
-
-            <a href="https://www.instagram.com/racingwithchar/"
-               target="_blank">
-                FOLLOW ON INSTAGRAM →
-            </a>
-
-        </div>
-
-
-        <div class="social-card">
-
-            <h2>Join The Paddock</h2>
-
-            <p>
-                Get the latest motorsport stories, news and updates
-                directly on WhatsApp.
-            </p>
-
-            <a href="https://whatsapp.com/channel/0029Vb8PYXe90x2uP4oWnT3b"
-               target="_blank">
-                JOIN OUR CHANNEL →
-            </a>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<footer>
-
-    © 2026 <strong>The Paddock Journal</strong> · Motorsport Media
-
-</footer>
 
 </body>
 </html>
-```
