@@ -689,9 +689,6 @@ nav a.active {
         scale(1);
 }
 
-
-/* Popup image */
-
 .driver-popup-photo {
     position: relative;
 
@@ -714,9 +711,6 @@ nav a.active {
             rgba(9,9,9,0.5)
         );
 }
-
-
-/* Popup information */
 
 .driver-popup-info {
     padding: 30px;
@@ -924,7 +918,6 @@ footer p {
 
     .driver-popup {
         grid-template-columns: 1fr;
-
         height: 500px;
     }
 
@@ -950,10 +943,6 @@ footer p {
 <body>
 
 
-<!-- ==========================================
-     HEADER
-========================================== -->
-
 <header>
 
     <a href="index.html" class="logo">
@@ -975,10 +964,6 @@ footer p {
 
 </header>
 
-
-<!-- ==========================================
-     INTRO
-========================================== -->
 
 <section class="page-intro">
 
@@ -1301,7 +1286,7 @@ footer p {
                     id="lastWinner"
                     class="race-stat-value">
 
-                    —
+                    Loading...
 
                 </div>
 
@@ -1318,7 +1303,7 @@ footer p {
                     id="lastPole"
                     class="race-stat-value">
 
-                    —
+                    Loading...
 
                 </div>
 
@@ -1418,8 +1403,6 @@ footer p {
     <div class="standings-wrapper">
 
 
-        <!-- DRIVERS -->
-
         <div class="standings-column">
 
             <div class="standings-heading">
@@ -1445,8 +1428,6 @@ footer p {
 
         </div>
 
-
-        <!-- CONSTRUCTORS -->
 
         <div class="standings-column">
 
@@ -1511,10 +1492,6 @@ footer p {
 </section>
 
 
-<!-- ==========================================
-     FOOTER
-========================================== -->
-
 <footer>
 
     <div class="logo">
@@ -1541,11 +1518,347 @@ const API =
 const SEASON =
     "2026";
 
-
 let races = [];
 
 let calendarExpanded =
     false;
+
+
+/* =========================================================
+   OFFICIAL 2026 GRID
+   Exactly 22 official drivers
+========================================================= */
+
+const official2026Drivers = [
+
+    "russell",
+    "antonelli",
+
+    "leclerc",
+    "hamilton",
+
+    "norris",
+    "piastri",
+
+    "max_verstappen",
+    "hadjar",
+
+    "lawson",
+    "lindblad",
+
+    "gasly",
+    "colapinto",
+
+    "ocon",
+    "bearman",
+
+    "hulkenberg",
+    "bortoleto",
+
+    "sainz",
+    "albon",
+
+    "alonso",
+    "stroll",
+
+    "perez",
+    "bottas"
+
+];
+
+
+/* =========================================================
+   OFFICIAL TEAM MAPPING
+========================================================= */
+
+const officialTeams = {
+
+    russell: "Mercedes",
+    antonelli: "Mercedes",
+
+    leclerc: "Ferrari",
+    hamilton: "Ferrari",
+
+    norris: "McLaren",
+    piastri: "McLaren",
+
+    max_verstappen: "Red Bull Racing",
+    hadjar: "Red Bull Racing",
+
+    lawson: "Racing Bulls",
+    lindblad: "Racing Bulls",
+
+    gasly: "Alpine",
+    colapinto: "Alpine",
+
+    ocon: "Haas F1 Team",
+    bearman: "Haas F1 Team",
+
+    hulkenberg: "Audi",
+    bortoleto: "Audi",
+
+    sainz: "Williams",
+    albon: "Williams",
+
+    alonso: "Aston Martin",
+    stroll: "Aston Martin",
+
+    perez: "Cadillac",
+    bottas: "Cadillac"
+
+};
+
+
+/* =========================================================
+   DRIVER PHOTOS
+========================================================= */
+
+const driverPhotos = {
+
+    russell:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/George_Russell_2025.jpg/640px-George_Russell_2025.jpg",
+
+    antonelli:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Andrea_Kimi_Antonelli_2025.jpg/640px-Andrea_Kimi_Antonelli_2025.jpg",
+
+    leclerc:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Charles_Leclerc_2025.jpg/640px-Charles_Leclerc_2025.jpg",
+
+    hamilton:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Lewis_Hamilton_2025.jpg/640px-Lewis_Hamilton_2025.jpg",
+
+    norris:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lando_Norris_2025.jpg/640px-Lando_Norris_2025.jpg",
+
+    piastri:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Oscar_Piastri_2025.jpg/640px-Oscar_Piastri_2025.jpg",
+
+    max_verstappen:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Max_Verstappen_2025.jpg/640px-Max_Verstappen_2025.jpg",
+
+    hadjar:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Isack_Hadjar_2025.jpg/640px-Isack_Hadjar_2025.jpg",
+
+    lawson:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Lawson_2025.jpg/640px-Liam_Lawson_2025.jpg",
+
+    lindblad:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Arvid_Lindblad_2025.jpg/640px-Arvid_Lindblad_2025.jpg",
+
+    gasly:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Pierre_Gasly_2025.jpg/640px-Pierre_Gasly_2025.jpg",
+
+    colapinto:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Franco_Colapinto_2025.jpg/640px-Franco_Colapinto_2025.jpg",
+
+    ocon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Esteban_Ocon_2025.jpg/640px-Esteban_Ocon_2025.jpg",
+
+    bearman:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Oliver_Bearman_2025.jpg/640px-Oliver_Bearman_2025.jpg",
+
+    hulkenberg:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Nico_Hulkenberg_2025.jpg/640px-Nico_Hulkenberg_2025.jpg",
+
+    bortoleto:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Gabriel_Bortoleto_2025.jpg/640px-Gabriel_Bortoleto_2025.jpg",
+
+    sainz:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Carlos_Sainz_2025.jpg/640px-Carlos_Sainz_2025.jpg",
+
+    albon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Alexander_Albon_2025.jpg/640px-Alexander_Albon_2025.jpg",
+
+    alonso:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Fernando_Alonso_2025.jpg/640px-Fernando_Alonso_2025.jpg",
+
+    stroll:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Lance_Stroll_2025.jpg/640px-Lance_Stroll_2025.jpg",
+
+    perez:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sergio_Perez_2025.jpg/640px-Sergio_Perez_2025.jpg",
+
+    bottas:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Valtteri_Bottas_2025.jpg/640px-Valtteri_Bottas_2025.jpg"
+
+};
+
+
+/* =========================================================
+   CIRCUIT RECORDS
+========================================================= */
+
+const circuitData = {
+
+    albert_park: {
+        length: "5.278 KM",
+        laps: "58",
+        distance: "306.124 KM",
+        fastestLap: "1:19.813",
+        fastestDriver: "Charles Leclerc"
+    },
+
+    shanghai: {
+        length: "5.451 KM",
+        laps: "56",
+        distance: "305.066 KM",
+        fastestLap: "1:32.238",
+        fastestDriver: "Michael Schumacher"
+    },
+
+    suzuka: {
+        length: "5.807 KM",
+        laps: "53",
+        distance: "307.471 KM",
+        fastestLap: "1:30.983",
+        fastestDriver: "Lewis Hamilton"
+    },
+
+    miami: {
+        length: "5.412 KM",
+        laps: "57",
+        distance: "308.326 KM",
+        fastestLap: "1:29.708",
+        fastestDriver: "Max Verstappen"
+    },
+
+    villeneuve: {
+        length: "4.361 KM",
+        laps: "70",
+        distance: "305.270 KM",
+        fastestLap: "1:13.078",
+        fastestDriver: "Valtteri Bottas"
+    },
+
+    monaco: {
+        length: "3.337 KM",
+        laps: "78",
+        distance: "260.286 KM",
+        fastestLap: "1:12.909",
+        fastestDriver: "Lewis Hamilton"
+    },
+
+    catalunya: {
+        length: "4.657 KM",
+        laps: "66",
+        distance: "307.236 KM",
+        fastestLap: "1:16.330",
+        fastestDriver: "Oscar Piastri"
+    },
+
+    red_bull_ring: {
+        length: "4.326 KM",
+        laps: "71",
+        distance: "307.146 KM",
+        fastestLap: "1:05.619",
+        fastestDriver: "Carlos Sainz"
+    },
+
+    silverstone: {
+        length: "5.891 KM",
+        laps: "52",
+        distance: "306.332 KM",
+        fastestLap: "1:27.097",
+        fastestDriver: "Max Verstappen"
+    },
+
+    spa: {
+        length: "7.004 KM",
+        laps: "44",
+        distance: "308.052 KM",
+        fastestLap: "1:44.701",
+        fastestDriver: "Sergio Perez"
+    },
+
+    hungaroring: {
+        length: "4.381 KM",
+        laps: "70",
+        distance: "306.630 KM",
+        fastestLap: "1:16.627",
+        fastestDriver: "Lewis Hamilton"
+    },
+
+    zandvoort: {
+        length: "4.259 KM",
+        laps: "72",
+        distance: "306.648 KM",
+        fastestLap: "1:11.097",
+        fastestDriver: "Lewis Hamilton"
+    },
+
+    monza: {
+        length: "5.793 KM",
+        laps: "53",
+        distance: "306.720 KM",
+        fastestLap: "1:21.046",
+        fastestDriver: "Rubens Barrichello"
+    },
+
+    baku: {
+        length: "6.003 KM",
+        laps: "51",
+        distance: "306.049 KM",
+        fastestLap: "1:43.009",
+        fastestDriver: "Charles Leclerc"
+    },
+
+    marina_bay: {
+        length: "4.940 KM",
+        laps: "62",
+        distance: "306.143 KM",
+        fastestLap: "1:35.867",
+        fastestDriver: "Kevin Magnussen"
+    },
+
+    americas: {
+        length: "5.513 KM",
+        laps: "56",
+        distance: "308.405 KM",
+        fastestLap: "1:36.169",
+        fastestDriver: "Charles Leclerc"
+    },
+
+    rodriguez: {
+        length: "4.304 KM",
+        laps: "71",
+        distance: "305.354 KM",
+        fastestLap: "1:17.774",
+        fastestDriver: "Valtteri Bottas"
+    },
+
+    interlagos: {
+        length: "4.309 KM",
+        laps: "71",
+        distance: "305.879 KM",
+        fastestLap: "1:10.540",
+        fastestDriver: "Valtteri Bottas"
+    },
+
+    vegas: {
+        length: "6.201 KM",
+        laps: "50",
+        distance: "310.050 KM",
+        fastestLap: "1:35.490",
+        fastestDriver: "Oscar Piastri"
+    },
+
+    losail: {
+        length: "5.419 KM",
+        laps: "57",
+        distance: "308.611 KM",
+        fastestLap: "1:22.384",
+        fastestDriver: "Lando Norris"
+    },
+
+    yas_marina: {
+        length: "5.281 KM",
+        laps: "58",
+        distance: "306.183 KM",
+        fastestLap: "1:26.103",
+        fastestDriver: "Max Verstappen"
+    }
+
+};
 
 
 /* =========================================================
@@ -1568,7 +1881,11 @@ async function api(endpoint) {
 
     } catch(error) {
 
-        console.error(error);
+        console.error(
+            "API ERROR:",
+            endpoint,
+            error
+        );
 
         return null;
     }
@@ -1577,7 +1894,7 @@ async function api(endpoint) {
 
 
 /* =========================================================
-   LOAD ALL
+   LOAD EVERYTHING
 ========================================================= */
 
 async function loadEverything() {
@@ -1614,7 +1931,7 @@ async function loadCalendar() {
 
     renderCalendar();
 
-    loadNextRace();
+    await loadNextRace();
 
 }
 
@@ -1622,7 +1939,9 @@ async function loadCalendar() {
 function renderCalendar() {
 
     const container =
-        document.getElementById("calendar");
+        document.getElementById(
+            "calendar"
+        );
 
 
     const visible =
@@ -1795,7 +2114,7 @@ async function loadNextRace() {
 
 
     /*
-       Historical circuit data.
+       Circuit characteristics
     */
 
     const circuit =
@@ -1834,30 +2153,19 @@ async function loadNextRace() {
 
 
     /*
-       Last edition of this GP.
+       IMPORTANT FIX:
+
+       We now search the PREVIOUS SEASON
+       for the last edition of the SAME GP.
+
+       This means Azerbaijan 2026 looks at
+       Azerbaijan 2025 instead of searching
+       inside the unfinished 2026 season.
     */
 
-    const lastEdition =
-        races
-        .filter(
-            race =>
-                race.round < next.round
-        )
-        .filter(
-            race =>
-                race.Circuit.circuitId ===
-                next.Circuit.circuitId
-        )
-        .pop();
-
-
-    if (lastEdition) {
-
-        await loadLastEdition(
-            lastEdition
-        );
-
-    }
+    await loadLastEdition(
+        next
+    );
 
 
     startCountdown(
@@ -1870,16 +2178,102 @@ async function loadNextRace() {
 
 
 /* =========================================================
-   LAST EDITION
+   LAST EDITION OF THE SAME GRAND PRIX
 ========================================================= */
 
 async function loadLastEdition(
-    race
+    nextRace
 ) {
+
+    let searchSeason =
+        parseInt(SEASON) - 1;
+
+    let previousRace =
+        null;
+
+
+    /*
+       Search backwards through previous
+       seasons until the same circuit is found.
+    */
+
+    for (
+        let season = searchSeason;
+        season >= 2020;
+        season--
+    ) {
+
+        const previousCalendar =
+            await api(
+                `${season}`
+            );
+
+
+        if (
+            !previousCalendar
+        )
+            continue;
+
+
+        const oldRaces =
+            previousCalendar
+            .MRData
+            .RaceTable
+            .Races;
+
+
+        previousRace =
+            oldRaces.find(
+                race =>
+                    race.Circuit.circuitId ===
+                    nextRace.Circuit.circuitId
+            );
+
+
+        if (previousRace) {
+
+            break;
+
+        }
+
+    }
+
+
+    /*
+       If no matching circuit is found,
+       leave the fields as unavailable.
+    */
+
+    if (!previousRace) {
+
+        document.getElementById(
+            "lastWinner"
+        ).textContent =
+            "N/A";
+
+
+        document.getElementById(
+            "lastPole"
+        ).textContent =
+            "N/A";
+
+
+        return;
+
+    }
+
+
+    const season =
+        searchSeason;
+
+
+    /*
+       LAST WINNER
+    */
 
     const resultsData =
         await api(
-            `${SEASON}/${race.round}/results`
+            `${season}/${previousRace.round}/results`
         );
 
 
@@ -1900,7 +2294,10 @@ async function loadLastEdition(
             .Results;
 
 
-        if (results.length) {
+        if (
+            results &&
+            results.length
+        ) {
 
             const winner =
                 results[0].Driver;
@@ -1917,9 +2314,13 @@ async function loadLastEdition(
     }
 
 
+    /*
+       LAST POLESITTER
+    */
+
     const qualifyingData =
         await api(
-            `${SEASON}/${race.round}/qualifying`
+            `${season}/${previousRace.round}/qualifying`
         );
 
 
@@ -1940,7 +2341,10 @@ async function loadLastEdition(
             .QualifyingResults;
 
 
-        if (qualifying.length) {
+        if (
+            qualifying &&
+            qualifying.length
+        ) {
 
             const pole =
                 qualifying[0].Driver;
@@ -2134,52 +2538,30 @@ async function loadDrivers() {
         return;
 
 
-    const drivers =
+    const allDrivers =
         data
         .MRData
         .DriverTable
         .Drivers;
 
 
-    const standingsData =
-        await api(
-            `${SEASON}/driverstandings`
-        );
+    /*
+       ONLY OFFICIAL 2026 DRIVERS.
 
+       This prevents reserve / former drivers
+       from appearing in the grid.
+    */
 
-    let teams = {};
-
-
-    if (
-        standingsData
-    ) {
-
-        const lists =
-            standingsData
-            .MRData
-            .StandingsTable
-            .StandingsLists;
-
-
-        if (lists.length) {
-
-            lists[0]
-            .DriverStandings
-            .forEach(
-                item => {
-
-                    teams[
-                        item.Driver.driverId
-                    ] =
-                        item.Constructors?.[0]?.name
-                        || "Formula 1";
-
-                }
-            );
-
-        }
-
-    }
+    const drivers =
+        official2026Drivers
+        .map(
+            id =>
+                allDrivers.find(
+                    driver =>
+                        driver.driverId === id
+                )
+        )
+        .filter(Boolean);
 
 
     const container =
@@ -2195,7 +2577,7 @@ async function loadDrivers() {
         driver => {
 
             const team =
-                teams[
+                officialTeams[
                     driver.driverId
                 ] || "Formula 1";
 
@@ -2350,265 +2732,6 @@ async function loadDrivers() {
 
 
 /* =========================================================
-   DRIVER PHOTOS
-
-   These are kept separately so we can replace them
-   with official F1 media images without touching
-   the rest of the page.
-========================================================= */
-
-const driverPhotos = {
-
-    antonelli:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Andrea_Kimi_Antonelli_2025.jpg/640px-Andrea_Kimi_Antonelli_2025.jpg",
-
-    russell:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/George_Russell_2025.jpg/640px-George_Russell_2025.jpg",
-
-    hamilton:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Lewis_Hamilton_2025.jpg/640px-Lewis_Hamilton_2025.jpg",
-
-    norris:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lando_Norris_2025.jpg/640px-Lando_Norris_2025.jpg",
-
-    leclerc:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Charles_Leclerc_2025.jpg/640px-Charles_Leclerc_2025.jpg",
-
-    verstappen:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Max_Verstappen_2025.jpg/640px-Max_Verstappen_2025.jpg",
-
-    piastri:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Oscar_Piastri_2025.jpg/640px-Oscar_Piastri_2025.jpg",
-
-    hadjar:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Isack_Hadjar_2025.jpg/640px-Isack_Hadjar_2025.jpg",
-
-    lawson:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Lawson_2025.jpg/640px-Liam_Lawson_2025.jpg",
-
-    gasly:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Pierre_Gasly_2025.jpg/640px-Pierre_Gasly_2025.jpg",
-
-    lindblad:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Arvid_Lindblad_2025.jpg/640px-Arvid_Lindblad_2025.jpg",
-
-    colapinto:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Franco_Colapinto_2025.jpg/640px-Franco_Colapinto_2025.jpg",
-
-    bearman:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Oliver_Bearman_2025.jpg/640px-Oliver_Bearman_2025.jpg",
-
-    bortoleto:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Gabriel_Bortoleto_2025.jpg/640px-Gabriel_Bortoleto_2025.jpg",
-
-    hulkenberg:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Nico_Hulkenberg_2025.jpg/640px-Nico_Hulkenberg_2025.jpg",
-
-    sainz:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Carlos_Sainz_2025.jpg/640px-Carlos_Sainz_2025.jpg",
-
-    albon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Alexander_Albon_2025.jpg/640px-Alexander_Albon_2025.jpg",
-
-    ocon:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Esteban_Ocon_2025.jpg/640px-Esteban_Ocon_2025.jpg",
-
-    alonso:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Fernando_Alonso_2025.jpg/640px-Fernando_Alonso_2025.jpg",
-
-    tsunoda:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Yuki_Tsunoda_2025.jpg/640px-Yuki_Tsunoda_2025.jpg",
-
-    stroll:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Lance_Stroll_2025.jpg/640px-Lance_Stroll_2025.jpg",
-
-    bottas:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Valtteri_Bottas_2025.jpg/640px-Valtteri_Bottas_2025.jpg",
-
-    perez:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sergio_Perez_2025.jpg/640px-Sergio_Perez_2025.jpg"
-
-};
-
-
-/* =========================================================
-   CIRCUIT RECORDS
-========================================================= */
-
-const circuitData = {
-
-    albert_park: {
-        length: "5.278 KM",
-        laps: "58",
-        distance: "306.124 KM",
-        fastestLap: "1:19.813",
-        fastestDriver: "Charles Leclerc"
-    },
-
-    shanghai: {
-        length: "5.451 KM",
-        laps: "56",
-        distance: "305.066 KM",
-        fastestLap: "1:32.238",
-        fastestDriver: "Michael Schumacher"
-    },
-
-    suzuka: {
-        length: "5.807 KM",
-        laps: "53",
-        distance: "307.471 KM",
-        fastestLap: "1:30.983",
-        fastestDriver: "Lewis Hamilton"
-    },
-
-    miami: {
-        length: "5.412 KM",
-        laps: "57",
-        distance: "308.326 KM",
-        fastestLap: "1:29.708",
-        fastestDriver: "Max Verstappen"
-    },
-
-    villeneuve: {
-        length: "4.361 KM",
-        laps: "70",
-        distance: "305.270 KM",
-        fastestLap: "1:13.078",
-        fastestDriver: "Valtteri Bottas"
-    },
-
-    monaco: {
-        length: "3.337 KM",
-        laps: "78",
-        distance: "260.286 KM",
-        fastestLap: "1:12.909",
-        fastestDriver: "Lewis Hamilton"
-    },
-
-    catalunya: {
-        length: "4.657 KM",
-        laps: "66",
-        distance: "307.236 KM",
-        fastestLap: "1:16.330",
-        fastestDriver: "Oscar Piastri"
-    },
-
-    red_bull_ring: {
-        length: "4.326 KM",
-        laps: "71",
-        distance: "307.146 KM",
-        fastestLap: "1:05.619",
-        fastestDriver: "Carlos Sainz"
-    },
-
-    silverstone: {
-        length: "5.891 KM",
-        laps: "52",
-        distance: "306.332 KM",
-        fastestLap: "1:27.097",
-        fastestDriver: "Max Verstappen"
-    },
-
-    spa: {
-        length: "7.004 KM",
-        laps: "44",
-        distance: "308.052 KM",
-        fastestLap: "1:44.701",
-        fastestDriver: "Sergio Perez"
-    },
-
-    hungaroring: {
-        length: "4.381 KM",
-        laps: "70",
-        distance: "306.630 KM",
-        fastestLap: "1:16.627",
-        fastestDriver: "Lewis Hamilton"
-    },
-
-    zandvoort: {
-        length: "4.259 KM",
-        laps: "72",
-        distance: "306.648 KM",
-        fastestLap: "1:11.097",
-        fastestDriver: "Lewis Hamilton"
-    },
-
-    monza: {
-        length: "5.793 KM",
-        laps: "53",
-        distance: "306.720 KM",
-        fastestLap: "1:21.046",
-        fastestDriver: "Rubens Barrichello"
-    },
-
-    baku: {
-        length: "6.003 KM",
-        laps: "51",
-        distance: "306.049 KM",
-        fastestLap: "1:43.009",
-        fastestDriver: "Charles Leclerc"
-    },
-
-    marina_bay: {
-        length: "4.940 KM",
-        laps: "62",
-        distance: "306.143 KM",
-        fastestLap: "1:35.867",
-        fastestDriver: "Kevin Magnussen"
-    },
-
-    americas: {
-        length: "5.513 KM",
-        laps: "56",
-        distance: "308.405 KM",
-        fastestLap: "1:36.169",
-        fastestDriver: "Charles Leclerc"
-    },
-
-    rodriguez: {
-        length: "4.304 KM",
-        laps: "71",
-        distance: "305.354 KM",
-        fastestLap: "1:17.774",
-        fastestDriver: "Valtteri Bottas"
-    },
-
-    interlagos: {
-        length: "4.309 KM",
-        laps: "71",
-        distance: "305.879 KM",
-        fastestLap: "1:10.540",
-        fastestDriver: "Valtteri Bottas"
-    },
-
-    vegas: {
-        length: "6.201 KM",
-        laps: "50",
-        distance: "310.050 KM",
-        fastestLap: "1:35.490",
-        fastestDriver: "Oscar Piastri"
-    },
-
-    losail: {
-        length: "5.419 KM",
-        laps: "57",
-        distance: "308.611 KM",
-        fastestLap: "1:22.384",
-        fastestDriver: "Lando Norris"
-    },
-
-    yas_marina: {
-        length: "5.281 KM",
-        laps: "58",
-        distance: "306.183 KM",
-        fastestLap: "1:26.103",
-        fastestDriver: "Max Verstappen"
-    }
-
-};
-
-
-/* =========================================================
    COUNTDOWN
 ========================================================= */
 
@@ -2685,7 +2808,7 @@ function startCountdown(
 
 
 /* =========================================================
-   FORMAT
+   FORMAT FUNCTIONS
 ========================================================= */
 
 function cleanRaceName(
@@ -2815,7 +2938,7 @@ loadEverything();
 
 
 /*
-   Refresh automatically every 5 minutes.
+   Refresh every 5 minutes.
 */
 
 setInterval(
