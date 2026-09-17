@@ -7,734 +7,961 @@
 <title>F1 | The Paddock Journal</title>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #F4A6C7;
+    --black: #050505;
+    --dark: #0b0b0b;
+    --grey: #8d8d8d;
+    --light-grey: #bdbdbd;
+    --border: rgba(255,255,255,0.12);
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+header {
+    height: 78px;
+    padding: 0 5%;
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+
+    background: rgba(5,5,5,0.96);
+    backdrop-filter: blur(12px);
+
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+nav a {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #aaa;
+    transition: 0.25s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--pink);
+}
+
+
+/* ==========================================
+   INTRO
+========================================== */
+
+.page-intro {
+    padding: 105px 7% 75px;
+    border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.page-intro h1 {
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.87;
+    letter-spacing: -6px;
+    text-transform: uppercase;
+}
+
+.page-intro p {
+    max-width: 580px;
+    margin-top: 30px;
+
+    color: #888;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   GENERAL SECTIONS
+========================================== */
+
+.section {
+    padding: 90px 7%;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 35px;
+}
+
+.section-title {
+    font-size: 34px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+}
+
+.section-number {
+    color: var(--pink);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.loading {
+    color: #666;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* ==========================================
+   NEWS
+========================================== */
+
+.news-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr)
+        0.55fr;
+
+    gap: 12px;
+}
+
+.news-card {
+    min-height: 300px;
+
+    border: 1px solid var(--border);
+
+    position: relative;
+    overflow: hidden;
+
+    background: #0b0b0b;
+
+    display: flex;
+    align-items: end;
+
+    padding: 22px;
+
+    transition: 0.35s ease;
+}
+
+.news-card:hover {
+    border-color: var(--pink);
+    transform: translateY(-4px);
+}
+
+.news-image {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+
+    filter: grayscale(25%);
+
+    transition: 0.6s ease;
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.06);
+}
+
+.news-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.97),
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.05)
+        );
+}
+
+.news-content {
+    position: relative;
+    z-index: 2;
+}
+
+.news-category {
+    color: var(--pink);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.news-card h3 {
+    font-size: 17px;
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.news-date {
+    margin-top: 12px;
+    color: #999;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.see-more {
+    min-height: 300px;
+
+    border: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #090909;
+
+    transition: 0.3s ease;
+}
+
+.see-more:hover {
+    background: var(--pink);
+    color: #000;
+    border-color: var(--pink);
+}
+
+.see-more span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* ==========================================
+   NEXT RACE
+========================================== */
+
+.next-race {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+
+    border: 1px solid var(--border);
+
+    min-height: 460px;
+}
+
+.race-main {
+    padding: 55px;
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.race-round {
+    color: var(--pink);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.race-name {
+    margin-top: 20px;
+
+    font-size: clamp(45px, 6vw, 85px);
+    line-height: 0.88;
+
+    letter-spacing: -5px;
+    text-transform: uppercase;
+}
+
+.race-location {
+    margin-top: 20px;
+
+    color: #888;
+    font-size: 11px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.race-countdown {
+    width: fit-content;
+
+    border-top: 1px solid var(--pink);
+
+    padding-top: 12px;
+
+    color: var(--pink);
+
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.race-info {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.race-stat {
+    padding: 27px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.race-stat:nth-child(odd) {
+    border-right: 1px solid var(--border);
+}
+
+.race-stat:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+.race-stat-label {
+    color: #666;
+
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    margin-bottom: 9px;
+}
+
+.race-stat-value {
+    font-size: 14px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.race-stat-value.highlight {
+    color: var(--pink);
+}
+
+
+/* ==========================================
+   CALENDAR
+========================================== */
+
+.calendar-list {
+    border-top: 1px solid var(--border);
+}
+
+.race-row {
+    min-height: 88px;
+
+    display: grid;
+    grid-template-columns:
+        70px
+        1fr
+        1fr
+        130px;
+
+    gap: 20px;
+    align-items: center;
+
+    border-bottom: 1px solid var(--border);
+
+    transition: 0.25s ease;
+}
+
+.race-row:hover {
+    padding-left: 10px;
+    border-color: var(--pink);
+}
+
+.race-number {
+    color: var(--pink);
+    font-size: 10px;
+}
+
+.race-name-small {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.race-circuit-small {
+    color: #777;
+
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.race-date {
+    color: #999;
+
+    font-size: 9px;
+    text-align: right;
+
+    text-transform: uppercase;
+}
+
+.past-race {
+    opacity: 0.5;
+}
+
+.current-race {
+    opacity: 1;
+    background: rgba(244,166,199,0.035);
+}
+
+.more-wrapper {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+.more-button {
+    padding: 13px 34px;
+
+    border: 1px solid var(--border);
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    transition: 0.25s ease;
+}
+
+.more-button:hover {
+    background: var(--pink);
+    color: black;
+    border-color: var(--pink);
+}
+
+
+/* ==========================================
+   STANDINGS
+========================================== */
+
+.standings-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border: 1px solid var(--border);
+}
+
+.standings-column {
+    padding: 35px;
+}
+
+.standings-column:first-child {
+    border-right: 1px solid var(--border);
+}
+
+.standings-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.standings-heading h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.standings-heading span {
+    color: var(--pink);
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.standing-row {
+    min-height: 60px;
+
+    display: grid;
+    grid-template-columns: 45px 1fr 65px;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--border);
+
+    transition: 0.25s ease;
+}
+
+.standing-row:hover {
+    padding-left: 6px;
+}
+
+.standing-position {
+    color: var(--pink);
+    font-size: 10px;
+}
+
+.standing-name {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.standing-subtitle {
+    margin-top: 3px;
+
+    color: #666;
+
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.standing-points {
+    font-size: 12px;
+    text-align: right;
+}
+
+
+/* ==========================================
+   DRIVERS
+========================================== */
+
+.drivers-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap: 10px;
+}
+
+.driver-wrapper {
+    position: relative;
+}
+
+.driver-card {
+    height: 175px;
+
+    border: 1px solid var(--border);
+
+    padding: 15px;
+
+    background: #090909;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    cursor: default;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.driver-card:hover {
+    border-color: var(--pink);
+}
+
+.driver-team {
+    color: #777;
+
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.driver-number {
+    color: #333;
+
+    font-size: 34px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+.driver-name {
+    font-size: 12px;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   DRIVER POPUP
+========================================== */
+
+.driver-popup {
+    position: absolute;
+
+    width: 520px;
+    height: 350px;
+
+    left: 50%;
+    bottom: calc(100% + 12px);
+
+    transform:
+        translateX(-50%)
+        scale(0.96);
+
+    transform-origin: bottom center;
+
+    background: #090909;
+
+    border: 1px solid var(--pink);
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.3s ease,
+        visibility 0.25s ease;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.65);
+}
+
+.driver-wrapper:hover .driver-popup {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+}
+
+
+/* Popup image */
+
+.driver-popup-photo {
+    position: relative;
+
+    background-size: cover;
+    background-position: center top;
+
+    overflow: hidden;
+}
+
+.driver-popup-photo::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent 45%,
+            rgba(9,9,9,0.5)
+        );
+}
+
+
+/* Popup information */
+
+.driver-popup-info {
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.popup-label {
+    color: var(--pink);
+
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.popup-name {
+    font-size: 25px;
+
+    line-height: 0.95;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+}
+
+.popup-details {
+    border-top: 1px solid var(--border);
+}
+
+.popup-detail {
+    padding: 10px 0;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.popup-detail span:first-child {
+    color: #666;
+
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.popup-detail span:last-child {
+    font-size: 9px;
+
+    text-align: right;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    padding: 60px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    color: #555;
+
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1150px) {
+
+    nav {
+        gap: 15px;
     }
 
-    :root {
-        --pink: #F4A6C7;
-        --black: #050505;
-        --dark: #0b0b0b;
-        --grey: #999;
-        --border: rgba(255,255,255,0.12);
-        --white: #fff;
+    .news-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    html {
-        scroll-behavior: smooth;
+    .drivers-grid {
+        grid-template-columns: repeat(3,1fr);
     }
 
-    body {
-        background: var(--black);
-        color: var(--white);
-        font-family: Arial, Helvetica, sans-serif;
-        line-height: 1.4;
+    .driver-popup {
+        width: 460px;
     }
+}
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
 
-    /* =========================
-       HEADER
-    ========================= */
+@media (max-width: 850px) {
 
     header {
-        height: 78px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 5%;
-        position: sticky;
-        top: 0;
-        background: rgba(5,5,5,0.96);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-    }
-
-    .logo {
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        white-space: nowrap;
+        padding: 20px 5%;
+        height: auto;
     }
 
     nav {
-        display: flex;
-        gap: 27px;
-        align-items: center;
+        display: none;
     }
-
-    nav a {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        color: #bdbdbd;
-        transition: 0.25s ease;
-    }
-
-    nav a:hover,
-    nav a.active {
-        color: var(--pink);
-    }
-
-    /* =========================
-       PAGE INTRO
-    ========================= */
 
     .page-intro {
-        padding: 100px 7% 70px;
-        border-bottom: 1px solid var(--border);
+        padding: 75px 6% 55px;
     }
-
-    .eyebrow {
-        color: var(--pink);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 20px;
-    }
-
-    .page-intro h1 {
-        font-size: clamp(52px, 8vw, 105px);
-        line-height: 0.9;
-        letter-spacing: -5px;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    .page-intro p {
-        margin-top: 30px;
-        max-width: 600px;
-        color: #999;
-        font-size: 14px;
-    }
-
-    /* =========================
-       GENERAL
-    ========================= */
 
     .section {
-        padding: 90px 7%;
-        border-bottom: 1px solid var(--border);
+        padding: 65px 6%;
     }
-
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        margin-bottom: 35px;
-    }
-
-    .section-title {
-        font-size: 34px;
-        text-transform: uppercase;
-        letter-spacing: -1px;
-    }
-
-    .section-number {
-        font-size: 10px;
-        color: var(--pink);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-
-    .loading {
-        color: #777;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* =========================
-       NEWS
-    ========================= */
 
     .news-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr) 0.55fr;
-        gap: 12px;
+        grid-template-columns: 1fr;
     }
-
-    .news-card {
-        min-height: 300px;
-        border: 1px solid var(--border);
-        position: relative;
-        overflow: hidden;
-        background: #0c0c0c;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 22px;
-        transition: 0.35s ease;
-    }
-
-    .news-card:hover {
-        border-color: var(--pink);
-        transform: translateY(-4px);
-    }
-
-    .news-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-            linear-gradient(
-                to top,
-                rgba(0,0,0,0.96) 0%,
-                rgba(0,0,0,0.45) 50%,
-                rgba(0,0,0,0.05) 100%
-            );
-        z-index: 1;
-    }
-
-    .news-image {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        filter: grayscale(25%);
-        transition: 0.5s ease;
-    }
-
-    .news-card:hover .news-image {
-        transform: scale(1.05);
-    }
-
-    .news-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .news-category {
-        color: var(--pink);
-        font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .news-card h3 {
-        font-size: 18px;
-        line-height: 1.05;
-        text-transform: uppercase;
-    }
-
-    .news-date {
-        margin-top: 12px;
-        font-size: 9px;
-        color: #aaa;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .see-more {
-        min-height: 300px;
-        border: 1px solid var(--border);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        transition: 0.3s ease;
-        background: #090909;
-    }
-
-    .see-more:hover {
-        background: var(--pink);
-        color: #000;
-        border-color: var(--pink);
-    }
-
-    .see-more span {
-        font-size: 11px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-
-    /* =========================
-       NEXT RACE
-    ========================= */
 
     .next-race {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr;
-        border: 1px solid var(--border);
-        min-height: 440px;
+        grid-template-columns: 1fr;
     }
 
     .race-main {
-        padding: 55px;
-        border-right: 1px solid var(--border);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
     }
 
-    .race-round {
-        font-size: 10px;
-        color: var(--pink);
-        text-transform: uppercase;
-        letter-spacing: 2px;
+    .standings-wrapper {
+        grid-template-columns: 1fr;
     }
 
-    .race-name {
-        font-size: clamp(45px, 6vw, 85px);
-        line-height: 0.88;
-        letter-spacing: -4px;
-        text-transform: uppercase;
-        margin-top: 20px;
+    .standings-column:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
     }
 
-    .race-location {
-        margin-top: 20px;
-        color: #999;
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .drivers-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .race-countdown {
-        margin-top: 35px;
-        display: inline-block;
-        width: fit-content;
-        border-top: 1px solid var(--pink);
-        padding-top: 12px;
-        color: var(--pink);
-        font-size: 11px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
+    .driver-popup {
+        position: fixed;
+
+        width: 90vw;
+        max-width: 520px;
+
+        height: 320px;
+
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+
+        transform:
+            translate(-50%,-50%)
+            scale(0.96);
     }
+
+    .driver-wrapper:hover .driver-popup {
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+}
+
+
+@media (max-width: 600px) {
 
     .race-info {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .race-stat {
-        padding: 28px;
-        border-bottom: 1px solid var(--border);
-        border-left: 1px solid transparent;
+        grid-template-columns: 1fr;
     }
 
     .race-stat:nth-child(odd) {
-        border-right: 1px solid var(--border);
+        border-right: none;
     }
 
-    .race-stat:nth-last-child(-n+2) {
-        border-bottom: none;
-    }
-
-    .race-stat-label {
-        font-size: 9px;
-        color: #777;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 10px;
-    }
-
-    .race-stat-value {
-        font-size: 16px;
-        text-transform: uppercase;
-    }
-
-    .race-stat-value.highlight {
-        color: var(--pink);
-    }
-
-    /* =========================
-       CALENDAR
-    ========================= */
-
-    .calendar-list {
-        border-top: 1px solid var(--border);
+    .race-stat {
+        border-bottom: 1px solid var(--border) !important;
     }
 
     .race-row {
-        display: grid;
-        grid-template-columns: 70px 1fr 1fr 130px;
-        gap: 20px;
-        align-items: center;
-        min-height: 90px;
-        border-bottom: 1px solid var(--border);
-        transition: 0.25s ease;
+        grid-template-columns: 45px 1fr;
+        gap: 10px;
+
+        padding: 18px 0;
     }
 
-    .race-row:hover {
-        padding-left: 10px;
-        border-color: var(--pink);
+    .race-circuit-small,
+    .race-date {
+        grid-column: 2;
+        text-align: left;
     }
-
-    .race-round-number {
-        color: var(--pink);
-        font-size: 11px;
-        letter-spacing: 1px;
-    }
-
-    .race-row-name {
-        font-size: 16px;
-        text-transform: uppercase;
-    }
-
-    .race-row-circuit {
-        color: #777;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .race-row-date {
-        font-size: 10px;
-        color: #aaa;
-        text-align: right;
-        text-transform: uppercase;
-    }
-
-    .past-race {
-        opacity: 0.58;
-    }
-
-    .current-race {
-        opacity: 1;
-        background: rgba(244,166,199,0.04);
-    }
-
-    .calendar-more-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 35px;
-    }
-
-    .more-button {
-        border: 1px solid var(--border);
-        background: transparent;
-        color: white;
-        padding: 14px 35px;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        cursor: pointer;
-        transition: 0.25s ease;
-    }
-
-    .more-button:hover {
-        background: var(--pink);
-        border-color: var(--pink);
-        color: black;
-    }
-
-    /* =========================
-       STANDINGS
-    ========================= */
-
-    .standings-table {
-        width: 100%;
-        border-top: 1px solid var(--border);
-    }
-
-    .standing-row {
-        display: grid;
-        grid-template-columns: 60px 1fr 180px 80px;
-        align-items: center;
-        min-height: 68px;
-        border-bottom: 1px solid var(--border);
-        transition: 0.25s ease;
-    }
-
-    .standing-row:hover {
-        background: rgba(244,166,199,0.035);
-        padding-left: 8px;
-    }
-
-    .standing-position {
-        color: var(--pink);
-        font-size: 11px;
-    }
-
-    .standing-driver {
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
-    .standing-team {
-        color: #777;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .standing-points {
-        font-size: 14px;
-        text-align: right;
-    }
-
-    /* =========================
-       DRIVERS
-    ========================= */
 
     .drivers-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .driver-card {
-        position: relative;
-        height: 180px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        background: #090909;
-        cursor: default;
+    .driver-popup {
+        grid-template-columns: 1fr;
+
+        height: 500px;
     }
 
-    .driver-default {
-        position: absolute;
-        inset: 0;
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: 0.35s ease;
-        z-index: 2;
-        background: linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.025),
-            transparent
-        );
+    .driver-popup-photo {
+        min-height: 250px;
     }
 
-    .driver-team {
-        color: #777;
-        font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .driver-popup-info {
+        padding: 22px;
     }
-
-    .driver-number {
-        font-size: 34px;
-        font-weight: 700;
-        color: #333;
-        line-height: 1;
-    }
-
-    .driver-name-small {
-        font-size: 13px;
-        text-transform: uppercase;
-        line-height: 1;
-    }
-
-    .driver-hover {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        z-index: 3;
-        transition: 0.35s ease;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 15px;
-        background: linear-gradient(
-            to top,
-            rgba(0,0,0,0.97),
-            rgba(0,0,0,0.15)
-        );
-    }
-
-    .driver-photo {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center top;
-        transform: scale(1.05);
-        transition: 0.5s ease;
-        z-index: -1;
-        filter: grayscale(10%);
-    }
-
-    .driver-card:hover .driver-hover {
-        opacity: 1;
-    }
-
-    .driver-card:hover .driver-photo {
-        transform: scale(1);
-    }
-
-    .driver-card:hover .driver-default {
-        opacity: 0;
-    }
-
-    .driver-nationality {
-        color: var(--pink);
-        font-size: 9px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 5px;
-    }
-
-    .driver-full-name {
-        font-size: 15px;
-        text-transform: uppercase;
-        line-height: 1;
-        margin-bottom: 8px;
-    }
-
-    .driver-details {
-        font-size: 8px;
-        color: #ccc;
-        text-transform: uppercase;
-        letter-spacing: 0.7px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
 
     footer {
-        padding: 60px 7%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
+}
 
-    footer .logo {
-        font-size: 12px;
-    }
-
-    footer p {
-        color: #555;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 1100px) {
-
-        nav {
-            gap: 15px;
-        }
-
-        .news-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .see-more {
-            min-height: 160px;
-        }
-
-        .drivers-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 800px) {
-
-        header {
-            height: auto;
-            padding: 22px 5%;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        nav {
-            display: none;
-        }
-
-        .page-intro {
-            padding: 70px 6% 55px;
-        }
-
-        .section {
-            padding: 65px 6%;
-        }
-
-        .news-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .news-card,
-        .see-more {
-            min-height: 260px;
-        }
-
-        .next-race {
-            grid-template-columns: 1fr;
-        }
-
-        .race-main {
-            border-right: none;
-            border-bottom: 1px solid var(--border);
-            padding: 35px;
-        }
-
-        .race-info {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .race-stat:nth-child(odd) {
-            border-right: none;
-        }
-
-        .race-row {
-            grid-template-columns: 45px 1fr;
-            gap: 8px;
-            padding: 18px 0;
-        }
-
-        .race-row-circuit,
-        .race-row-date {
-            grid-column: 2;
-            text-align: left;
-        }
-
-        .standing-row {
-            grid-template-columns: 40px 1fr 70px;
-        }
-
-        .standing-team {
-            display: none;
-        }
-
-        .drivers-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        footer {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-    }
-
-    @media (max-width: 480px) {
-
-        .drivers-grid {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .driver-card {
-            height: 165px;
-        }
-
-        .race-name {
-            font-size: 48px;
-        }
-    }
 </style>
 </head>
 
+
 <body>
 
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
 <header>
-    <a href="index.html" class="logo">THE PADDOCK JOURNAL</a>
+
+    <a href="index.html" class="logo">
+        THE PADDOCK JOURNAL
+    </a>
 
     <nav>
+
         <a href="f1.html" class="active">F1</a>
         <a href="f2.html">F2</a>
         <a href="f3.html">F3</a>
@@ -743,121 +970,213 @@
         <a href="women.html">Women</a>
         <a href="live.html">Live</a>
         <a href="about.html">About Me</a>
+
     </nav>
+
 </header>
 
 
-<!-- =========================
+<!-- ==========================================
      INTRO
-========================= -->
+========================================== -->
 
 <section class="page-intro">
-    <div class="eyebrow">Formula 1 · 2026 Season</div>
-    <h1>FORMULA<br>ONE.</h1>
+
+    <div class="eyebrow">
+        Formula 1 · 2026 Season
+    </div>
+
+    <h1>
+        FORMULA<br>
+        ONE.
+    </h1>
+
     <p>
-        The latest news, race calendar, championship standings and
-        driver grid — all in one place.
+        The latest stories, race calendar, championship standings
+        and the complete Formula 1 grid.
     </p>
+
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      NEWS
-========================= -->
+========================================== -->
 
 <section class="section">
 
     <div class="section-header">
-        <h2 class="section-title">News</h2>
-        <span class="section-number">01 / F1</span>
+
+        <h2 class="section-title">
+            News
+        </h2>
+
+        <span class="section-number">
+            01 / F1
+        </span>
+
     </div>
+
 
     <div class="news-grid">
 
-        <a class="news-card"
-           href="news.html">
-            <div class="news-image"
-                 style="background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=80');">
+
+        <a href="news.html" class="news-card">
+
+            <div
+                class="news-image"
+                style="
+                background-image:
+                url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80');
+                ">
             </div>
 
             <div class="news-content">
-                <div class="news-category">F1</div>
-                <h3>The latest from the world of Formula 1</h3>
-                <div class="news-date">The Paddock Journal</div>
+
+                <div class="news-category">
+                    F1
+                </div>
+
+                <h3>
+                    Latest from the Formula 1 paddock
+                </h3>
+
+                <div class="news-date">
+                    The Paddock Journal
+                </div>
+
             </div>
+
         </a>
 
 
-        <a class="news-card"
-           href="news.html">
+        <a href="news.html" class="news-card">
 
-            <div class="news-image"
-                 style="background-image:url('https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&w=1000&q=80');">
+            <div
+                class="news-image"
+                style="
+                background-image:
+                url('https://images.unsplash.com/photo-1535132011086-b8818f016104?auto=format&fit=crop&w=1200&q=80');
+                ">
             </div>
 
             <div class="news-content">
-                <div class="news-category">Race Weekend</div>
-                <h3>Everything you need to know before lights out</h3>
-                <div class="news-date">Latest updates</div>
+
+                <div class="news-category">
+                    Race Weekend
+                </div>
+
+                <h3>
+                    Everything before lights out
+                </h3>
+
+                <div class="news-date">
+                    Latest updates
+                </div>
+
             </div>
+
         </a>
 
 
-        <a class="news-card"
-           href="news.html">
+        <a href="news.html" class="news-card">
 
-            <div class="news-image"
-                 style="background-image:url('https://images.unsplash.com/photo-1612831812721-4b9a7d9b9b6d?auto=format&fit=crop&w=1000&q=80');">
+            <div
+                class="news-image"
+                style="
+                background-image:
+                url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80');
+                ">
             </div>
 
             <div class="news-content">
-                <div class="news-category">Championship</div>
-                <h3>The fight at the top of the standings</h3>
-                <div class="news-date">2026 Season</div>
+
+                <div class="news-category">
+                    Championship
+                </div>
+
+                <h3>
+                    The fight for the title
+                </h3>
+
+                <div class="news-date">
+                    2026 Season
+                </div>
+
             </div>
+
         </a>
 
 
-        <a class="news-card"
-           href="news.html">
+        <a href="news.html" class="news-card">
 
-            <div class="news-image"
-                 style="background-image:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=80');">
+            <div
+                class="news-image"
+                style="
+                background-image:
+                url('https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=1200&q=80');
+                ">
             </div>
 
             <div class="news-content">
-                <div class="news-category">The Paddock</div>
-                <h3>Inside the latest Formula 1 stories</h3>
-                <div class="news-date">Read more</div>
+
+                <div class="news-category">
+                    The Paddock
+                </div>
+
+                <h3>
+                    Inside Formula 1
+                </h3>
+
+                <div class="news-date">
+                    Read more
+                </div>
+
             </div>
+
         </a>
 
 
-        <a class="see-more" href="news.html">
-            <span>See More →</span>
+        <a href="news.html" class="see-more">
+
+            <span>
+                See More →
+            </span>
+
         </a>
+
 
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      NEXT RACE
-========================= -->
+========================================== -->
 
 <section class="section">
 
     <div class="section-header">
-        <h2 class="section-title">Next Race</h2>
-        <span class="section-number">02 / F1</span>
+
+        <h2 class="section-title">
+            Next Race
+        </h2>
+
+        <span class="section-number">
+            02 / F1
+        </span>
+
     </div>
 
-    <div id="nextRace" class="next-race">
+
+    <div class="next-race">
+
 
         <div class="race-main">
 
             <div>
+
                 <div id="raceRound" class="race-round">
                     LOADING
                 </div>
@@ -867,12 +1186,18 @@
                 </div>
 
                 <div id="raceLocation" class="race-location">
-                    Loading circuit information...
+                    Loading...
                 </div>
+
             </div>
 
-            <div id="raceCountdown" class="race-countdown">
+
+            <div
+                id="raceCountdown"
+                class="race-countdown">
+
                 Loading...
+
             </div>
 
         </div>
@@ -880,61 +1205,142 @@
 
         <div class="race-info">
 
-            <div class="race-stat">
-                <div class="race-stat-label">Circuit</div>
-                <div id="raceCircuit" class="race-stat-value">
-                    —
-                </div>
-            </div>
 
             <div class="race-stat">
-                <div class="race-stat-label">Race Start</div>
-                <div id="raceStart" class="race-stat-value highlight">
-                    —
+
+                <div class="race-stat-label">
+                    Circuit
                 </div>
+
+                <div
+                    id="raceCircuit"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
             </div>
 
-            <div class="race-stat">
-                <div class="race-stat-label">Circuit Length</div>
-                <div id="raceLength" class="race-stat-value">
-                    —
-                </div>
-            </div>
 
             <div class="race-stat">
-                <div class="race-stat-label">Laps</div>
-                <div id="raceLaps" class="race-stat-value">
-                    —
+
+                <div class="race-stat-label">
+                    Race Start
                 </div>
+
+                <div
+                    id="raceStart"
+                    class="race-stat-value highlight">
+
+                    —
+
+                </div>
+
             </div>
 
-            <div class="race-stat">
-                <div class="race-stat-label">Last Winner</div>
-                <div id="lastWinner" class="race-stat-value">
-                    —
-                </div>
-            </div>
 
             <div class="race-stat">
-                <div class="race-stat-label">Last Polesitter</div>
-                <div id="lastPole" class="race-stat-value">
-                    —
+
+                <div class="race-stat-label">
+                    Circuit Length
                 </div>
+
+                <div
+                    id="raceLength"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
             </div>
 
-            <div class="race-stat">
-                <div class="race-stat-label">Fastest Lap</div>
-                <div id="fastestLap" class="race-stat-value">
-                    —
-                </div>
-            </div>
 
             <div class="race-stat">
-                <div class="race-stat-label">Race Distance</div>
-                <div id="raceDistance" class="race-stat-value">
-                    —
+
+                <div class="race-stat-label">
+                    Laps
                 </div>
+
+                <div
+                    id="raceLaps"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
             </div>
+
+
+            <div class="race-stat">
+
+                <div class="race-stat-label">
+                    Fastest Lap
+                </div>
+
+                <div
+                    id="recordLap"
+                    class="race-stat-value highlight">
+
+                    —
+
+                </div>
+
+            </div>
+
+
+            <div class="race-stat">
+
+                <div class="race-stat-label">
+                    Last Winner
+                </div>
+
+                <div
+                    id="lastWinner"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
+            </div>
+
+
+            <div class="race-stat">
+
+                <div class="race-stat-label">
+                    Last Polesitter
+                </div>
+
+                <div
+                    id="lastPole"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
+            </div>
+
+
+            <div class="race-stat">
+
+                <div class="race-stat-label">
+                    Race Distance
+                </div>
+
+                <div
+                    id="raceDistance"
+                    class="race-stat-value">
+
+                    —
+
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -943,221 +1349,372 @@
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      CALENDAR
-========================= -->
+========================================== -->
 
 <section class="section">
 
     <div class="section-header">
-        <h2 class="section-title">Calendar</h2>
-        <span class="section-number">03 / 24</span>
+
+        <h2 class="section-title">
+            Calendar
+        </h2>
+
+        <span class="section-number">
+            03 / 24
+        </span>
+
     </div>
 
-    <div id="calendarList" class="calendar-list">
-        <div class="loading">Loading 2026 calendar...</div>
+
+    <div
+        id="calendar"
+        class="calendar-list">
+
+        <div class="loading">
+            Loading calendar...
+        </div>
+
     </div>
 
-    <div class="calendar-more-wrapper">
-        <button id="calendarButton"
-                class="more-button"
-                onclick="toggleCalendar()"
-                style="display:none;">
+
+    <div class="more-wrapper">
+
+        <button
+            id="calendarButton"
+            class="more-button"
+            onclick="toggleCalendar()"
+            style="display:none;">
+
             More
+
         </button>
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      STANDINGS
-========================= -->
+========================================== -->
 
 <section class="section">
 
     <div class="section-header">
-        <h2 class="section-title">Standings</h2>
-        <span class="section-number">04 / Drivers</span>
+
+        <h2 class="section-title">
+            Standings
+        </h2>
+
+        <span class="section-number">
+            04 / Championship
+        </span>
+
     </div>
 
-    <div id="standings" class="standings-table">
-        <div class="loading">Loading championship standings...</div>
+
+    <div class="standings-wrapper">
+
+
+        <!-- DRIVERS -->
+
+        <div class="standings-column">
+
+            <div class="standings-heading">
+
+                <h3>
+                    Drivers
+                </h3>
+
+                <span>
+                    Top 5
+                </span>
+
+            </div>
+
+
+            <div id="driverStandings">
+
+                <div class="loading">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONSTRUCTORS -->
+
+        <div class="standings-column">
+
+            <div class="standings-heading">
+
+                <h3>
+                    Constructors
+                </h3>
+
+                <span>
+                    Top 5
+                </span>
+
+            </div>
+
+
+            <div id="constructorStandings">
+
+                <div class="loading">
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- ==========================================
      DRIVERS
-========================= -->
+========================================== -->
 
 <section class="section">
 
     <div class="section-header">
-        <h2 class="section-title">Drivers</h2>
-        <span class="section-number">05 / Grid</span>
+
+        <h2 class="section-title">
+            Drivers
+        </h2>
+
+        <span class="section-number">
+            05 / Grid
+        </span>
+
     </div>
 
-    <div id="driversGrid" class="drivers-grid">
-        <div class="loading">Loading drivers...</div>
+
+    <div
+        id="drivers"
+        class="drivers-grid">
+
+        <div class="loading">
+            Loading drivers...
+        </div>
+
     </div>
 
 </section>
 
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
 
 <footer>
-    <div class="logo">THE PADDOCK JOURNAL</div>
+
+    <div class="logo">
+        THE PADDOCK JOURNAL
+    </div>
 
     <p>
         Motorsport. Beyond the grid.
     </p>
+
 </footer>
 
 
 <script>
 
-/* =========================================================
-   THE PADDOCK JOURNAL
-   F1 AUTOMATIC DATA SYSTEM
-   ========================================================= */
-
-const API = "https://api.jolpi.ca/ergast/f1";
-const SEASON = "2026";
-
-let allRaces = [];
-let calendarExpanded = false;
-
 
 /* =========================================================
-   API HELPER
-   ========================================================= */
+   API
+========================================================= */
 
-async function getAPI(endpoint) {
+const API =
+    "https://api.jolpi.ca/ergast/f1";
+
+const SEASON =
+    "2026";
+
+
+let races = [];
+
+let calendarExpanded =
+    false;
+
+
+/* =========================================================
+   API REQUEST
+========================================================= */
+
+async function api(endpoint) {
 
     try {
 
-        const response = await fetch(
-            `${API}/${endpoint}/?limit=100&_=${Date.now()}`
-        );
+        const response =
+            await fetch(
+                `${API}/${endpoint}?limit=100&_=${Date.now()}`
+            );
 
-        if (!response.ok) {
+        if (!response.ok)
             throw new Error("API error");
-        }
 
         return await response.json();
 
-    } catch (error) {
+    } catch(error) {
 
-        console.error("F1 API error:", error);
+        console.error(error);
 
         return null;
     }
+
+}
+
+
+/* =========================================================
+   LOAD ALL
+========================================================= */
+
+async function loadEverything() {
+
+    await loadCalendar();
+
+    await loadStandings();
+
+    await loadDrivers();
+
 }
 
 
 /* =========================================================
    CALENDAR
-   ========================================================= */
+========================================================= */
 
 async function loadCalendar() {
 
-    const data = await getAPI(`${SEASON}`);
+    const data =
+        await api(SEASON);
 
-    if (!data) return;
 
-    const races =
-        data.MRData.RaceTable.Races || [];
+    if (!data)
+        return;
 
-    allRaces = races;
+
+    races =
+        data
+        .MRData
+        .RaceTable
+        .Races;
+
 
     renderCalendar();
-    loadNextRace(races);
+
+    loadNextRace();
+
 }
 
 
 function renderCalendar() {
 
     const container =
-        document.getElementById("calendarList");
-
-    if (!allRaces.length) {
-
-        container.innerHTML =
-            `<div class="loading">
-                Calendar unavailable.
-            </div>`;
-
-        return;
-    }
+        document.getElementById("calendar");
 
 
-    const visibleRaces =
+    const visible =
         calendarExpanded
-            ? allRaces
-            : allRaces.slice(0, 5);
+        ? races
+        : races.slice(0,5);
 
 
-    const today = new Date();
+    const now =
+        new Date();
 
 
     container.innerHTML =
-        visibleRaces.map(race => {
+        visible.map(
+            race => {
 
-            const raceDate =
-                new Date(`${race.date}T${race.time || "00:00:00"}`);
+                const raceDate =
+                    new Date(
+                        `${race.date}T${race.time || "00:00:00"}`
+                    );
 
-            let state = "";
 
-            if (raceDate < today) {
-                state = "past-race";
-            }
+                const past =
+                    raceDate < now
+                    ? "past-race"
+                    : "";
 
-            return `
+
+                return `
+
                 <a
-                    class="race-row ${state}"
-                    href="#nextRace"
-                >
+                    href="#"
+                    class="race-row ${past}">
 
-                    <div class="race-round-number">
-                        ${String(race.round).padStart(2,"0")}
+                    <div class="race-number">
+
+                        ${String(race.round)
+                            .padStart(2,"0")}
+
                     </div>
 
-                    <div class="race-row-name">
-                        ${formatRaceName(race.raceName)}
+
+                    <div class="race-name-small">
+
+                        ${cleanRaceName(
+                            race.raceName
+                        )}
+
                     </div>
 
-                    <div class="race-row-circuit">
+
+                    <div class="race-circuit-small">
+
                         ${race.Circuit.circuitName}
+
                     </div>
 
-                    <div class="race-row-date">
-                        ${formatDate(race.date)}
+
+                    <div class="race-date">
+
+                        ${formatDate(
+                            race.date
+                        )}
+
                     </div>
 
                 </a>
-            `;
 
-        }).join("");
+                `;
+
+            }
+        ).join("");
 
 
     const button =
-        document.getElementById("calendarButton");
+        document.getElementById(
+            "calendarButton"
+        );
 
 
-    if (allRaces.length > 5) {
+    if (races.length > 5) {
 
-        button.style.display = "block";
+        button.style.display =
+            "block";
 
         button.textContent =
             calendarExpanded
-                ? "Show Less"
-                : "More";
+            ? "Show Less"
+            : "More";
 
-    } else {
-
-        button.style.display = "none";
     }
+
 }
 
 
@@ -1167,241 +1724,233 @@ function toggleCalendar() {
         !calendarExpanded;
 
     renderCalendar();
+
 }
 
 
 /* =========================================================
    NEXT RACE
-   ========================================================= */
+========================================================= */
 
-async function loadNextRace(races) {
+async function loadNextRace() {
 
-    const now = new Date();
-
-    const nextRace =
-        races.find(race => {
-
-            const date =
-                new Date(`${race.date}T${race.time || "00:00:00"}`);
-
-            return date > now;
-
-        });
+    const now =
+        new Date();
 
 
-    if (!nextRace) {
+    const next =
+        races.find(
+            race => {
 
-        document.getElementById("raceName")
-            .innerHTML = "SEASON<br>COMPLETE";
+                const date =
+                    new Date(
+                        `${race.date}T${race.time || "00:00:00"}`
+                    );
 
+                return date > now;
+
+            }
+        );
+
+
+    if (!next)
         return;
-    }
 
 
-    const previousRaceIndex =
-        races.findIndex(
-            race => race.round === nextRace.round
-        ) - 1;
+    document.getElementById(
+        "raceRound"
+    ).textContent =
+        `ROUND ${String(next.round)
+            .padStart(2,"0")}`;
 
 
-    const previousRace =
-        previousRaceIndex >= 0
-            ? races[previousRaceIndex]
-            : null;
+    document.getElementById(
+        "raceName"
+    ).textContent =
+        cleanRaceName(
+            next.raceName
+        );
 
 
-    document.getElementById("raceRound")
-        .textContent =
-        `ROUND ${String(nextRace.round).padStart(2,"0")}`;
+    document.getElementById(
+        "raceLocation"
+    ).textContent =
+        `${next.Circuit.Location.locality},
+         ${next.Circuit.Location.country}`;
 
 
-    document.getElementById("raceName")
-        .textContent =
-        cleanGrandPrixName(nextRace.raceName);
+    document.getElementById(
+        "raceCircuit"
+    ).textContent =
+        next.Circuit.circuitName;
 
 
-    document.getElementById("raceLocation")
-        .textContent =
-        `${nextRace.Circuit.Location.locality}, ${nextRace.Circuit.Location.country}`;
-
-
-    document.getElementById("raceCircuit")
-        .textContent =
-        nextRace.Circuit.circuitName;
-
-
-    document.getElementById("raceStart")
-        .textContent =
+    document.getElementById(
+        "raceStart"
+    ).textContent =
         formatDateTime(
-            nextRace.date,
-            nextRace.time
+            next.date,
+            next.time
         );
 
 
     /*
-       Circuit information.
-
-       The API gives us the circuit and location.
-       The technical data below provides the detailed
-       circuit information for known F1 circuits.
+       Historical circuit data.
     */
 
-    const details =
-        circuitDetails[nextRace.Circuit.circuitId];
+    const circuit =
+        circuitData[
+            next.Circuit.circuitId
+        ];
 
 
-    if (details) {
+    if (circuit) {
 
-        document.getElementById("raceLength")
-            .textContent =
-            details.length;
+        document.getElementById(
+            "raceLength"
+        ).textContent =
+            circuit.length;
 
-        document.getElementById("raceLaps")
-            .textContent =
-            details.laps;
 
-        document.getElementById("raceDistance")
-            .textContent =
-            details.distance;
+        document.getElementById(
+            "raceLaps"
+        ).textContent =
+            circuit.laps;
+
+
+        document.getElementById(
+            "raceDistance"
+        ).textContent =
+            circuit.distance;
+
+
+        document.getElementById(
+            "recordLap"
+        ).textContent =
+            `${circuit.fastestLap}
+             · ${circuit.fastestDriver}`;
 
     }
 
 
     /*
-       Previous race information
+       Last edition of this GP.
     */
 
-    if (previousRace) {
+    const lastEdition =
+        races
+        .filter(
+            race =>
+                race.round < next.round
+        )
+        .filter(
+            race =>
+                race.Circuit.circuitId ===
+                next.Circuit.circuitId
+        )
+        .pop();
 
-        await loadPreviousRaceData(
-            previousRace,
-            nextRace
+
+    if (lastEdition) {
+
+        await loadLastEdition(
+            lastEdition
         );
 
-    } else {
-
-        document.getElementById("lastWinner")
-            .textContent = "—";
-
-        document.getElementById("lastPole")
-            .textContent = "—";
-
-        document.getElementById("fastestLap")
-            .textContent = "—";
     }
 
 
     startCountdown(
         new Date(
-            `${nextRace.date}T${nextRace.time || "00:00:00"}`
+            `${next.date}T${next.time || "00:00:00"}`
         )
     );
+
 }
 
 
 /* =========================================================
-   PREVIOUS RACE
-   ========================================================= */
+   LAST EDITION
+========================================================= */
 
-async function loadPreviousRaceData(
-    previousRace,
-    nextRace
+async function loadLastEdition(
+    race
 ) {
 
-    const round =
-        previousRace.round;
-
-
     const resultsData =
-        await getAPI(
-            `${SEASON}/${round}/results`
+        await api(
+            `${SEASON}/${race.round}/results`
         );
 
 
     if (
         resultsData &&
-        resultsData.MRData.RaceTable.Races.length
+        resultsData
+        .MRData
+        .RaceTable
+        .Races
+        .length
     ) {
 
-        const race =
-            resultsData
-                .MRData
-                .RaceTable
-                .Races[0];
-
-
         const results =
-            race.Results || [];
+            resultsData
+            .MRData
+            .RaceTable
+            .Races[0]
+            .Results;
 
 
         if (results.length) {
 
             const winner =
-                results[0];
-
-            document.getElementById("lastWinner")
-                .textContent =
-                `${winner.Driver.givenName} ${winner.Driver.familyName}`;
+                results[0].Driver;
 
 
-            const fastest =
-                results
-                    .filter(r => r.FastestLap)
-                    .sort(
-                        (a,b) =>
-                        parseFloat(
-                            a.FastestLap.rank
-                        ) -
-                        parseFloat(
-                            b.FastestLap.rank
-                        )
-                    )[0];
-
-
-            if (fastest && fastest.FastestLap.Time) {
-
-                document.getElementById("fastestLap")
-                    .textContent =
-                    `${fastest.Driver.familyName} · ${fastest.FastestLap.Time.time}`;
-
-            }
+            document.getElementById(
+                "lastWinner"
+            ).textContent =
+                `${winner.givenName}
+                 ${winner.familyName}`;
 
         }
 
     }
 
 
-    /*
-       Qualifying / pole
-    */
-
     const qualifyingData =
-        await getAPI(
-            `${SEASON}/${round}/qualifying`
+        await api(
+            `${SEASON}/${race.round}/qualifying`
         );
 
 
     if (
         qualifyingData &&
-        qualifyingData.MRData.RaceTable.Races.length
+        qualifyingData
+        .MRData
+        .RaceTable
+        .Races
+        .length
     ) {
 
-        const race =
+        const qualifying =
             qualifyingData
-                .MRData
-                .RaceTable
-                .Races[0];
+            .MRData
+            .RaceTable
+            .Races[0]
+            .QualifyingResults;
 
 
-        const results =
-            race.QualifyingResults || [];
+        if (qualifying.length) {
+
+            const pole =
+                qualifying[0].Driver;
 
 
-        if (results.length) {
-
-            document.getElementById("lastPole")
-                .textContent =
-                `${results[0].Driver.givenName} ${results[0].Driver.familyName}`;
+            document.getElementById(
+                "lastPole"
+            ).textContent =
+                `${pole.givenName}
+                 ${pole.familyName}`;
 
         }
 
@@ -1412,243 +1961,660 @@ async function loadPreviousRaceData(
 
 /* =========================================================
    STANDINGS
-   ========================================================= */
+========================================================= */
 
 async function loadStandings() {
 
-    const data =
-        await getAPI(
+    const driversData =
+        await api(
             `${SEASON}/driverstandings`
         );
 
 
-    if (!data) return;
+    const constructorsData =
+        await api(
+            `${SEASON}/constructorstandings`
+        );
 
 
-    const lists =
-        data
+    if (
+        driversData
+    ) {
+
+        const lists =
+            driversData
             .MRData
             .StandingsTable
             .StandingsLists;
 
 
-    if (!lists || !lists.length) return;
+        if (lists.length) {
+
+            const drivers =
+                lists[0]
+                .DriverStandings
+                .slice(0,5);
 
 
-    const standings =
-        lists[0].DriverStandings;
+            document.getElementById(
+                "driverStandings"
+            ).innerHTML =
 
+                drivers
+                .map(
+                    driver => `
 
-    const container =
-        document.getElementById("standings");
+                    <div class="standing-row">
 
+                        <div class="standing-position">
+                            ${String(
+                                driver.position
+                            ).padStart(2,"0")}
+                        </div>
 
-    container.innerHTML =
-        standings.map(driver => {
+                        <div>
 
-            return `
-                <div class="standing-row">
+                            <div class="standing-name">
 
-                    <div class="standing-position">
-                        ${String(driver.position).padStart(2,"0")}
+                                ${driver.Driver.givenName}
+                                ${driver.Driver.familyName}
+
+                            </div>
+
+                            <div class="standing-subtitle">
+
+                                ${driver.Constructors?.[0]?.name || ""}
+
+                            </div>
+
+                        </div>
+
+                        <div class="standing-points">
+
+                            ${driver.points}
+
+                        </div>
+
                     </div>
 
-                    <div class="standing-driver">
-                        ${driver.Driver.givenName}
-                        ${driver.Driver.familyName}
+                    `
+                )
+                .join("");
+
+        }
+
+    }
+
+
+    if (
+        constructorsData
+    ) {
+
+        const lists =
+            constructorsData
+            .MRData
+            .StandingsTable
+            .StandingsLists;
+
+
+        if (lists.length) {
+
+            const constructors =
+                lists[0]
+                .ConstructorStandings
+                .slice(0,5);
+
+
+            document.getElementById(
+                "constructorStandings"
+            ).innerHTML =
+
+                constructors
+                .map(
+                    constructor => `
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+
+                            ${String(
+                                constructor.position
+                            ).padStart(2,"0")}
+
+                        </div>
+
+                        <div>
+
+                            <div class="standing-name">
+
+                                ${constructor.Constructor.name}
+
+                            </div>
+
+                            <div class="standing-subtitle">
+
+                                ${constructor.Constructor.nationality}
+
+                            </div>
+
+                        </div>
+
+                        <div class="standing-points">
+
+                            ${constructor.points}
+
+                        </div>
+
                     </div>
 
-                    <div class="standing-team">
-                        ${driver.Constructors?.[0]?.name || "—"}
-                    </div>
+                    `
+                )
+                .join("");
 
-                    <div class="standing-points">
-                        ${driver.points}
-                    </div>
+        }
 
-                </div>
-            `;
+    }
 
-        }).join("");
 }
 
 
 /* =========================================================
    DRIVERS
-   ========================================================= */
+========================================================= */
 
 async function loadDrivers() {
 
     const data =
-        await getAPI(
+        await api(
+            `${SEASON}/drivers`
+        );
+
+
+    if (!data)
+        return;
+
+
+    const drivers =
+        data
+        .MRData
+        .DriverTable
+        .Drivers;
+
+
+    const standingsData =
+        await api(
             `${SEASON}/driverstandings`
         );
 
 
-    if (!data) return;
+    let teams = {};
 
 
-    const lists =
-        data
+    if (
+        standingsData
+    ) {
+
+        const lists =
+            standingsData
             .MRData
             .StandingsTable
             .StandingsLists;
 
 
-    if (!lists || !lists.length) return;
+        if (lists.length) {
 
+            lists[0]
+            .DriverStandings
+            .forEach(
+                item => {
 
-    const drivers =
-        lists[0].DriverStandings;
+                    teams[
+                        item.Driver.driverId
+                    ] =
+                        item.Constructors?.[0]?.name
+                        || "Formula 1";
+
+                }
+            );
+
+        }
+
+    }
 
 
     const container =
-        document.getElementById("driversGrid");
+        document.getElementById(
+            "drivers"
+        );
 
 
     container.innerHTML = "";
 
 
-    for (const driver of drivers) {
+    drivers.forEach(
+        driver => {
 
-        const d =
-            driver.Driver;
-
-
-        const constructor =
-            driver.Constructors?.[0];
-
-
-        const card =
-            document.createElement("div");
+            const team =
+                teams[
+                    driver.driverId
+                ] || "Formula 1";
 
 
-        card.className =
-            "driver-card";
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
 
 
-        card.innerHTML = `
+            wrapper.className =
+                "driver-wrapper";
 
-            <div class="driver-default">
 
-                <div class="driver-team">
-                    ${constructor?.name || "Formula 1"}
+            const photo =
+                driverPhotos[
+                    driver.driverId
+                ] || "";
+
+
+            wrapper.innerHTML = `
+
+                <div class="driver-card">
+
+                    <div class="driver-team">
+
+                        ${team}
+
+                    </div>
+
+
+                    <div class="driver-number">
+
+                        #${driver.permanentNumber || "—"}
+
+                    </div>
+
+
+                    <div class="driver-name">
+
+                        ${driver.givenName}
+                        ${driver.familyName}
+
+                    </div>
+
                 </div>
 
-                <div class="driver-number">
-                    #${d.permanentNumber || d.number || "—"}
+
+                <div class="driver-popup">
+
+
+                    <div
+                        class="driver-popup-photo"
+                        style="
+                        background-image:
+                        url('${photo}');
+                        ">
+
+                    </div>
+
+
+                    <div class="driver-popup-info">
+
+
+                        <div class="popup-label">
+                            Formula 1 Driver
+                        </div>
+
+
+                        <div class="popup-name">
+
+                            ${driver.givenName}
+                            ${driver.familyName}
+
+                        </div>
+
+
+                        <div class="popup-details">
+
+
+                            <div class="popup-detail">
+
+                                <span>
+                                    Born
+                                </span>
+
+                                <span>
+                                    ${formatBirthDate(
+                                        driver.dateOfBirth
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="popup-detail">
+
+                                <span>
+                                    Nationality
+                                </span>
+
+                                <span>
+                                    ${driver.nationality}
+                                </span>
+
+                            </div>
+
+
+                            <div class="popup-detail">
+
+                                <span>
+                                    Number
+                                </span>
+
+                                <span>
+                                    #${driver.permanentNumber || "—"}
+                                </span>
+
+                            </div>
+
+
+                            <div class="popup-detail">
+
+                                <span>
+                                    Team
+                                </span>
+
+                                <span>
+                                    ${team}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="driver-name-small">
-                    ${d.givenName}
-                    ${d.familyName}
-                </div>
-
-            </div>
+            `;
 
 
-            <div class="driver-hover">
+            container.appendChild(
+                wrapper
+            );
 
-                <div
-                    class="driver-photo"
-                    id="photo-${d.driverId}">
-                </div>
+        }
+    );
 
-                <div class="driver-nationality">
-                    ${d.nationality || "International"}
-                </div>
-
-                <div class="driver-full-name">
-                    ${d.givenName}
-                    ${d.familyName}
-                </div>
-
-                <div class="driver-details">
-                    #${d.permanentNumber || "—"}
-                    ·
-                    ${constructor?.name || "—"}
-                </div>
-
-            </div>
-        `;
-
-
-        container.appendChild(card);
-
-
-        /*
-           Find driver image automatically
-           using Wikipedia's public API.
-        */
-
-        loadDriverPhoto(
-            d,
-            `photo-${d.driverId}`
-        );
-    }
 }
 
 
 /* =========================================================
    DRIVER PHOTOS
-   ========================================================= */
 
-async function loadDriverPhoto(
-    driver,
-    elementId
-) {
+   These are kept separately so we can replace them
+   with official F1 media images without touching
+   the rest of the page.
+========================================================= */
 
-    const title =
-        `${driver.givenName}_${driver.familyName}`;
+const driverPhotos = {
+
+    antonelli:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Andrea_Kimi_Antonelli_2025.jpg/640px-Andrea_Kimi_Antonelli_2025.jpg",
+
+    russell:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/George_Russell_2025.jpg/640px-George_Russell_2025.jpg",
+
+    hamilton:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Lewis_Hamilton_2025.jpg/640px-Lewis_Hamilton_2025.jpg",
+
+    norris:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lando_Norris_2025.jpg/640px-Lando_Norris_2025.jpg",
+
+    leclerc:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Charles_Leclerc_2025.jpg/640px-Charles_Leclerc_2025.jpg",
+
+    verstappen:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Max_Verstappen_2025.jpg/640px-Max_Verstappen_2025.jpg",
+
+    piastri:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Oscar_Piastri_2025.jpg/640px-Oscar_Piastri_2025.jpg",
+
+    hadjar:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Isack_Hadjar_2025.jpg/640px-Isack_Hadjar_2025.jpg",
+
+    lawson:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Liam_Lawson_2025.jpg/640px-Liam_Lawson_2025.jpg",
+
+    gasly:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Pierre_Gasly_2025.jpg/640px-Pierre_Gasly_2025.jpg",
+
+    lindblad:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Arvid_Lindblad_2025.jpg/640px-Arvid_Lindblad_2025.jpg",
+
+    colapinto:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Franco_Colapinto_2025.jpg/640px-Franco_Colapinto_2025.jpg",
+
+    bearman:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Oliver_Bearman_2025.jpg/640px-Oliver_Bearman_2025.jpg",
+
+    bortoleto:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Gabriel_Bortoleto_2025.jpg/640px-Gabriel_Bortoleto_2025.jpg",
+
+    hulkenberg:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Nico_Hulkenberg_2025.jpg/640px-Nico_Hulkenberg_2025.jpg",
+
+    sainz:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Carlos_Sainz_2025.jpg/640px-Carlos_Sainz_2025.jpg",
+
+    albon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Alexander_Albon_2025.jpg/640px-Alexander_Albon_2025.jpg",
+
+    ocon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Esteban_Ocon_2025.jpg/640px-Esteban_Ocon_2025.jpg",
+
+    alonso:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Fernando_Alonso_2025.jpg/640px-Fernando_Alonso_2025.jpg",
+
+    tsunoda:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Yuki_Tsunoda_2025.jpg/640px-Yuki_Tsunoda_2025.jpg",
+
+    stroll:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Lance_Stroll_2025.jpg/640px-Lance_Stroll_2025.jpg",
+
+    bottas:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Valtteri_Bottas_2025.jpg/640px-Valtteri_Bottas_2025.jpg",
+
+    perez:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sergio_Perez_2025.jpg/640px-Sergio_Perez_2025.jpg"
+
+};
 
 
-    try {
+/* =========================================================
+   CIRCUIT RECORDS
+========================================================= */
 
-        const response =
-            await fetch(
-                `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
-            );
+const circuitData = {
 
+    albert_park: {
+        length: "5.278 KM",
+        laps: "58",
+        distance: "306.124 KM",
+        fastestLap: "1:19.813",
+        fastestDriver: "Charles Leclerc"
+    },
 
-        if (!response.ok) return;
+    shanghai: {
+        length: "5.451 KM",
+        laps: "56",
+        distance: "305.066 KM",
+        fastestLap: "1:32.238",
+        fastestDriver: "Michael Schumacher"
+    },
 
+    suzuka: {
+        length: "5.807 KM",
+        laps: "53",
+        distance: "307.471 KM",
+        fastestLap: "1:30.983",
+        fastestDriver: "Lewis Hamilton"
+    },
 
-        const data =
-            await response.json();
+    miami: {
+        length: "5.412 KM",
+        laps: "57",
+        distance: "308.326 KM",
+        fastestLap: "1:29.708",
+        fastestDriver: "Max Verstappen"
+    },
 
+    villeneuve: {
+        length: "4.361 KM",
+        laps: "70",
+        distance: "305.270 KM",
+        fastestLap: "1:13.078",
+        fastestDriver: "Valtteri Bottas"
+    },
 
-        const image =
-            data.thumbnail?.source;
+    monaco: {
+        length: "3.337 KM",
+        laps: "78",
+        distance: "260.286 KM",
+        fastestLap: "1:12.909",
+        fastestDriver: "Lewis Hamilton"
+    },
 
+    catalunya: {
+        length: "4.657 KM",
+        laps: "66",
+        distance: "307.236 KM",
+        fastestLap: "1:16.330",
+        fastestDriver: "Oscar Piastri"
+    },
 
-        if (image) {
+    red_bull_ring: {
+        length: "4.326 KM",
+        laps: "71",
+        distance: "307.146 KM",
+        fastestLap: "1:05.619",
+        fastestDriver: "Carlos Sainz"
+    },
 
-            const element =
-                document.getElementById(elementId);
+    silverstone: {
+        length: "5.891 KM",
+        laps: "52",
+        distance: "306.332 KM",
+        fastestLap: "1:27.097",
+        fastestDriver: "Max Verstappen"
+    },
 
+    spa: {
+        length: "7.004 KM",
+        laps: "44",
+        distance: "308.052 KM",
+        fastestLap: "1:44.701",
+        fastestDriver: "Sergio Perez"
+    },
 
-            if (element) {
+    hungaroring: {
+        length: "4.381 KM",
+        laps: "70",
+        distance: "306.630 KM",
+        fastestLap: "1:16.627",
+        fastestDriver: "Lewis Hamilton"
+    },
 
-                element.style.backgroundImage =
-                    `url("${image}")`;
-            }
-        }
+    zandvoort: {
+        length: "4.259 KM",
+        laps: "72",
+        distance: "306.648 KM",
+        fastestLap: "1:11.097",
+        fastestDriver: "Lewis Hamilton"
+    },
 
-    } catch (error) {
+    monza: {
+        length: "5.793 KM",
+        laps: "53",
+        distance: "306.720 KM",
+        fastestLap: "1:21.046",
+        fastestDriver: "Rubens Barrichello"
+    },
 
-        console.log(
-            "Driver photo unavailable:",
-            driver.familyName
-        );
+    baku: {
+        length: "6.003 KM",
+        laps: "51",
+        distance: "306.049 KM",
+        fastestLap: "1:43.009",
+        fastestDriver: "Charles Leclerc"
+    },
+
+    marina_bay: {
+        length: "4.940 KM",
+        laps: "62",
+        distance: "306.143 KM",
+        fastestLap: "1:35.867",
+        fastestDriver: "Kevin Magnussen"
+    },
+
+    americas: {
+        length: "5.513 KM",
+        laps: "56",
+        distance: "308.405 KM",
+        fastestLap: "1:36.169",
+        fastestDriver: "Charles Leclerc"
+    },
+
+    rodriguez: {
+        length: "4.304 KM",
+        laps: "71",
+        distance: "305.354 KM",
+        fastestLap: "1:17.774",
+        fastestDriver: "Valtteri Bottas"
+    },
+
+    interlagos: {
+        length: "4.309 KM",
+        laps: "71",
+        distance: "305.879 KM",
+        fastestLap: "1:10.540",
+        fastestDriver: "Valtteri Bottas"
+    },
+
+    vegas: {
+        length: "6.201 KM",
+        laps: "50",
+        distance: "310.050 KM",
+        fastestLap: "1:35.490",
+        fastestDriver: "Oscar Piastri"
+    },
+
+    losail: {
+        length: "5.419 KM",
+        laps: "57",
+        distance: "308.611 KM",
+        fastestLap: "1:22.384",
+        fastestDriver: "Lando Norris"
+    },
+
+    yas_marina: {
+        length: "5.281 KM",
+        laps: "58",
+        distance: "306.183 KM",
+        fastestLap: "1:26.103",
+        fastestDriver: "Max Verstappen"
     }
-}
+
+};
 
 
 /* =========================================================
    COUNTDOWN
-   ========================================================= */
+========================================================= */
 
-function startCountdown(targetDate) {
+function startCountdown(
+    target
+) {
 
     function update() {
 
@@ -1657,14 +2623,18 @@ function startCountdown(targetDate) {
 
 
         const difference =
-            targetDate - now;
+            target - now;
 
 
         const element =
-            document.getElementById("raceCountdown");
+            document.getElementById(
+                "raceCountdown"
+            );
 
 
-        if (difference <= 0) {
+        if (
+            difference <= 0
+        ) {
 
             element.textContent =
                 "RACE WEEKEND";
@@ -1675,214 +2645,102 @@ function startCountdown(targetDate) {
 
         const days =
             Math.floor(
-                difference / 86400000
+                difference /
+                86400000
             );
 
 
         const hours =
             Math.floor(
-                (difference % 86400000)
-                / 3600000
+                (difference %
+                86400000) /
+                3600000
             );
 
 
         const minutes =
             Math.floor(
-                (difference % 3600000)
-                / 60000
+                (difference %
+                3600000) /
+                60000
             );
 
 
         element.textContent =
-            `${days} DAYS · ${hours} HRS · ${minutes} MIN TO LIGHTS OUT`;
+            `${days} DAYS ·
+             ${hours} HRS ·
+             ${minutes} MIN TO LIGHTS OUT`;
+
     }
 
 
     update();
 
-
     setInterval(
         update,
         60000
     );
+
 }
 
 
 /* =========================================================
-   CIRCUIT DATA
-   ========================================================= */
+   FORMAT
+========================================================= */
 
-const circuitDetails = {
-
-    albert_park: {
-        length: "5.278 KM",
-        laps: "58",
-        distance: "306.124 KM"
-    },
-
-    shanghai: {
-        length: "5.451 KM",
-        laps: "56",
-        distance: "305.066 KM"
-    },
-
-    suzuka: {
-        length: "5.807 KM",
-        laps: "53",
-        distance: "307.471 KM"
-    },
-
-    miami: {
-        length: "5.412 KM",
-        laps: "57",
-        distance: "308.326 KM"
-    },
-
-    villeneuve: {
-        length: "4.361 KM",
-        laps: "70",
-        distance: "305.270 KM"
-    },
-
-    monaco: {
-        length: "3.337 KM",
-        laps: "78",
-        distance: "260.286 KM"
-    },
-
-    catalunya: {
-        length: "4.657 KM",
-        laps: "66",
-        distance: "307.236 KM"
-    },
-
-    red_bull_ring: {
-        length: "4.326 KM",
-        laps: "71",
-        distance: "307.146 KM"
-    },
-
-    silverstone: {
-        length: "5.891 KM",
-        laps: "52",
-        distance: "306.332 KM"
-    },
-
-    spa: {
-        length: "7.004 KM",
-        laps: "44",
-        distance: "308.052 KM"
-    },
-
-    hungaroring: {
-        length: "4.381 KM",
-        laps: "70",
-        distance: "306.630 KM"
-    },
-
-    zandvoort: {
-        length: "4.259 KM",
-        laps: "72",
-        distance: "306.648 KM"
-    },
-
-    monza: {
-        length: "5.793 KM",
-        laps: "53",
-        distance: "306.720 KM"
-    },
-
-    baku: {
-        length: "6.003 KM",
-        laps: "51",
-        distance: "306.049 KM"
-    },
-
-    marina_bay: {
-        length: "4.940 KM",
-        laps: "62",
-        distance: "306.143 KM"
-    },
-
-    americas: {
-        length: "5.513 KM",
-        laps: "56",
-        distance: "308.405 KM"
-    },
-
-    rodriguez: {
-        length: "4.304 KM",
-        laps: "71",
-        distance: "305.354 KM"
-    },
-
-    interlagos: {
-        length: "4.309 KM",
-        laps: "71",
-        distance: "305.879 KM"
-    },
-
-    vegas: {
-        length: "6.201 KM",
-        laps: "50",
-        distance: "310.050 KM"
-    },
-
-    losail: {
-        length: "5.419 KM",
-        laps: "57",
-        distance: "308.611 KM"
-    },
-
-    yas_marina: {
-        length: "5.281 KM",
-        laps: "58",
-        distance: "306.183 KM"
-    }
-
-};
-
-
-/* =========================================================
-   FORMAT HELPERS
-   ========================================================= */
-
-function formatRaceName(name) {
+function cleanRaceName(
+    name
+) {
 
     return name
-        .replace("FORMULA 1 ", "")
-        .replace("GRAND PRIX", "GP")
-        .replace("GRAN PREMIO", "GP")
-        .replace("GRANDE PRÊMIO", "GP")
-        .replace("QATAR AIRWAYS ", "")
-        .replace("MOËT & CHANDON ", "")
-        .replace("ETIHAD AIRWAYS ", "")
-        .replace("HEINEKEN ", "")
-        .replace("AWS ", "")
-        .replace("PIRELLI ", "")
-        .replace("LENOVO ", "")
-        .replace("LOUIS VUITTON ", "")
-        .replace("ARAMCO ", "")
-        .replace("CRYPTO.COM ", "")
-        .replace("MSC CRUISES ", "")
-        .replace("TAG HEUER ", "")
-        .replace("GULF AIR ", "")
+        .replace(
+            "FORMULA 1 ",
+            ""
+        )
+        .replace(
+            "QATAR AIRWAYS ",
+            ""
+        )
+        .replace(
+            "ETIHAD AIRWAYS ",
+            ""
+        )
+        .replace(
+            "HEINEKEN ",
+            ""
+        )
+        .replace(
+            "PIRELLI ",
+            ""
+        )
+        .replace(
+            "LENOVO ",
+            ""
+        )
+        .replace(
+            "AWS ",
+            ""
+        )
+        .replace(
+            "ARAMCO ",
+            ""
+        )
+        .replace(
+            "GRAND PRIX",
+            "GP"
+        )
         .trim();
+
 }
 
 
-function cleanGrandPrixName(name) {
-
-    return formatRaceName(name)
-        .replace(" 2026", "");
-}
-
-
-function formatDate(dateString) {
+function formatDate(
+    value
+) {
 
     const date =
         new Date(
-            `${dateString}T00:00:00`
+            `${value}T00:00:00`
         );
 
 
@@ -1894,21 +2752,22 @@ function formatDate(dateString) {
             year: "numeric"
         }
     );
+
 }
 
 
 function formatDateTime(
-    dateString,
-    timeString
+    date,
+    time
 ) {
 
-    const date =
+    const value =
         new Date(
-            `${dateString}T${timeString || "00:00:00"}`
+            `${date}T${time || "00:00:00"}`
         );
 
 
-    return date.toLocaleString(
+    return value.toLocaleString(
         "en-GB",
         {
             day: "2-digit",
@@ -1918,36 +2777,45 @@ function formatDateTime(
             hour12: false
         }
     );
+
+}
+
+
+function formatBirthDate(
+    value
+) {
+
+    if (!value)
+        return "—";
+
+
+    const date =
+        new Date(
+            `${value}T00:00:00`
+        );
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
 }
 
 
 /* =========================================================
-   INITIAL LOAD
-   ========================================================= */
-
-async function loadEverything() {
-
-    await loadCalendar();
-
-    await loadStandings();
-
-    await loadDrivers();
-}
-
-
-/*
-   Initial load
-*/
+   START
+========================================================= */
 
 loadEverything();
 
 
 /*
-   Automatically refresh F1 data every 5 minutes.
-
-   This means that when the API receives new results,
-   the website will update without us having to edit
-   the HTML manually.
+   Refresh automatically every 5 minutes.
 */
 
 setInterval(
@@ -1956,6 +2824,7 @@ setInterval(
 );
 
 </script>
+
 
 </body>
 </html>
