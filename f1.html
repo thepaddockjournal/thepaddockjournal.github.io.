@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formula 1 | The Paddock Journal</title>
+
+    <meta name="description"
+        content="Formula 1 news, calendar, standings, results, drivers and teams — The Paddock Journal.">
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050505;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(5, 5, 5, 0.96);
+            border-bottom: 1px solid #222;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: auto;
+
+            padding: 20px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #F4A6C7;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+
+            gap: 25px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            transition: 0.25s ease;
+        }
+
+        nav a:hover {
+            color: #F4A6C7;
+        }
+
+        .active {
+            color: #F4A6C7;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .page-hero {
+            min-height: 500px;
+
+            display: flex;
+            align-items: flex-end;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #050505 5%,
+                    rgba(5,5,5,0.55) 55%,
+                    rgba(5,5,5,0.15) 100%
+                ),
+                radial-gradient(
+                    circle at 70% 35%,
+                    #333333 0%,
+                    #141414 35%,
+                    #050505 75%
+                );
+
+            border-bottom: 1px solid #222;
+        }
+
+        .page-hero-content {
+            width: 100%;
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 70px 40px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-label {
+            color: #F4A6C7;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(70px, 12vw, 150px);
+
+            line-height: 0.85;
+
+            letter-spacing: -6px;
+
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .page-hero h1 span {
+            color: #F4A6C7;
+        }
+
+        .page-hero-text {
+            max-width: 600px;
+
+            margin-top: 28px;
+
+            color: #a5a5a5;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 90px 40px;
+        }
+
+        .section {
+            margin-bottom: 110px;
+        }
+
+        .section-header {
+            display: flex;
+
+            align-items: flex-end;
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+
+            border-bottom: 1px solid #222;
+
+            padding-bottom: 15px;
+        }
+
+        .section-number {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            margin-top: 5px;
+
+            font-size: 38px;
+
+            line-height: 1;
+
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+
+        /* =========================
+           NEWS
+        ========================= */
+
+        .news-grid {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 20px;
+
+            min-height: 500px;
+        }
+
+        .news-card {
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid #262626;
+
+            background: #101010;
+
+            transition: 0.3s ease;
+        }
+
+        .news-card:hover {
+            border-color: #F4A6C7;
+        }
+
+        .news-background {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    #333333,
+                    #111111 50%,
+                    #050505 100%
+                );
+
+            transition: 0.4s ease;
+        }
+
+        .news-card:hover .news-background {
+            transform: scale(1.04);
+        }
+
+        .news-card::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.95),
+                    rgba(0,0,0,0.05) 75%
+                );
+        }
+
+        .news-content {
+            position: absolute;
+
+            z-index: 2;
+
+            left: 30px;
+            right: 30px;
+            bottom: 30px;
+        }
+
+        .category {
+            color: #F4A6C7;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .news-content h3 {
+            margin-top: 10px;
+
+            font-size: 32px;
+
+            line-height: 1.05;
+        }
+
+        .news-date {
+            color: #888;
+
+            font-size: 10px;
+
+            margin-top: 12px;
+        }
+
+        .news-side {
+            display: grid;
+
+            grid-template-rows: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .news-side .news-content h3 {
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           CALENDAR
+        ========================= */
+
+        .calendar {
+            border-top: 1px solid #222;
+        }
+
+        .race {
+            display: grid;
+
+            grid-template-columns: 70px 1fr 180px 120px;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 22px 15px;
+
+            border-bottom: 1px solid #222;
+
+            transition: 0.25s ease;
+        }
+
+        .race:hover {
+            background: #101010;
+        }
+
+        .race-number {
+            color: #666;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .race-name {
+            font-size: 18px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        .race-location {
+            color: #888;
+
+            font-size: 12px;
+        }
+
+        .race-date {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-align: right;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           STANDINGS
+        ========================= */
+
+        .standings-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .standings-card {
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+        }
+
+        .standings-title {
+            padding: 20px 25px;
+
+            border-bottom: 1px solid #252525;
+
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .driver-row {
+            display: grid;
+
+            grid-template-columns: 45px 1fr 70px;
+
+            align-items: center;
+
+            padding: 16px 25px;
+
+            border-bottom: 1px solid #1c1c1c;
+
+            transition: 0.2s ease;
+        }
+
+        .driver-row:last-child {
+            border-bottom: none;
+        }
+
+        .driver-row:hover {
+            background: #141414;
+        }
+
+        .position {
+            color: #666;
+
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .driver-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .driver-team {
+            color: #777;
+
+            font-size: 10px;
+
+            margin-top: 3px;
+        }
+
+        .points {
+            color: #F4A6C7;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            text-align: right;
+        }
+
+
+        /* =========================
+           DRIVERS & TEAMS
+        ========================= */
+
+        .drivers-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .driver-card {
+            min-height: 250px;
+
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            border: 1px solid #252525;
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    #292929,
+                    #0b0b0b 65%
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: 0.3s ease;
+        }
+
+        .driver-card:hover {
+            border-color: #F4A6C7;
+
+            transform: translateY(-4px);
+        }
+
+        .driver-number {
+            position: absolute;
+
+            top: 20px;
+            right: 20px;
+
+            color: #444;
+
+            font-size: 38px;
+            font-weight: 900;
+        }
+
+        .driver-team {
+            color: #F4A6C7;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .driver-card h3 {
+            font-size: 25px;
+
+            margin-top: 6px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           ARTICLES
+        ========================= */
+
+        .articles-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .article-card {
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+
+            overflow: hidden;
+
+            transition: 0.3s ease;
+        }
+
+        .article-card:hover {
+            border-color: #F4A6C7;
+
+            transform: translateY(-4px);
+        }
+
+        .article-image {
+            height: 220px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #292929,
+                    #0d0d0d
+                );
+        }
+
+        .article-content {
+            padding: 22px;
+        }
+
+        .article-content h3 {
+            margin-top: 8px;
+
+            font-size: 20px;
+
+            line-height: 1.1;
+        }
+
+        .article-content p {
+            color: #777;
+
+            font-size: 12px;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #222;
+
+            padding: 45px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #F4A6C7;
+        }
+
+        .footer-text {
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            nav {
+                gap: 15px;
+            }
+
+            .drivers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 18px 25px;
+            }
+
+            nav {
+                width: 100%;
+
+                overflow-x: auto;
+
+                white-space: nowrap;
+
+                padding-bottom: 5px;
+            }
+
+            .page-hero-content {
+                padding: 60px 25px;
+            }
+
+            .page-hero h1 {
+                letter-spacing: -3px;
+            }
+
+            main {
+                padding: 65px 25px;
+            }
+
+            .section {
+                margin-bottom: 80px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card {
+                min-height: 320px;
+            }
+
+
+            .race {
+                grid-template-columns: 45px 1fr;
+
+                gap: 10px;
+            }
+
+            .race-location {
+                display: none;
+            }
+
+            .race-date {
+                text-align: left;
+            }
+
+
+            .standings-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .drivers-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .drivers-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </a>
+
+            <nav>
+
+                <a href="f1.html" class="active">F1</a>
+
+                <a href="f2.html">F2</a>
+
+                <a href="f3.html">F3</a>
+
+                <a href="f4.html">F4</a>
+
+                <a href="f1-academy.html">F1 Academy</a>
+
+                <a href="women.html">Women</a>
+
+                <a href="live.html">Live</a>
+
+                <a href="about.html">About Me</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="page-hero">
+
+        <div class="page-hero-content">
+
+            <div class="page-label">
+                The pinnacle of motorsport
+            </div>
+
+            <h1>
+                Formula <span>1.</span>
+            </h1>
+
+            <p class="page-hero-text">
+                News, results, standings, drivers, teams and everything
+                happening across the world of Formula 1.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <main>
+
+
+        <!-- =========================
+             LATEST F1 NEWS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        01 / FORMULA 1
+                    </div>
+
+                    <h2 class="section-title">
+                        Latest News
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="news-grid">
+
+
+                <article class="news-card">
+
+                    <div class="news-background"></div>
+
+                    <div class="news-content">
+
+                        <span class="category">
+                            Formula 1
+                        </span>
+
+                        <h3>
+                            Everything happening in the world of Formula 1
+                        </h3>
+
+                        <div class="news-date">
+                            SEPTEMBER 2026
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <div class="news-side">
+
+
+                    <article class="news-card">
+
+                        <div class="news-background"></div>
+
+                        <div class="news-content">
+
+                            <span class="category">
+                                Paddock
+                            </span>
+
+                            <h3>
+                                Inside the paddock
+                            </h3>
+
+                            <div class="news-date">
+                                SEPTEMBER 2026
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="news-card">
+
+                        <div class="news-background"></div>
+
+                        <div class="news-content">
+
+                            <span class="category">
+                                Analysis
+                            </span>
+
+                            <h3>
+                                What to watch next
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CALENDAR
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        02 / 2026 SEASON
+                    </div>
+
+                    <h2 class="section-title">
+                        Calendar
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="calendar">
+
+
+                <div class="race">
+
+                    <div class="race-number">01</div>
+
+                    <div class="race-name">
+                        Australian Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Melbourne
+                    </div>
+
+                    <div class="race-date">
+                        MAR 13–15
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">02</div>
+
+                    <div class="race-name">
+                        Chinese Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Shanghai
+                    </div>
+
+                    <div class="race-date">
+                        MAR 20–22
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">03</div>
+
+                    <div class="race-name">
+                        Japanese Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Suzuka
+                    </div>
+
+                    <div class="race-date">
+                        APR 3–5
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">04</div>
+
+                    <div class="race-name">
+                        Bahrain Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Sakhir
+                    </div>
+
+                    <div class="race-date">
+                        APR 10–12
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">05</div>
+
+                    <div class="race-name">
+                        Saudi Arabian Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Jeddah
+                    </div>
+
+                    <div class="race-date">
+                        APR 17–19
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">06</div>
+
+                    <div class="race-name">
+                        Miami Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Miami
+                    </div>
+
+                    <div class="race-date">
+                        MAY 1–3
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">07</div>
+
+                    <div class="race-name">
+                        Emilia-Romagna Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Imola
+                    </div>
+
+                    <div class="race-date">
+                        MAY 15–17
+                    </div>
+
+                </div>
+
+
+                <div class="race">
+
+                    <div class="race-number">08</div>
+
+                    <div class="race-name">
+                        Monaco Grand Prix
+                    </div>
+
+                    <div class="race-location">
+                        Monte Carlo
+                    </div>
+
+                    <div class="race-date">
+                        MAY 22–24
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             STANDINGS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        03 / CHAMPIONSHIP
+                    </div>
+
+                    <h2 class="section-title">
+                        Standings
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="standings-grid">
+
+
+                <!-- DRIVERS -->
+
+                <div class="standings-card">
+
+                    <div class="standings-title">
+                        Drivers Championship
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">01</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Driver Name
+                            </div>
+
+                            <div class="driver-team">
+                                Team
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">02</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Driver Name
+                            </div>
+
+                            <div class="driver-team">
+                                Team
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">03</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Driver Name
+                            </div>
+
+                            <div class="driver-team">
+                                Team
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">04</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Driver Name
+                            </div>
+
+                            <div class="driver-team">
+                                Team
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">05</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Driver Name
+                            </div>
+
+                            <div class="driver-team">
+                                Team
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONSTRUCTORS -->
+
+                <div class="standings-card">
+
+                    <div class="standings-title">
+                        Constructors Championship
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">01</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Team Name
+                            </div>
+
+                            <div class="driver-team">
+                                Constructor
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">02</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Team Name
+                            </div>
+
+                            <div class="driver-team">
+                                Constructor
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">03</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Team Name
+                            </div>
+
+                            <div class="driver-team">
+                                Constructor
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">04</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Team Name
+                            </div>
+
+                            <div class="driver-team">
+                                Constructor
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <div class="driver-row">
+
+                        <div class="position">05</div>
+
+                        <div>
+
+                            <div class="driver-name">
+                                Team Name
+                            </div>
+
+                            <div class="driver-team">
+                                Constructor
+                            </div>
+
+                        </div>
+
+                        <div class="points">
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DRIVERS
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        04 / THE GRID
+                    </div>
+
+                    <h2 class="section-title">
+                        Drivers
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="drivers-grid">
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        01
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        02
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        03
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        04
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        05
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        06
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        07
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="driver-card">
+
+                    <span class="driver-number">
+                        08
+                    </span>
+
+                    <div>
+
+                        <div class="driver-team">
+                            Team
+                        </div>
+
+                        <h3>
+                            Driver Name
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ARTICLES
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-number">
+                        05 / JOURNAL
+                    </div>
+
+                    <h2 class="section-title">
+                        F1 Stories
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="articles-grid">
+
+
+                <article class="article-card">
+
+                    <div class="article-image"></div>
+
+                    <div class="article-content">
+
+                        <span class="category">
+                            Analysis
+                        </span>
+
+                        <h3>
+                            What makes a Formula 1 weekend?
+                        </h3>
+
+                        <p>
+                            From practice to the chequered flag,
+                            a closer look at what happens inside a
+                            Grand Prix weekend.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="article-card">
+
+                    <div class="article-image"></div>
+
+                    <div class="article-content">
+
+                        <span class="category">
+                            Paddock
+                        </span>
+
+                        <h3>
+                            Beyond the race track
+                        </h3>
+
+                        <p>
+                            The people, stories and details that
+                            make the F1 paddock unique.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <article class="article-card">
+
+                    <div class="article-image"></div>
+
+                    <div class="article-content">
+
+                        <span class="category">
+                            Motorsport
+                        </span>
+
+                        <h3>
+                            The road to Formula 1
+                        </h3>
+
+                        <p>
+                            Discover the journey that young drivers
+                            take before reaching the pinnacle.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </div>
+
+            <div class="footer-text">
+                © 2026 The Paddock Journal · Motorsport beyond the grid.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
