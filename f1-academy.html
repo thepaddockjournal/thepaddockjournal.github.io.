@@ -34,6 +34,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* =========================
    HEADER
 ========================= */
@@ -77,6 +78,7 @@ nav a.active {
     color: var(--pink);
 }
 
+
 /* =========================
    INTRO
 ========================= */
@@ -107,6 +109,7 @@ nav a.active {
     line-height: 1.7;
 }
 
+
 /* =========================
    GENERAL
 ========================= */
@@ -136,6 +139,7 @@ section {
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
+
 
 /* =========================
    NEWS
@@ -213,6 +217,7 @@ section {
     color: var(--black);
 }
 
+
 /* =========================
    NEXT ROUND
 ========================= */
@@ -281,6 +286,7 @@ section {
     font-size: 19px;
 }
 
+
 /* =========================
    CALENDAR
 ========================= */
@@ -319,7 +325,6 @@ section {
     font-weight: 600;
 }
 
-.calendar-location,
 .calendar-date {
     color: var(--grey);
     font-size: 11px;
@@ -339,6 +344,7 @@ section {
 .calendar-status.upcoming {
     color: var(--pink);
 }
+
 
 /* =========================
    CHAMPIONSHIP
@@ -411,6 +417,7 @@ section {
     color: var(--pink);
 }
 
+
 /* =========================
    DRIVERS
 ========================= */
@@ -426,13 +433,14 @@ section {
     border: 1px solid var(--border);
     background: var(--dark);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: 0.35s ease;
 }
 
 .driver-card:hover {
     border-color: rgba(244,166,199,0.5);
     transform: translateY(-4px);
+    z-index: 30;
 }
 
 .driver-number {
@@ -453,6 +461,7 @@ section {
     right: -30px;
     bottom: -35px;
     background: rgba(244,166,199,0.08);
+    pointer-events: none;
 }
 
 .driver-info {
@@ -481,6 +490,124 @@ section {
     letter-spacing: 1px;
     margin-top: 7px;
 }
+
+
+/* =========================
+   DRIVER POPUP
+========================= */
+
+.driver-popup {
+    position: absolute;
+    width: 520px;
+    height: 350px;
+
+    left: 50%;
+    bottom: calc(100% + 15px);
+
+    transform: translateX(-50%) translateY(12px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #0b0b0b;
+    border: 1px solid var(--border);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 100;
+    overflow: hidden;
+}
+
+.driver-card:hover .driver-popup {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.driver-popup-image {
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(
+            to top,
+            rgba(5,5,5,0.55),
+            rgba(5,5,5,0.05)
+        ),
+        linear-gradient(
+            135deg,
+            #242424,
+            #0a0a0a
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.driver-popup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.driver-popup-placeholder {
+    color: rgba(255,255,255,0.25);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.driver-popup-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.driver-popup-number {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.driver-popup-info h3 {
+    font-size: 27px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.driver-popup-team {
+    color: var(--light-grey);
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+.driver-popup-academy {
+    color: var(--pink);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 9px;
+}
+
+.driver-popup-status {
+    color: var(--grey);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
 
 /* =========================
    FOOTER
@@ -524,6 +651,7 @@ footer {
     letter-spacing: 1.5px;
 }
 
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -541,6 +669,7 @@ footer {
     .drivers-grid {
         grid-template-columns: repeat(4, 1fr);
     }
+
 }
 
 @media (max-width: 850px) {
@@ -577,6 +706,11 @@ footer {
     .drivers-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .driver-popup {
+        width: 460px;
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -624,17 +758,32 @@ footer {
         row-gap: 7px;
     }
 
-    .calendar-location,
     .calendar-date {
-        grid-column: 2;
-    }
-
-    .calendar-name {
         grid-column: 2;
     }
 
     .drivers-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .driver-popup {
+        position: fixed;
+
+        width: calc(100vw - 30px);
+        max-width: 500px;
+        height: 330px;
+
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+
+        transform: translate(-50%, -45%);
+
+        z-index: 2000;
+    }
+
+    .driver-card:hover .driver-popup {
+        transform: translate(-50%, -50%);
     }
 
     .footer-top {
@@ -650,12 +799,15 @@ footer {
         flex-direction: column;
         gap: 12px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HEADER
@@ -716,48 +868,92 @@ footer {
     <div class="news-grid">
 
         <article class="news-card">
+
             <div class="news-content">
-                <div class="news-tag">Championship</div>
-                <h3>Palmowski leads the championship after Zandvoort</h3>
+
+                <div class="news-tag">
+                    Championship
+                </div>
+
+                <h3>
+                    Palmowski leads the championship after Zandvoort
+                </h3>
+
                 <p>
                     Alisha Palmowski heads the standings with 136 points
                     after four completed rounds.
                 </p>
+
             </div>
+
         </article>
 
-        <article class="news-card">
-            <div class="news-content">
-                <div class="news-tag">Zandvoort</div>
-                <h3>Palmowski takes Feature Race victory</h3>
-                <p>
-                    The Campos Racing driver converted pole position
-                    into another Feature Race win.
-                </p>
-            </div>
-        </article>
 
         <article class="news-card">
+
             <div class="news-content">
-                <div class="news-tag">Breakthrough</div>
-                <h3>Westcott claims maiden F1 Academy victory</h3>
+
+                <div class="news-tag">
+                    Zandvoort
+                </div>
+
+                <h3>
+                    Palmowski takes another Feature Race victory
+                </h3>
+
                 <p>
-                    Payton Westcott dominated the Reverse Grid Race
-                    at Zandvoort for her first series win.
+                    The Campos Racing driver continued her championship
+                    campaign with another Feature Race win.
                 </p>
+
             </div>
+
         </article>
 
+
         <article class="news-card">
+
             <div class="news-content">
-                <div class="news-tag">Next Up</div>
-                <h3>The championship heads to the United States</h3>
+
+                <div class="news-tag">
+                    Breakthrough
+                </div>
+
+                <h3>
+                    Westcott claims maiden F1 Academy victory
+                </h3>
+
                 <p>
-                    Austin hosts Round 5 before the season finale
-                    on the Las Vegas Strip.
+                    Payton Westcott took the Reverse Grid Race win
+                    at Zandvoort for her first victory in the series.
                 </p>
+
             </div>
+
         </article>
+
+
+        <article class="news-card">
+
+            <div class="news-content">
+
+                <div class="news-tag">
+                    Next Up
+                </div>
+
+                <h3>
+                    Austin awaits the F1 Academy field
+                </h3>
+
+                <p>
+                    The championship now heads to the Circuit of the
+                    Americas for Round 5.
+                </p>
+
+            </div>
+
+        </article>
+
 
         <a href="news.html" class="see-more">
             See More
@@ -775,15 +971,23 @@ footer {
 <section>
 
     <div class="section-title">
+
         <h2>Next Round</h2>
-        <span>Round 5 · 2026</span>
+
+        <span>
+            Round 5 · 2026
+        </span>
+
     </div>
 
+
     <div class="next-round">
+
 
         <div class="round-main">
 
             <div>
+
                 <div class="round-label">
                     Circuit of the Americas
                 </div>
@@ -793,9 +997,11 @@ footer {
                 </h3>
 
                 <div class="date">
-                    23 — 25 OCTOBER 2026
+                    22 — 25 OCTOBER 2026
                 </div>
+
             </div>
+
 
             <div class="round-label">
                 United States · Round 5
@@ -803,27 +1009,61 @@ footer {
 
         </div>
 
+
         <div class="round-side">
 
-            <div class="round-stat">
-                <span>Current Leader</span>
-                <strong>Alisha Palmowski</strong>
-            </div>
 
             <div class="round-stat">
-                <span>Points</span>
-                <strong>136 PTS</strong>
+
+                <span>
+                    Championship Leader
+                </span>
+
+                <strong>
+                    Alisha Palmowski
+                </strong>
+
             </div>
 
-            <div class="round-stat">
-                <span>Current Team Leader</span>
-                <strong>Campos Racing</strong>
-            </div>
 
             <div class="round-stat">
-                <span>Previous Round Winner</span>
-                <strong>Alisha Palmowski</strong>
+
+                <span>
+                    Points
+                </span>
+
+                <strong>
+                    136 PTS
+                </strong>
+
             </div>
+
+
+            <div class="round-stat">
+
+                <span>
+                    Team Leader
+                </span>
+
+                <strong>
+                    Campos Racing
+                </strong>
+
+            </div>
+
+
+            <div class="round-stat">
+
+                <span>
+                    Previous Winner
+                </span>
+
+                <strong>
+                    Alisha Palmowski
+                </strong>
+
+            </div>
+
 
         </div>
 
@@ -839,60 +1079,165 @@ footer {
 <section>
 
     <div class="section-title">
+
         <h2>Calendar</h2>
-        <span>2026</span>
+
+        <span>
+            2026
+        </span>
+
     </div>
+
 
     <div class="calendar">
 
+
         <div class="calendar-row header">
-            <div>Rd.</div>
-            <div>Venue</div>
-            <div>Date</div>
-            <div>Status</div>
+
+            <div>
+                Rd.
+            </div>
+
+            <div>
+                Venue
+            </div>
+
+            <div>
+                Date
+            </div>
+
+            <div>
+                Status
+            </div>
+
         </div>
 
-        <div class="calendar-row">
-            <div class="calendar-round">01</div>
-            <div class="calendar-name">Shanghai</div>
-            <div class="calendar-date">13 — 15 Mar</div>
-            <div class="calendar-status completed">Completed</div>
-        </div>
 
         <div class="calendar-row">
-            <div class="calendar-round">02</div>
-            <div class="calendar-name">Montreal</div>
-            <div class="calendar-date">22 — 24 May</div>
-            <div class="calendar-status completed">Completed</div>
+
+            <div class="calendar-round">
+                01
+            </div>
+
+            <div class="calendar-name">
+                Shanghai
+            </div>
+
+            <div class="calendar-date">
+                13 — 15 Mar
+            </div>
+
+            <div class="calendar-status completed">
+                Completed
+            </div>
+
         </div>
 
-        <div class="calendar-row">
-            <div class="calendar-round">03</div>
-            <div class="calendar-name">Silverstone</div>
-            <div class="calendar-date">03 — 05 Jul</div>
-            <div class="calendar-status completed">Completed</div>
-        </div>
 
         <div class="calendar-row">
-            <div class="calendar-round">04</div>
-            <div class="calendar-name">Zandvoort</div>
-            <div class="calendar-date">21 — 23 Aug</div>
-            <div class="calendar-status completed">Completed</div>
+
+            <div class="calendar-round">
+                02
+            </div>
+
+            <div class="calendar-name">
+                Montreal
+            </div>
+
+            <div class="calendar-date">
+                22 — 24 May
+            </div>
+
+            <div class="calendar-status completed">
+                Completed
+            </div>
+
         </div>
 
-        <div class="calendar-row">
-            <div class="calendar-round">05</div>
-            <div class="calendar-name">Austin</div>
-            <div class="calendar-date">23 — 25 Oct</div>
-            <div class="calendar-status upcoming">Upcoming</div>
-        </div>
 
         <div class="calendar-row">
-            <div class="calendar-round">06</div>
-            <div class="calendar-name">Las Vegas</div>
-            <div class="calendar-date">19 — 21 Nov</div>
-            <div class="calendar-status upcoming">Upcoming</div>
+
+            <div class="calendar-round">
+                03
+            </div>
+
+            <div class="calendar-name">
+                Silverstone
+            </div>
+
+            <div class="calendar-date">
+                03 — 05 Jul
+            </div>
+
+            <div class="calendar-status completed">
+                Completed
+            </div>
+
         </div>
+
+
+        <div class="calendar-row">
+
+            <div class="calendar-round">
+                04
+            </div>
+
+            <div class="calendar-name">
+                Zandvoort
+            </div>
+
+            <div class="calendar-date">
+                21 — 23 Aug
+            </div>
+
+            <div class="calendar-status completed">
+                Completed
+            </div>
+
+        </div>
+
+
+        <div class="calendar-row">
+
+            <div class="calendar-round">
+                05
+            </div>
+
+            <div class="calendar-name">
+                Austin
+            </div>
+
+            <div class="calendar-date">
+                22 — 25 Oct
+            </div>
+
+            <div class="calendar-status upcoming">
+                Upcoming
+            </div>
+
+        </div>
+
+
+        <div class="calendar-row">
+
+            <div class="calendar-round">
+                06
+            </div>
+
+            <div class="calendar-name">
+                Las Vegas
+            </div>
+
+            <div class="calendar-date">
+                19 — 21 Nov
+            </div>
+
+            <div class="calendar-status upcoming">
+                Upcoming
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -906,64 +1251,160 @@ footer {
 <section>
 
     <div class="section-title">
-        <h2>Championship</h2>
-        <span>After Round 4</span>
+
+        <h2>
+            Championship
+        </h2>
+
+        <span>
+            After Round 4
+        </span>
+
     </div>
 
+
     <div class="championship">
+
 
         <!-- DRIVERS -->
 
         <div class="standings-box">
 
             <div class="standings-header">
-                <h3>Drivers</h3>
-                <span>Top 5</span>
+
+                <h3>
+                    Drivers
+                </h3>
+
+                <span>
+                    Top 5
+                </span>
+
             </div>
 
-            <div class="standing-row">
-                <div class="position leader">01</div>
-                <div>
-                    <div class="driver-name leader">Alisha Palmowski</div>
-                    <div class="driver-team">Campos Racing</div>
-                </div>
-                <div class="points leader">136</div>
-            </div>
 
             <div class="standing-row">
-                <div class="position">02</div>
-                <div>
-                    <div class="driver-name">Emma Felbermayr</div>
-                    <div class="driver-team">Rodin Motorsport</div>
+
+                <div class="position leader">
+                    01
                 </div>
-                <div class="points">88</div>
+
+                <div>
+
+                    <div class="driver-name leader">
+                        Alisha Palmowski
+                    </div>
+
+                    <div class="driver-team">
+                        Campos Racing
+                    </div>
+
+                </div>
+
+                <div class="points leader">
+                    136
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <div class="position">03</div>
-                <div>
-                    <div class="driver-name">Nina Gademan</div>
-                    <div class="driver-team">MP Motorsport</div>
-                </div>
-                <div class="points">71</div>
-            </div>
 
             <div class="standing-row">
-                <div class="position">04</div>
-                <div>
-                    <div class="driver-name">Alba Larsen</div>
-                    <div class="driver-team">MP Motorsport</div>
+
+                <div class="position">
+                    02
                 </div>
-                <div class="points">50</div>
+
+                <div>
+
+                    <div class="driver-name">
+                        Emma Felbermayr
+                    </div>
+
+                    <div class="driver-team">
+                        Rodin Motorsport
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    88
+                </div>
+
             </div>
 
+
             <div class="standing-row">
-                <div class="position">05</div>
-                <div>
-                    <div class="driver-name">Payton Westcott</div>
-                    <div class="driver-team">PREMA Racing</div>
+
+                <div class="position">
+                    03
                 </div>
-                <div class="points">49</div>
+
+                <div>
+
+                    <div class="driver-name">
+                        Nina Gademan
+                    </div>
+
+                    <div class="driver-team">
+                        MP Motorsport
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    71
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <div class="position">
+                    04
+                </div>
+
+                <div>
+
+                    <div class="driver-name">
+                        Alba Larsen
+                    </div>
+
+                    <div class="driver-team">
+                        MP Motorsport
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    50
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <div class="position">
+                    05
+                </div>
+
+                <div>
+
+                    <div class="driver-name">
+                        Payton Westcott
+                    </div>
+
+                    <div class="driver-team">
+                        PREMA Racing
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    49
+                </div>
+
             </div>
 
         </div>
@@ -974,48 +1415,120 @@ footer {
         <div class="standings-box">
 
             <div class="standings-header">
-                <h3>Teams</h3>
-                <span>Top 5</span>
+
+                <h3>
+                    Teams
+                </h3>
+
+                <span>
+                    Top 5
+                </span>
+
             </div>
 
-            <div class="standing-row">
-                <div class="position leader">01</div>
-                <div>
-                    <div class="team-name leader">Campos Racing</div>
-                </div>
-                <div class="points leader">212</div>
-            </div>
 
             <div class="standing-row">
-                <div class="position">02</div>
-                <div>
-                    <div class="team-name">Rodin Motorsport</div>
+
+                <div class="position leader">
+                    01
                 </div>
-                <div class="points">139</div>
+
+                <div>
+
+                    <div class="team-name leader">
+                        Campos Racing
+                    </div>
+
+                </div>
+
+                <div class="points leader">
+                    212
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <div class="position">03</div>
-                <div>
-                    <div class="team-name">MP Motorsport</div>
-                </div>
-                <div class="points">127</div>
-            </div>
 
             <div class="standing-row">
-                <div class="position">04</div>
-                <div>
-                    <div class="team-name">PREMA Racing</div>
+
+                <div class="position">
+                    02
                 </div>
-                <div class="points">119</div>
+
+                <div>
+
+                    <div class="team-name">
+                        Rodin Motorsport
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    139
+                </div>
+
             </div>
 
+
             <div class="standing-row">
-                <div class="position">05</div>
-                <div>
-                    <div class="team-name">Hitech</div>
+
+                <div class="position">
+                    03
                 </div>
-                <div class="points">52</div>
+
+                <div>
+
+                    <div class="team-name">
+                        MP Motorsport
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    127
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <div class="position">
+                    04
+                </div>
+
+                <div>
+
+                    <div class="team-name">
+                        PREMA Racing
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    119
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <div class="position">
+                    05
+                </div>
+
+                <div>
+
+                    <div class="team-name">
+                        Hitech
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    52
+                </div>
+
             </div>
 
         </div>
@@ -1032,172 +1545,1134 @@ footer {
 <section>
 
     <div class="section-title">
-        <h2>Drivers</h2>
-        <span>2026 Grid</span>
+
+        <h2>
+            Drivers
+        </h2>
+
+        <span>
+            2026 Grid
+        </span>
+
     </div>
+
 
     <div class="drivers-grid">
 
-        <div class="driver-card">
-            <div class="driver-number">21</div>
-            <div class="driver-info">
-                <div class="name">Alisha Palmowski</div>
-                <div class="team">Campos Racing</div>
-                <div class="academy">Red Bull Racing</div>
-            </div>
-        </div>
+
+        <!-- NINA GADEMAN -->
 
         <div class="driver-card">
-            <div class="driver-number">5</div>
-            <div class="driver-info">
-                <div class="name">Emma Felbermayr</div>
-                <div class="team">Rodin Motorsport</div>
-                <div class="academy">Audi</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #03
+                    </div>
+
+                    <h3>
+                        Nina Gademan
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        MP Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Alpine
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                03
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Nina Gademan
+                </div>
+
+                <div class="team">
+                    MP Motorsport
+                </div>
+
+                <div class="academy">
+                    Alpine
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">3</div>
-            <div class="driver-info">
-                <div class="name">Nina Gademan</div>
-                <div class="team">MP Motorsport</div>
-                <div class="academy">Alpine</div>
-            </div>
-        </div>
+
+        <!-- MEGAN BRUCE -->
 
         <div class="driver-card">
-            <div class="driver-number">12</div>
-            <div class="driver-info">
-                <div class="name">Alba Larsen</div>
-                <div class="team">MP Motorsport</div>
-                <div class="academy">Ferrari</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #04
+                    </div>
+
+                    <h3>
+                        Megan Bruce
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Campos Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        TAG Heuer
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                04
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Megan Bruce
+                </div>
+
+                <div class="team">
+                    Campos Racing
+                </div>
+
+                <div class="academy">
+                    TAG Heuer
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">9</div>
-            <div class="driver-info">
-                <div class="name">Payton Westcott</div>
-                <div class="team">PREMA Racing</div>
-                <div class="academy">Mercedes</div>
-            </div>
-        </div>
+
+        <!-- EMMA FELBERMAYR -->
 
         <div class="driver-card">
-            <div class="driver-number">4</div>
-            <div class="driver-info">
-                <div class="name">Megan Bruce</div>
-                <div class="team">Campos Racing</div>
-                <div class="academy">TAG Heuer</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #05
+                    </div>
+
+                    <h3>
+                        Emma Felbermayr
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Rodin Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Audi
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                05
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Emma Felbermayr
+                </div>
+
+                <div class="team">
+                    Rodin Motorsport
+                </div>
+
+                <div class="academy">
+                    Audi
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">20</div>
-            <div class="driver-info">
-                <div class="name">Ella Lloyd</div>
-                <div class="team">Rodin Motorsport</div>
-                <div class="academy">McLaren</div>
-            </div>
-        </div>
+
+        <!-- MATHILDA PAATZ -->
 
         <div class="driver-card">
-            <div class="driver-number">8</div>
-            <div class="driver-info">
-                <div class="name">Mathilda Paatz</div>
-                <div class="team">PREMA Racing</div>
-                <div class="academy">Aston Martin</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #08
+                    </div>
+
+                    <h3>
+                        Mathilda Paatz
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        PREMA Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Aston Martin
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                08
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Mathilda Paatz
+                </div>
+
+                <div class="team">
+                    PREMA Racing
+                </div>
+
+                <div class="academy">
+                    Aston Martin
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">19</div>
-            <div class="driver-info">
-                <div class="name">Natalia Granada</div>
-                <div class="team">PREMA Racing</div>
-                <div class="academy">SEPHORA</div>
-            </div>
-        </div>
+
+        <!-- PAYTON WESTCOTT -->
 
         <div class="driver-card">
-            <div class="driver-number">18</div>
-            <div class="driver-info">
-                <div class="name">Rafaela Ferreira</div>
-                <div class="team">Campos Racing</div>
-                <div class="academy">Racing Bulls</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #09
+                    </div>
+
+                    <h3>
+                        Payton Westcott
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        PREMA Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Mercedes
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                09
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Payton Westcott
+                </div>
+
+                <div class="team">
+                    PREMA Racing
+                </div>
+
+                <div class="academy">
+                    Mercedes
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">28</div>
-            <div class="driver-info">
-                <div class="name">Ella Stevens</div>
-                <div class="team">Rodin Motorsport</div>
-                <div class="academy">McLaren Oxagon</div>
-            </div>
-        </div>
+
+        <!-- ALBA LARSEN -->
 
         <div class="driver-card">
-            <div class="driver-number">14</div>
-            <div class="driver-info">
-                <div class="name">Lisa Billard</div>
-                <div class="team">ART Grand Prix</div>
-                <div class="academy">Gatorade</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #12
+                    </div>
+
+                    <h3>
+                        Alba Larsen
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        MP Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Ferrari
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                12
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Alba Larsen
+                </div>
+
+                <div class="team">
+                    MP Motorsport
+                </div>
+
+                <div class="academy">
+                    Ferrari
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">32</div>
-            <div class="driver-info">
-                <div class="name">Esmee Kosterman</div>
-                <div class="team">MP Motorsport</div>
-                <div class="academy">LEGO</div>
-            </div>
-        </div>
+
+        <!-- LISA BILLARD -->
 
         <div class="driver-card">
-            <div class="driver-number">55</div>
-            <div class="driver-info">
-                <div class="name">Ava Dobson</div>
-                <div class="team">Hitech</div>
-                <div class="academy">American Express</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #14
+                    </div>
+
+                    <h3>
+                        Lisa Billard
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        ART Grand Prix
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Gatorade
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                14
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Lisa Billard
+                </div>
+
+                <div class="team">
+                    ART Grand Prix
+                </div>
+
+                <div class="academy">
+                    Gatorade
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">56</div>
-            <div class="driver-info">
-                <div class="name">Rachel Robertson</div>
-                <div class="team">Hitech</div>
-                <div class="academy">PUMA</div>
-            </div>
-        </div>
+
+        <!-- RAFAELA FERREIRA -->
 
         <div class="driver-card">
-            <div class="driver-number">91</div>
-            <div class="driver-info">
-                <div class="name">Kaylee Countryman</div>
-                <div class="team">ART Grand Prix</div>
-                <div class="academy">Haas</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #18
+                    </div>
+
+                    <h3>
+                        Rafaela Ferreira
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Campos Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Racing Bulls
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                18
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Rafaela Ferreira
+                </div>
+
+                <div class="team">
+                    Campos Racing
+                </div>
+
+                <div class="academy">
+                    Racing Bulls
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="driver-card">
-            <div class="driver-number">95</div>
-            <div class="driver-info">
-                <div class="name">Jade Jacquet</div>
-                <div class="team">ART Grand Prix</div>
-                <div class="academy">Williams</div>
-            </div>
-        </div>
+
+        <!-- NATALIA GRANADA -->
 
         <div class="driver-card">
-            <div class="driver-number">15</div>
-            <div class="driver-info">
-                <div class="name">Zoe Florescu</div>
-                <div class="team">Hitech</div>
-                <div class="academy">Wild Card</div>
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #19
+                    </div>
+
+                    <h3>
+                        Natalia Granada
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        PREMA Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        SEPHORA
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="driver-number">
+                19
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Natalia Granada
+                </div>
+
+                <div class="team">
+                    PREMA Racing
+                </div>
+
+                <div class="academy">
+                    SEPHORA
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ELLA LLOYD -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #20
+                    </div>
+
+                    <h3>
+                        Ella Lloyd
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Rodin Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        McLaren
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                20
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Ella Lloyd
+                </div>
+
+                <div class="team">
+                    Rodin Motorsport
+                </div>
+
+                <div class="academy">
+                    McLaren
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ALISHA PALMOWSKI -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #21
+                    </div>
+
+                    <h3>
+                        Alisha Palmowski
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Campos Racing
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Red Bull Racing
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                21
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Alisha Palmowski
+                </div>
+
+                <div class="team">
+                    Campos Racing
+                </div>
+
+                <div class="academy">
+                    Red Bull Racing
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ELLA STEVENS -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #28
+                    </div>
+
+                    <h3>
+                        Ella Stevens
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Rodin Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        McLaren
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                28
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Ella Stevens
+                </div>
+
+                <div class="team">
+                    Rodin Motorsport
+                </div>
+
+                <div class="academy">
+                    McLaren
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ESMEE KOSTERMAN -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #32
+                    </div>
+
+                    <h3>
+                        Esmee Kosterman
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        MP Motorsport
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        LEGO
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                32
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Esmee Kosterman
+                </div>
+
+                <div class="team">
+                    MP Motorsport
+                </div>
+
+                <div class="academy">
+                    LEGO
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ALEXIA DANIELSSON -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #45
+                    </div>
+
+                    <h3>
+                        Alexia Danielsson
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Hitech
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        TeamViewer
+                    </div>
+
+                    <div class="driver-popup-status">
+                        Wild Card
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                45
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Alexia Danielsson
+                </div>
+
+                <div class="team">
+                    Hitech
+                </div>
+
+                <div class="academy">
+                    Wild Card
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AVA DOBSON -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #55
+                    </div>
+
+                    <h3>
+                        Ava Dobson
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Hitech
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        American Express
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                55
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Ava Dobson
+                </div>
+
+                <div class="team">
+                    Hitech
+                </div>
+
+                <div class="academy">
+                    American Express
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RACHEL ROBERTSON -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #56
+                    </div>
+
+                    <h3>
+                        Rachel Robertson
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        Hitech
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        PUMA
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                56
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Rachel Robertson
+                </div>
+
+                <div class="team">
+                    Hitech
+                </div>
+
+                <div class="academy">
+                    PUMA
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- KAYLEE COUNTRYMAN -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #91
+                    </div>
+
+                    <h3>
+                        Kaylee Countryman
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        ART Grand Prix
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Haas
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                91
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Kaylee Countryman
+                </div>
+
+                <div class="team">
+                    ART Grand Prix
+                </div>
+
+                <div class="academy">
+                    Haas
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- JADE JACQUET -->
+
+        <div class="driver-card">
+
+            <div class="driver-popup">
+
+                <div class="driver-popup-image">
+                    <div class="driver-popup-placeholder">
+                        Driver Photo
+                    </div>
+                </div>
+
+                <div class="driver-popup-info">
+
+                    <div class="driver-popup-number">
+                        #95
+                    </div>
+
+                    <h3>
+                        Jade Jacquet
+                    </h3>
+
+                    <div class="driver-popup-team">
+                        ART Grand Prix
+                    </div>
+
+                    <div class="driver-popup-academy">
+                        Williams
+                    </div>
+
+                    <div class="driver-popup-status">
+                        2026 F1 Academy
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="driver-number">
+                95
+            </div>
+
+            <div class="driver-info">
+
+                <div class="name">
+                    Jade Jacquet
+                </div>
+
+                <div class="team">
+                    ART Grand Prix
+                </div>
+
+                <div class="academy">
+                    Williams
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -1224,12 +2699,21 @@ footer {
 
     </div>
 
+
     <div class="footer-bottom">
-        <span>© 2026 The Paddock Journal</span>
-        <span>F1 Academy · Beyond The Grid</span>
+
+        <span>
+            © 2026 The Paddock Journal
+        </span>
+
+        <span>
+            F1 Academy · Beyond The Grid
+        </span>
+
     </div>
 
 </footer>
+
 
 </body>
 </html>
