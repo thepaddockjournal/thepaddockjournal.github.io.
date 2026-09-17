@@ -1,612 +1,840 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>F4 | The Paddock Journal</title>
+    <title>F4 | The Paddock Journal</title>
 
-<meta name="description" content="Formula 4 on The Paddock Journal — Explore F4 Spain and Italian F4.">
+    <meta name="description" content="Formula 4 championships — F4 Spain and Italian F4. The first step into single-seaters.">
 
-<style>
+    <style>
 
-    /* =========================
-       GENERAL
-    ========================= */
+        /* =========================
+           GENERAL
+        ========================= */
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    html {
-        scroll-behavior: smooth;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-        background: #050505;
-        color: #ffffff;
-        font-family: Arial, Helvetica, sans-serif;
-        line-height: 1.5;
-    }
+        body {
+            background: #050505;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
 
-    /* =========================
-       HEADER
-    ========================= */
+        /* =========================
+           HEADER
+        ========================= */
 
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
 
-        background: rgba(5, 5, 5, 0.96);
-        border-bottom: 1px solid #222;
+            background: rgba(5, 5, 5, 0.96);
+            border-bottom: 1px solid #222;
 
-        backdrop-filter: blur(10px);
-    }
-
-    .header-inner {
-        max-width: 1400px;
-        margin: auto;
-
-        padding: 20px 40px;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        gap: 30px;
-    }
-
-    .logo {
-        font-size: 20px;
-        font-weight: 800;
-
-        letter-spacing: 2px;
-        white-space: nowrap;
-    }
-
-    .logo span {
-        color: #F4A6C7;
-    }
-
-    nav {
-        display: flex;
-        align-items: center;
-
-        gap: 25px;
-
-        font-size: 12px;
-        font-weight: 700;
-
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    nav a {
-        transition: 0.25s ease;
-    }
-
-    nav a:hover {
-        color: #F4A6C7;
-    }
-
-    nav a.active {
-        color: #F4A6C7;
-    }
-
-    .live-link {
-        color: #F4A6C7;
-    }
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-        min-height: 560px;
-
-        display: flex;
-        align-items: flex-end;
-
-        position: relative;
-
-        background:
-            linear-gradient(
-                to top,
-                #050505 5%,
-                rgba(5,5,5,0.65) 50%,
-                rgba(5,5,5,0.15) 100%
-            ),
-            radial-gradient(
-                circle at 70% 35%,
-                #292929 0%,
-                #111111 35%,
-                #050505 75%
-            );
-
-        border-bottom: 1px solid #222;
-    }
-
-    .hero::after {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        background:
-            linear-gradient(
-                135deg,
-                transparent 0%,
-                rgba(244,166,199,0.05) 45%,
-                transparent 70%
-            );
-
-        pointer-events: none;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-
-        width: 100%;
-        max-width: 1400px;
-
-        margin: auto;
-
-        padding: 80px 40px;
-    }
-
-    .hero-small {
-        color: #F4A6C7;
-
-        font-size: 12px;
-        font-weight: 700;
-
-        letter-spacing: 4px;
-        text-transform: uppercase;
-
-        margin-bottom: 20px;
-    }
-
-    .hero h1 {
-        max-width: 900px;
-
-        font-size: clamp(60px, 10vw, 140px);
-
-        line-height: 0.88;
-
-        letter-spacing: -6px;
-
-        font-weight: 900;
-
-        text-transform: uppercase;
-    }
-
-    .hero h1 span {
-        color: #F4A6C7;
-    }
-
-    .hero-text {
-        max-width: 650px;
-
-        margin-top: 30px;
-
-        color: #bdbdbd;
-
-        font-size: 16px;
-    }
-
-
-    /* =========================
-       MAIN
-    ========================= */
-
-    main {
-        max-width: 1400px;
-
-        margin: auto;
-
-        padding: 90px 40px;
-    }
-
-    .section {
-        margin-bottom: 110px;
-    }
-
-    .section-header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-
-        margin-bottom: 35px;
-
-        border-bottom: 1px solid #222;
-
-        padding-bottom: 15px;
-    }
-
-    .section-number {
-        color: #F4A6C7;
-
-        font-size: 11px;
-
-        letter-spacing: 3px;
-
-        font-weight: 700;
-    }
-
-    .section-title {
-        margin-top: 5px;
-
-        font-size: 38px;
-
-        line-height: 1;
-
-        text-transform: uppercase;
-
-        letter-spacing: -1px;
-    }
-
-
-    /* =========================
-       CHAMPIONSHIP GRID
-    ========================= */
-
-    .championship-grid {
-        display: grid;
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 20px;
-    }
-
-    .championship-card {
-        min-height: 520px;
-
-        padding: 35px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: space-between;
-
-        position: relative;
-
-        overflow: hidden;
-
-        border: 1px solid #252525;
-
-        background:
-            linear-gradient(
-                145deg,
-                #151515,
-                #090909
-            );
-
-        transition: 0.35s ease;
-    }
-
-    .championship-card::before {
-        content: "";
-
-        position: absolute;
-
-        width: 300px;
-        height: 300px;
-
-        right: -120px;
-        top: -120px;
-
-        border-radius: 50%;
-
-        background: #F4A6C7;
-
-        opacity: 0.07;
-
-        transition: 0.4s ease;
-    }
-
-    .championship-card:hover {
-        border-color: #F4A6C7;
-
-        transform: translateY(-6px);
-    }
-
-    .championship-card:hover::before {
-        transform: scale(1.15);
-
-        opacity: 0.11;
-    }
-
-    .card-number {
-        color: #666;
-
-        font-size: 11px;
-
-        font-weight: 700;
-
-        letter-spacing: 3px;
-    }
-
-    .card-country {
-        color: #F4A6C7;
-
-        font-size: 12px;
-
-        font-weight: 700;
-
-        letter-spacing: 3px;
-
-        text-transform: uppercase;
-
-        margin-bottom: 15px;
-    }
-
-    .championship-card h2 {
-        font-size: clamp(42px, 5vw, 70px);
-
-        line-height: 0.95;
-
-        letter-spacing: -3px;
-
-        text-transform: uppercase;
-    }
-
-    .championship-card h2 span {
-        color: #F4A6C7;
-    }
-
-    .card-description {
-        max-width: 500px;
-
-        margin-top: 25px;
-
-        color: #8e8e8e;
-
-        font-size: 14px;
-
-        line-height: 1.6;
-    }
-
-    .card-footer {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        margin-top: 35px;
-
-        padding-top: 20px;
-
-        border-top: 1px solid #252525;
-    }
-
-    .card-link {
-        color: #F4A6C7;
-
-        font-size: 11px;
-
-        font-weight: 700;
-
-        letter-spacing: 2px;
-
-        text-transform: uppercase;
-    }
-
-    .card-arrow {
-        color: #F4A6C7;
-
-        font-size: 30px;
-
-        transition: 0.25s ease;
-    }
-
-    .championship-card:hover .card-arrow {
-        transform: translateX(8px);
-    }
-
-
-    /* =========================
-       INTRO
-    ========================= */
-
-    .intro-grid {
-        display: grid;
-
-        grid-template-columns: 2fr 1fr;
-
-        gap: 20px;
-    }
-
-    .intro-main {
-        padding: 35px;
-
-        border: 1px solid #252525;
-
-        background: #0c0c0c;
-    }
-
-    .intro-main h3 {
-        font-size: 30px;
-
-        line-height: 1.05;
-
-        margin-bottom: 20px;
-    }
-
-    .intro-main p {
-        max-width: 700px;
-
-        color: #888;
-
-        font-size: 14px;
-    }
-
-    .intro-side {
-        padding: 35px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        border: 1px solid #252525;
-
-        background: #F4A6C7;
-
-        color: #050505;
-    }
-
-    .intro-side span {
-        font-size: 10px;
-
-        font-weight: 800;
-
-        letter-spacing: 3px;
-
-        text-transform: uppercase;
-
-        margin-bottom: 15px;
-    }
-
-    .intro-side h3 {
-        font-size: 28px;
-
-        line-height: 1;
-
-        text-transform: uppercase;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-        border-top: 1px solid #222;
-
-        padding: 45px 40px;
-    }
-
-    .footer-inner {
-        max-width: 1400px;
-
-        margin: auto;
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        gap: 30px;
-    }
-
-    .footer-logo {
-        font-size: 18px;
-
-        font-weight: 800;
-
-        letter-spacing: 2px;
-    }
-
-    .footer-logo span {
-        color: #F4A6C7;
-    }
-
-    .footer-text {
-        color: #666;
-
-        font-size: 11px;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 900px) {
+            backdrop-filter: blur(10px);
+        }
 
         .header-inner {
-            padding: 18px 25px;
+            max-width: 1400px;
+            margin: auto;
+
+            padding: 20px 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 30px;
         }
 
-        nav {
-            gap: 15px;
-        }
-
-        .championship-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .intro-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .championship-card {
-            min-height: 450px;
-        }
-
-    }
-
-
-    @media (max-width: 750px) {
-
-        .header-inner {
-            flex-direction: column;
-
-            align-items: flex-start;
-        }
-
-        nav {
-            width: 100%;
-
-            overflow-x: auto;
-
-            padding-bottom: 5px;
-
-            gap: 20px;
-
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
             white-space: nowrap;
         }
 
-        .hero {
-            min-height: 520px;
+        .logo span {
+            color: #F4A6C7;
         }
 
-        .hero-content {
-            padding: 60px 25px;
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .hero h1 {
-            letter-spacing: -4px;
+        nav a {
+            transition: 0.25s ease;
         }
+
+        nav a:hover {
+            color: #F4A6C7;
+        }
+
+        nav .active {
+            color: #F4A6C7;
+        }
+
+        .live-link {
+            color: #F4A6C7;
+        }
+
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            max-width: 1400px;
+            margin: auto;
+
+            padding: 110px 40px 80px;
+        }
+
+        .intro-label {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+        }
+
+        .intro h1 {
+            font-size: clamp(60px, 10vw, 140px);
+            line-height: 0.85;
+
+            letter-spacing: -6px;
+            font-weight: 900;
+
+            text-transform: uppercase;
+        }
+
+        .intro h1 span {
+            color: #F4A6C7;
+        }
+
+        .intro-text {
+            max-width: 650px;
+
+            margin-top: 35px;
+
+            color: #999;
+
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           CHAMPIONSHIPS
+        ========================= */
 
         main {
-            padding: 65px 25px;
+            max-width: 1400px;
+            margin: auto;
+
+            padding: 0 40px 110px;
         }
 
-        .section {
-            margin-bottom: 80px;
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .section-number {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
         }
 
         .section-title {
-            font-size: 30px;
+            margin-top: 5px;
+
+            font-size: 38px;
+            line-height: 1;
+
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
-        .champio
+
+        /* =========================
+           F4 CARDS
+        ========================= */
+
+        .championship-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .championship-card {
+            position: relative;
+
+            min-height: 430px;
+
+            padding: 35px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            border: 1px solid #292929;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #171717,
+                    #080808
+                );
+
+            transition: 0.35s ease;
+        }
+
+        .championship-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            right: -120px;
+            top: -120px;
+
+            border-radius: 50%;
+
+            background: #F4A6C7;
+
+            opacity: 0.07;
+
+            transition: 0.4s ease;
+        }
+
+        .championship-card::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    transparent 35%,
+                    rgba(244,166,199,0.05),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .championship-card:hover {
+            border-color: #F4A6C7;
+
+            transform: translateY(-6px);
+        }
+
+        .championship-card:hover::before {
+            transform: scale(1.15);
+            opacity: 0.11;
+        }
+
+        .card-top {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-number {
+            color: #666;
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .card-country {
+            color: #F4A6C7;
+
+            font-size: 28px;
+
+            line-height: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-category {
+            display: block;
+
+            color: #F4A6C7;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+            text-transform: uppercase;
+
+            margin-bottom: 12px;
+        }
+
+        .card-content h2 {
+            font-size: clamp(42px, 5vw, 70px);
+
+            line-height: 0.9;
+
+            letter-spacing: -3px;
+
+            text-transform: uppercase;
+        }
+
+        .card-content h2 span {
+            color: #F4A6C7;
+        }
+
+        .card-description {
+            max-width: 500px;
+
+            margin-top: 20px;
+
+            color: #888;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .card-bottom {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 30px;
+        }
+
+        .card-link {
+            color: #ffffff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            transition: 0.25s ease;
+        }
+
+        .championship-card:hover .card-link {
+            color: #F4A6C7;
+        }
+
+        .card-arrow {
+            color: #F4A6C7;
+
+            font-size: 28px;
+
+            transition: 0.25s ease;
+        }
+
+        .championship-card:hover .card-arrow {
+            transform: translateX(6px);
+        }
+
+
+        /* =========================
+           ABOUT F4
+        ========================= */
+
+        .about-f4 {
+            margin-top: 100px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #222;
+        }
+
+        .about-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 2fr;
+
+            gap: 50px;
+        }
+
+        .about-label {
+            color: #F4A6C7;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .about-text {
+            max-width: 750px;
+
+            color: #999;
+
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #222;
+
+            padding: 45px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #F4A6C7;
+        }
+
+        .footer-text {
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .header-inner {
+                padding: 18px 25px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .intro {
+                padding: 85px 25px 65px;
+            }
+
+            main {
+                padding: 0 25px 80px;
+            }
+
+            .championship-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 5px;
+
+                gap: 20px;
+
+                white-space: nowrap;
+            }
+
+            .intro h1 {
+                letter-spacing: -4px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .championship-card {
+                min-height: 380px;
+
+                padding: 28px;
+            }
+
+            .card-content h2 {
+                letter-spacing: -2px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .intro h1 {
+                font-size: 58px;
+            }
+
+            .championship-card {
+                min-height: 350px;
+            }
+
+            .card-content h2 {
+                font-size: 42px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </a>
+
+            <nav>
+
+                <a href="index.html#latest-news">
+                    F1
+                </a>
+
+                <a href="f2.html">
+                    F2
+                </a>
+
+                <a href="f3.html">
+                    F3
+                </a>
+
+                <a href="f4.html" class="active">
+                    F4
+                </a>
+
+                <a href="f1-academy.html">
+                    F1 Academy
+                </a>
+
+                <a href="women.html">
+                    Women
+                </a>
+
+                <a href="live.html" class="live-link">
+                    Live
+                </a>
+
+                <a href="about.html">
+                    About Me
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section class="intro">
+
+        <div class="intro-label">
+            04 / FORMULA 4
+        </div>
+
+        <h1>
+            Formula<br>
+            <span>4.</span>
+        </h1>
+
+        <p class="intro-text">
+            The first step into single-seaters. Explore the Formula 4
+            championships covered by The Paddock Journal and follow
+            the drivers taking their first steps towards the top of motorsport.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         CHAMPIONSHIPS
+    ========================= -->
+
+    <main>
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-number">
+                    01 / CHAMPIONSHIPS
+                </div>
+
+                <h2 class="section-title">
+                    Choose your championship
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="championship-grid">
+
+
+            <!-- F4 SPAIN -->
+
+            <a href="f4-spain.html" class="championship-card">
+
+                <div class="card-top">
+
+                    <span class="card-number">
+                        01
+                    </span>
+
+                    <span class="card-country">
+                        🇪🇸
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="card-category">
+                        Spain
+                    </span>
+
+                    <h2>
+                        F4 <span>Spain</span>
+                    </h2>
+
+                    <p class="card-description">
+                        The Spanish Formula 4 championship and one of
+                        the key steps for young drivers entering
+                        single-seater racing.
+                    </p>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <span class="card-link">
+                        Explore championship
+                    </span>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- ITALIAN F4 -->
+
+            <a href="f4-italy.html" class="championship-card">
+
+                <div class="card-top">
+
+                    <span class="card-number">
+                        02
+                    </span>
+
+                    <span class="card-country">
+                        🇮🇹
+                    </span>
+
+                </div>
+
+
+                <div class="card-content">
+
+                    <span class="card-category">
+                        Italy
+                    </span>
+
+                    <h2>
+                        Italian <span>F4</span>
+                    </h2>
+
+                    <p class="card-description">
+                        The Italian Formula 4 championship, bringing
+                        together some of the most promising young
+                        drivers in European single-seater racing.
+                    </p>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <span class="card-link">
+                        Explore championship
+                    </span>
+
+                    <span class="card-arrow">
+                        →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- =========================
+             ABOUT F4
+        ========================= -->
+
+        <section class="about-f4">
+
+            <div class="about-grid">
+
+                <div class="about-label">
+                    Formula 4
+                </div>
+
+                <p class="about-text">
+                    Formula 4 represents one of the first major steps
+                    into single-seater racing. For many young drivers,
+                    national F4 championships are where their careers
+                    begin to take shape before progressing through
+                    Formula 3, Formula 2 and eventually Formula 1.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </div>
+
+            <div class="footer-text">
+                © 2026 The Paddock Journal · Motorsport beyond the grid.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>
 ```
