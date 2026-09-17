@@ -1,3647 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>F4 Spain | The Paddock Journal</title>
-
-    <meta
-        name="description"
-        content="F4 Spanish Championship — calendar, standings, drivers, teams and news."
-    >
-
-    <style>
-
-        /* =========================
-           GENERAL
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #050505;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font-family: inherit;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            background: rgba(5, 5, 5, 0.96);
-
-            border-bottom: 1px solid #222;
-
-            backdrop-filter: blur(10px);
-        }
-
-        .header-inner {
-            max-width: 1400px;
-            margin: auto;
-
-            padding: 20px 40px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 30px;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            color: #F4A6C7;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-
-            gap: 25px;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            transition: 0.25s ease;
-        }
-
-        nav a:hover {
-            color: #F4A6C7;
-        }
-
-        nav a.active {
-            color: #F4A6C7;
-        }
-
-        .live-link {
-            color: #F4A6C7;
-        }
-
-
-        /* =========================
-           INTRO
-        ========================= */
-
-        .intro {
-            max-width: 1400px;
-            margin: auto;
-
-            padding: 110px 40px 80px;
-        }
-
-        .intro-label {
-            color: #F4A6C7;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 4px;
-            text-transform: uppercase;
-
-            margin-bottom: 20px;
-        }
-
-        .intro h1 {
-            font-size: clamp(55px, 9vw, 125px);
-
-            line-height: 0.85;
-
-            letter-spacing: -6px;
-
-            font-weight: 900;
-
-            text-transform: uppercase;
-        }
-
-        .intro h1 span {
-            color: #F4A6C7;
-        }
-
-        .intro p {
-            max-width: 680px;
-
-            margin-top: 30px;
-
-            color: #999;
-
-            font-size: 16px;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           MAIN
-        ========================= */
-
-        main {
-            max-width: 1400px;
-
-            margin: auto;
-
-            padding: 0 40px 100px;
-        }
-
-        .section {
-            margin-bottom: 120px;
-        }
-
-        .section-header {
-            display: flex;
-
-            align-items: flex-end;
-            justify-content: space-between;
-
-            gap: 30px;
-
-            margin-bottom: 35px;
-
-            border-bottom: 1px solid #222;
-
-            padding-bottom: 15px;
-        }
-
-        .section-number {
-            color: #F4A6C7;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 3px;
-        }
-
-        .section-title {
-            margin-top: 5px;
-
-            font-size: 38px;
-
-            line-height: 1;
-
-            text-transform: uppercase;
-
-            letter-spacing: -1px;
-        }
-
-        .section-link {
-            color: #999;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            text-transform: uppercase;
-
-            transition: 0.25s ease;
-        }
-
-        .section-link:hover {
-            color: #F4A6C7;
-        }
-
-
-        /* =========================
-           CHAMPIONSHIP HEADER
-        ========================= */
-
-        .championship-header {
-            display: flex;
-
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 30px;
-
-            margin-bottom: 80px;
-
-            padding: 25px 30px;
-
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-        }
-
-        .championship-name {
-            font-size: 25px;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-        }
-
-        .championship-season {
-            margin-top: 4px;
-
-            color: #777;
-
-            font-size: 11px;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-        .official-link {
-            color: #F4A6C7;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            text-transform: uppercase;
-
-            white-space: nowrap;
-        }
-
-
-        /* =========================
-           NEWS
-        ========================= */
-
-        .news-grid {
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 15px;
-        }
-
-        .news-card {
-            position: relative;
-
-            min-height: 300px;
-
-            overflow: hidden;
-
-            border: 1px solid #252525;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #181818,
-                    #080808
-                );
-
-            transition: 0.3s ease;
-        }
-
-        .news-card:hover {
-            border-color: #F4A6C7;
-
-            transform: translateY(-4px);
-        }
-
-        .news-bg {
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                radial-gradient(
-                    circle at 70% 30%,
-                    #333,
-                    #111 45%,
-                    #050505 100%
-                );
-
-            transition: 0.4s ease;
-        }
-
-        .news-card:hover .news-bg {
-            transform: scale(1.05);
-        }
-
-        .news-bg::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0,0,0,0.95),
-                    rgba(0,0,0,0.05) 70%
-                );
-        }
-
-        .news-content {
-            position: absolute;
-
-            left: 22px;
-            right: 22px;
-            bottom: 22px;
-
-            z-index: 2;
-        }
-
-        .category {
-            display: inline-block;
-
-            color: #F4A6C7;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 8px;
-        }
-
-        .news-content h3 {
-            font-size: 21px;
-
-            line-height: 1.05;
-        }
-
-        .news-date {
-            margin-top: 10px;
-
-            color: #888;
-
-            font-size: 10px;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =========================
-           NEXT RACE
-        ========================= */
-
-        .next-race {
-            display: grid;
-
-            grid-template-columns: 2fr 1fr;
-
-            min-height: 330px;
-
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-        }
-
-        .next-race-main {
-            position: relative;
-
-            padding: 40px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 80% 20%,
-                    #292929,
-                    #111 45%,
-                    #050505 100%
-                );
-        }
-
-        .next-race-main::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    transparent,
-                    rgba(244,166,199,0.06),
-                    transparent
-                );
-
-            pointer-events: none;
-        }
-
-        .race-round {
-            position: relative;
-            z-index: 2;
-
-            color: #F4A6C7;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 3px;
-        }
-
-        .race-name {
-            position: relative;
-            z-index: 2;
-
-            margin-top: auto;
-
-            font-size: clamp(45px, 7vw, 85px);
-
-            line-height: 0.85;
-
-            letter-spacing: -5px;
-
-            font-weight: 900;
-
-            text-transform: uppercase;
-        }
-
-        .race-location {
-            position: relative;
-            z-index: 2;
-
-            margin-top: 20px;
-
-            color: #999;
-
-            font-size: 13px;
-        }
-
-        .race-date-box {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 30px;
-
-            text-align: center;
-
-            border-left: 1px solid #252525;
-
-            color: #F4A6C7;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =========================
-           CALENDAR
-        ========================= */
-
-        .calendar {
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-        }
-
-        .calendar-row {
-            display: grid;
-
-            grid-template-columns: 70px 1.5fr 1fr 160px;
-
-            align-items: center;
-
-            gap: 20px;
-
-            padding: 22px 25px;
-
-            border-bottom: 1px solid #202020;
-
-            transition: 0.25s ease;
-        }
-
-        .calendar-row:last-child {
-            border-bottom: 0;
-        }
-
-        .calendar-row:hover {
-            background: #111;
-        }
-
-        .calendar-row.completed {
-            opacity: 0.58;
-        }
-
-        .calendar-round {
-            color: #666;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-        }
-
-        .calendar-circuit {
-            font-size: 17px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-        }
-
-        .calendar-location {
-            color: #888;
-
-            font-size: 12px;
-        }
-
-        .calendar-date {
-            color: #F4A6C7;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            text-align: right;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =========================
-           TOP 5
-        ========================= */
-
-        .top-grid {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 20px;
-        }
-
-        .top-card {
-            border: 1px solid #252525;
-
-            background: #0c0c0c;
-
-            overflow: hidden;
-        }
-
-        .top-card-header {
-            display: flex;
-
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 25px;
-
-            border-bottom: 1px solid #252525;
-        }
-
-        .top-card-header h3 {
-            font-size: 22px;
-
-            text-transform: uppercase;
-        }
-
-        .top-card-header span {
-            color: #F4A6C7;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-        .top-row {
-            display: grid;
-
-            grid-template-columns: 50px 1fr 90px;
-
-            align-items: center;
-
-            gap: 15px;
-
-            padding: 18px 22px;
-
-            border-bottom: 1px solid #1d1d1d;
-
-            transition: 0.25s ease;
-        }
-
-        .top-row:hover {
-            background: #111;
-        }
-
-        .top-row:last-child {
-            border-bottom: 0;
-        }
-
-        .top-position {
-            color: #666;
-
-            font-size: 12px;
-
-            font-weight: 700;
-        }
-
-        .top-name {
-            font-size: 15px;
-
-            font-weight: 700;
-        }
-
-        .top-subtitle {
-            display: block;
-
-            margin-top: 2px;
-
-            color: #666;
-
-            font-size: 10px;
-
-            text-transform: uppercase;
-        }
-
-        .top-points {
-            color: #F4A6C7;
-
-            font-size: 14px;
-
-            font-weight: 800;
-
-            text-align: right;
-        }
-
-
-        /* =========================
-           ALL DRIVERS
-        ========================= */
-
-        .drivers-grid {
-            display: grid;
-
-            grid-template-columns: repeat(4, 1fr);
-
-            gap: 15px;
-        }
-
-        .driver-card {
-            position: relative;
-
-            min-height: 270px;
-
-            padding: 25px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: space-between;
-
-            overflow: hidden;
-
-            border: 1px solid #252525;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #151515,
-                    #090909
-                );
-
-            transition: 0.3s ease;
-        }
-
-        .driver-card:hover {
-            border-color: #F4A6C7;
-
-            transform: translateY(-5px);
-        }
-
-        .driver-number {
-            color: #666;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-        }
-
-        .driver-info {
-            margin-top: auto;
-        }
-
-        .driver-position {
-            color: #F4A6C7;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 8px;
-        }
-
-        .driver-name {
-            font-size: 25px;
-
-            line-height: 0.95;
-
-            text-transform: uppercase;
-
-            letter-spacing: -1px;
-        }
-
-        .driver-team {
-            margin-top: 12px;
-
-            color: #888;
-
-            font-size: 11px;
-
-            text-transform: uppercase;
-        }
-
-        .driver-points {
-            margin-top: 5px;
-
-            color: #F4A6C7;
-
-            font-size: 11px;
-
-            font-weight: 700;
-        }
-
-        .driver-arrow {
-            position: absolute;
-
-            right: 20px;
-            bottom: 18px;
-
-            color: #555;
-
-            font-size: 22px;
-
-            transition: 0.25s ease;
-        }
-
-        .driver-card:hover .driver-arrow {
-            color: #F4A6C7;
-
-            transform: translateX(5px);
-        }
-
-
-        /* =========================
-           DRIVER HOVER PANEL
-        ========================= */
-
-        .driver-card::after {
-            content: attr(data-hover);
-
-            position: absolute;
-
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-
-            padding: 12px;
-
-            background: rgba(244,166,199,0.95);
-
-            color: #050505;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            line-height: 1.5;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.5px;
-
-            opacity: 0;
-
-            transform: translateY(10px);
-
-            transition: 0.25s ease;
-
-            pointer-events: none;
-        }
-
-        .driver-card:hover::after {
-            opacity: 1;
-
-            transform: translateY(0);
-        }
-
-
-        /* =========================
-           DATA NOTE
-        ========================= */
-
-        .data-note {
-            margin-top: 25px;
-
-            padding: 18px 20px;
-
-            border: 1px solid #222;
-
-            background: #090909;
-
-            color: #777;
-
-            font-size: 11px;
-
-            line-height: 1.7;
-        }
-
-        .data-note strong {
-            color: #ffffff;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            border-top: 1px solid #222;
-
-            padding: 45px 40px;
-        }
-
-        .footer-inner {
-            max-width: 1400px;
-
-            margin: auto;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 30px;
-        }
-
-        .footer-logo {
-            font-size: 18px;
-
-            font-weight: 800;
-
-            letter-spacing: 2px;
-        }
-
-        .footer-logo span {
-            color: #F4A6C7;
-        }
-
-        .footer-text {
-            color: #666;
-
-            font-size: 11px;
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 1000px) {
-
-            .header-inner {
-                padding: 18px 25px;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .drivers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 750px) {
-
-            .header-inner {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-            nav {
-                width: 100%;
-
-                overflow-x: auto;
-
-                padding-bottom: 5px;
-
-                gap: 20px;
-
-                white-space: nowrap;
-            }
-
-            .intro {
-                padding: 70px 25px 60px;
-            }
-
-            .intro h1 {
-                letter-spacing: -4px;
-            }
-
-            main {
-                padding: 0 25px 70px;
-            }
-
-            .section {
-                margin-bottom: 80px;
-            }
-
-            .section-header {
-                align-items: flex-start;
-
-                flex-direction: column;
-
-                gap: 10px;
-            }
-
-            .section-title {
-                font-size: 30px;
-            }
-
-            .championship-header {
-                align-items: flex-start;
-
-                flex-direction: column;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .next-race {
-                grid-template-columns: 1fr;
-            }
-
-            .race-date-box {
-                min-height: 110px;
-
-                border-left: 0;
-
-                border-top: 1px solid #252525;
-            }
-
-            .calendar-row {
-                grid-template-columns: 50px 1fr;
-
-                gap: 8px 15px;
-            }
-
-            .calendar-location {
-                grid-column: 2;
-            }
-
-            .calendar-date {
-                grid-column: 2;
-
-                text-align: left;
-            }
-
-            .top-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .drivers-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-        }
-
-
-        @media (max-width: 500px) {
-
-            .intro h1 {
-                font-size: 58px;
-            }
-
-            .race-name {
-                font-size: 48px;
-
-                letter-spacing: -3px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>F4 Spain | The Paddock Journal</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #F4A6C7;
+    --black: #050505;
+    --dark: #0b0b0b;
+    --grey: #8d8d8d;
+    --light-grey: #bdbdbd;
+    --border: rgba(255,255,255,0.12);
+    --white: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    height: 78px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(5,5,5,0.94);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+nav {
+    display: flex;
+    gap: 27px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: 0.25s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--pink);
+}
+
+.intro {
+    padding: 105px 7% 80px;
+    border-bottom: 1px solid var(--border);
+}
+
+.eyebrow,
+.section-number {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.intro h1 {
+    margin-top: 18px;
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -6px;
+}
+
+.intro p {
+    margin-top: 30px;
+    max-width: 570px;
+    color: var(--grey);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+section {
+    padding: 90px 7%;
+}
+
+.section-number {
+    margin-bottom: 30px;
+}
+
+/* NEWS */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 0.55fr;
+    gap: 12px;
+}
+
+.news-card {
+    min-height: 300px;
+    border: 1px solid var(--border);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, transparent 20%, rgba(0,0,0,.95)),
+        radial-gradient(circle at 70% 20%, rgba(244,166,199,.16), transparent 45%),
+        #101010;
+    transition: .3s;
+}
+
+.news-card:hover {
+    border-color: rgba(244,166,199,.55);
+    transform: translateY(-3px);
+}
+
+.news-card span {
+    color: var(--pink);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.news-card h3 {
+    font-size: 19px;
+    line-height: 1.05;
+}
+
+.news-card p {
+    color: var(--grey);
+    font-size: 11px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.see-more {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    color: var(--pink);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* NEXT RACE */
+
+.next-race {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    min-height: 460px;
+    border: 1px solid var(--border);
+}
+
+.race-main {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--border);
+    background:
+        radial-gradient(circle at 75% 20%, rgba(244,166,199,.12), transparent 40%),
+        var(--dark);
+}
+
+.round {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.race-main h2 {
+    font-size: clamp(55px, 8vw, 100px);
+    letter-spacing: -5px;
+    line-height: .85;
+}
+
+.race-location {
+    color: var(--grey);
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.race-stats {
+    padding: 45px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-content: center;
+}
+
+.stat {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+}
+
+.stat small {
+    display: block;
+    color: var(--grey);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.stat strong {
+    font-size: 14px;
+}
+
+/* CALENDAR */
+
+.calendar {
+    border-top: 1px solid var(--border);
+}
+
+.calendar-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr 130px;
+    align-items: center;
+    min-height: 70px;
+    border-bottom: 1px solid var(--border);
+}
+
+.calendar-row span {
+    color: var(--grey);
+    font-size: 11px;
+}
+
+.calendar-row strong {
+    font-size: 14px;
+}
+
+.calendar-row .round-no {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.calendar-row.current {
+    background: rgba(244,166,199,.045);
+}
+
+/* STANDINGS */
+
+.standings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+}
+
+.standings-title {
+    font-size: 28px;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+
+.standing-row {
+    display: grid;
+    grid-template-columns: 45px 1fr 70px;
+    align-items: center;
+    min-height: 55px;
+    border-bottom: 1px solid var(--border);
+}
+
+.position {
+    color: var(--pink);
+    font-size: 11px;
+}
+
+.driver-name {
+    font-size: 13px;
+}
+
+.driver-team {
+    color: var(--grey);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.points {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* DRIVERS */
+
+.driver-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.driver {
+    min-height: 175px;
+    border: 1px solid var(--border);
+    padding: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    transition: .3s;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(244,166,199,.09), transparent 45%),
+        var(--dark);
+}
+
+.driver:hover {
+    border-color: rgba(244,166,199,.55);
+    transform: translateY(-3px);
+}
+
+.driver-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: var(--pink);
+    font-size: 10px;
+}
+
+.driver-name-large {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.driver-team-small {
+    color: var(--grey);
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--grey);
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+footer span {
+    color: var(--pink);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1150px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .see-more {
+        min-height: 150px;
+    }
+
+    .driver-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    section,
+    .intro {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .next-race {
+        grid-template-columns: 1fr;
+    }
+
+    .race-main {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .standings-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .driver-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+        padding: 20px 5%;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .intro {
+        padding-top: 70px;
+    }
+
+    .intro h1 {
+        letter-spacing: -4px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .race-main,
+    .race-stats {
+        padding: 30px;
+    }
+
+    .race-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .calendar-row {
+        grid-template-columns: 45px 1fr 100px;
+    }
+
+    .calendar-row span:nth-child(3) {
+        display: none;
+    }
+
+    .driver-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
+<header>
 
-    <!-- =========================
-         HEADER
-    ========================= -->
+    <div class="logo">THE PADDOCK JOURNAL</div>
 
-    <header>
+    <nav>
+        <a href="f1.html">F1</a>
+        <a href="f2.html">F2</a>
+        <a href="f3.html">F3</a>
+        <a href="f4.html" class="active">F4</a>
+        <a href="f1-academy.html">F1 Academy</a>
+        <a href="women.html">Women</a>
+        <a href="live.html">Live</a>
+        <a href="about.html">About Me</a>
+    </nav>
 
-        <div class="header-inner">
+</header>
 
-            <a href="index.html" class="logo">
-                THE <span>PADDOCK</span> JOURNAL
-            </a>
+<main>
 
-            <nav>
+<section class="intro">
 
-                <a href="f1.html">F1</a>
+    <div class="eyebrow">Formula 4 · Spain · 2026</div>
 
-                <a href="f2.html">F2</a>
+    <h1>F4<br>SPAIN.</h1>
 
-                <a href="f3.html">F3</a>
+    <p>
+        The Spanish Formula 4 Championship — following the next
+        generation of single-seater talent across Spain and Portugal.
+    </p>
 
-                <a href="f4.html" class="active">F4</a>
+</section>
 
-                <a href="f1-academy.html">
-                    F1 Academy
-                </a>
+<section>
 
-                <a href="women.html">
-                    Women
-                </a>
+    <div class="section-number">01 / F4 SPAIN</div>
 
-                <a href="live.html" class="live-link">
-                    Live
-                </a>
+    <div class="news-grid">
 
-                <a href="about.html">
-                    About Me
-                </a>
-
-            </nav>
-
+        <div class="news-card">
+            <span>Championship</span>
+            <h3>Schormans leads the championship after Jarama</h3>
+            <p>Kasper Schormans heads the standings with 140 points.</p>
         </div>
 
-    </header>
-
-
-    <!-- =========================
-         INTRO
-    ========================= -->
-
-    <section class="intro">
-
-        <div class="intro-label">
-            F4 Spanish Championship · 2026
+        <div class="news-card">
+            <span>Round 04</span>
+            <h3>Jarama delivered three different winners</h3>
+            <p>Schormans, Lyzen and Kaczynski took the three victories.</p>
         </div>
 
-        <h1>
-            F4<br>
-            <span>SPAIN.</span>
-        </h1>
+        <div class="news-card">
+            <span>Next</span>
+            <h3>F4 Spain heads to Jerez</h3>
+            <p>The fifth round takes place from 25–27 September.</p>
+        </div>
 
-        <p>
-            Everything from the F4 Spanish Championship —
-            race weekends, circuits, standings, teams, drivers
-            and the stories shaping the next generation of racing.
-        </p>
+        <div class="news-card">
+            <span>2026</span>
+            <h3>The fight for the title continues</h3>
+            <p>Only three rounds remain on the 2026 calendar.</p>
+        </div>
 
-    </section>
+        <a href="news.html" class="news-card see-more">
+            See More →
+        </a>
 
+    </div>
 
-    <main>
+</section>
 
+<section>
 
-        <!-- =========================
-             CHAMPIONSHIP
-        ========================= -->
+    <div class="section-number">02 / NEXT ROUND</div>
 
-        <div class="championship-header">
+    <div class="next-race">
+
+        <div class="race-main">
 
             <div>
-
-                <div class="championship-name">
-                    F4 Spanish Championship
-                </div>
-
-                <div class="championship-season">
-                    2026 Season
-                </div>
-
+                <div class="round">ROUND 05 · 25–27 SEP 2026</div>
             </div>
 
-            <a
-                href="https://f4spain.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="official-link"
-            >
-                Official Website →
-            </a>
-
-        </div>
-
-
-        <!-- =========================
-             NEWS
-        ========================= -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        01 / THE PADDOCK
-                    </div>
-
-                    <h2 class="section-title">
-                        Latest News
-                    </h2>
-
+            <div>
+                <h2>JEREZ</h2>
+                <div class="race-location">
+                    Circuito de Jerez–Ángel Nieto · Spain
                 </div>
-
-                <a
-                    href="https://f4spain.org/news/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="section-link"
-                >
-                    F4 Spain News →
-                </a>
-
-            </div>
-
-
-            <div class="news-grid">
-
-
-                <a
-                    href="https://f4spain.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="news-card"
-                >
-
-                    <div class="news-bg"></div>
-
-                    <div class="news-content">
-
-                        <span class="category">
-                            F4 Spain
-                        </span>
-
-                        <h3>
-                            The latest stories from the Spanish championship
-                        </h3>
-
-                        <div class="news-date">
-                            Official F4 Spain
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="https://f4spain.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="news-card"
-                >
-
-                    <div class="news-bg"></div>
-
-                    <div class="news-content">
-
-                        <span class="category">
-                            Championship
-                        </span>
-
-                        <h3>
-                            The championship battle continues
-                        </h3>
-
-                        <div class="news-date">
-                            2026 Season
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="https://f4spain.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="news-card"
-                >
-
-                    <div class="news-bg"></div>
-
-                    <div class="news-content">
-
-                        <span class="category">
-                            Drivers
-                        </span>
-
-                        <h3>
-                            Meet the next generation of racing talent
-                        </h3>
-
-                        <div class="news-date">
-                            F4 Spain
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="https://f4spain.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="news-card"
-                >
-
-                    <div class="news-bg"></div>
-
-                    <div class="news-content">
-
-                        <span class="category">
-                            Race Weekend
-                        </span>
-
-                        <h3>
-                            Follow every round of the 2026 season
-                        </h3>
-
-                        <div class="news-date">
-                            F4 Spain
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             NEXT RACE
-        ========================= -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        02 / NEXT ROUND
-                    </div>
-
-                    <h2 class="section-title">
-                        Next Race
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="next-race">
-
-                <div class="next-race-main">
-
-                    <div class="race-round">
-                        ROUND 5 · 2026
-                    </div>
-
-                    <div>
-
-                        <div class="race-name">
-                            JEREZ
-                        </div>
-
-                        <div class="race-location">
-                            Circuito de Jerez–Ángel Nieto · Andalucía, Spain
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="race-date-box">
-
-                    25–27<br>
-                    September<br>
-                    2026
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             CALENDAR
-        ========================= -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        03 / 2026 SEASON
-                    </div>
-
-                    <h2 class="section-title">
-                        Calendar
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="calendar">
-
-
-                <div class="calendar-row completed">
-
-                    <div class="calendar-round">
-                        R01
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Circuit Ricardo Tormo
-                    </div>
-
-                    <div class="calendar-location">
-                        Valencia · Spain
-                    </div>
-
-                    <div class="calendar-date">
-                        10–12 April
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row completed">
-
-                    <div class="calendar-round">
-                        R02
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Autódromo Internacional do Algarve
-                    </div>
-
-                    <div class="calendar-location">
-                        Portimão · Portugal
-                    </div>
-
-                    <div class="calendar-date">
-                        5–7 June
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row completed">
-
-                    <div class="calendar-round">
-                        R03
-                    </div>
-
-                    <div class="calendar-circuit">
-                        MotorLand Aragón
-                    </div>
-
-                    <div class="calendar-location">
-                        Aragón · Spain
-                    </div>
-
-                    <div class="calendar-date">
-                        19–21 June
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row completed">
-
-                    <div class="calendar-round">
-                        R04
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Circuito del Jarama
-                    </div>
-
-                    <div class="calendar-location">
-                        Madrid · Spain
-                    </div>
-
-                    <div class="calendar-date">
-                        22–23 August
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row">
-
-                    <div class="calendar-round">
-                        R05
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Circuito de Jerez–Ángel Nieto
-                    </div>
-
-                    <div class="calendar-location">
-                        Andalucía · Spain
-                    </div>
-
-                    <div class="calendar-date">
-                        25–27 September
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row">
-
-                    <div class="calendar-round">
-                        R06
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Circuito de Navarra
-                    </div>
-
-                    <div class="calendar-location">
-                        Navarra · Spain
-                    </div>
-
-                    <div class="calendar-date">
-                        9–11 October
-                    </div>
-
-                </div>
-
-
-                <div class="calendar-row">
-
-                    <div class="calendar-round">
-                        R07
-                    </div>
-
-                    <div class="calendar-circuit">
-                        Circuit de Barcelona-Catalunya
-                    </div>
-
-                    <div class="calendar-location">
-                        Montmeló · Barcelona
-                    </div>
-
-                    <div class="calendar-date">
-                        6–8 November
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             TOP 5
-        ========================= -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        04 / CHAMPIONSHIP
-                    </div>
-
-                    <h2 class="section-title">
-                        Standings
-                    </h2>
-
-                </div>
-
-                <a
-                    href="https://f4spain.org/es/standings/standings-2026/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="section-link"
-                >
-                    Full standings →
-                </a>
-
-            </div>
-
-
-            <div class="top-grid">
-
-
-                <!-- TOP 5 DRIVERS -->
-
-                <div class="top-card">
-
-                    <div class="top-card-header">
-
-                        <h3>
-                            Drivers
-                        </h3>
-
-                        <span>
-                            Top 5
-                        </span>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            01
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Kasper Schormans
-                            </div>
-
-                            <span class="top-subtitle">
-                                MP Motorsport
-                            </span>
-                        </div>
-
-                        <div class="top-points">
-                            140 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            02
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Borys Lyzen
-                            </div>
-
-                            <span class="top-subtitle">
-                                KCL Motorsport
-                            </span>
-                        </div>
-
-                        <div class="top-points">
-                            122 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            03
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Andrej Petrovic
-                            </div>
-
-                            <span class="top-subtitle">
-                                T-Code
-                            </span>
-                        </div>
-
-                        <div class="top-points">
-                            118 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            04
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Noah Monteiro
-                            </div>
-
-                            <span class="top-subtitle">
-                                Griffin Core
-                            </span>
-                        </div>
-
-                        <div class="top-points">
-                            114 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            05
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Rocco Coronel
-                            </div>
-
-                            <span class="top-subtitle">
-                                MP Motorsport
-                            </span>
-                        </div>
-
-                        <div class="top-points">
-                            111 PTS
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- TOP 5 TEAMS -->
-
-                <div class="top-card">
-
-                    <div class="top-card-header">
-
-                        <h3>
-                            Teams
-                        </h3>
-
-                        <span>
-                            Top 5
-                        </span>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            01
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                MP Motorsport
-                            </div>
-                        </div>
-
-                        <div class="top-points">
-                            251 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            02
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                T-Code
-                            </div>
-                        </div>
-
-                        <div class="top-points">
-                            211 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            03
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Griffin Core
-                            </div>
-                        </div>
-
-                        <div class="top-points">
-                            148 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            04
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                KCL Motorsport
-                            </div>
-                        </div>
-
-                        <div class="top-points">
-                            138 PTS
-                        </div>
-
-                    </div>
-
-
-                    <div class="top-row">
-
-                        <div class="top-position">
-                            05
-                        </div>
-
-                        <div>
-                            <div class="top-name">
-                                Drivex
-                            </div>
-                        </div>
-
-                        <div class="top-points">
-                            135 PTS
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             ALL DRIVERS
-        ========================= -->
-
-        <section class="section">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-number">
-                        05 / THE GRID
-                    </div>
-
-                    <h2 class="section-title">
-                        All Drivers
-                    </h2>
-
-                </div>
-
-                <a
-                    href="https://f4spain.org/es/f4-teams-2026/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="section-link"
-                >
-                    Official driver list →
-                </a>
-
-            </div>
-
-
-            <div class="drivers-grid">
-
-
-                <!-- 01 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P1 · 140 POINTS · MP MOTORSPORT · #40"
-                >
-
-                    <span class="driver-number">
-                        #40
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P1 · 140 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Kasper<br>
-                            Schormans
-                        </div>
-
-                        <div class="driver-team">
-                            MP Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            140 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 02 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P2 · 122 POINTS · KCL MOTORSPORT · #21"
-                >
-
-                    <span class="driver-number">
-                        #21
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P2 · 122 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Borys<br>
-                            Lyzen
-                        </div>
-
-                        <div class="driver-team">
-                            KCL Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            122 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 03 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P3 · 118 POINTS · T-CODE · #77"
-                >
-
-                    <span class="driver-number">
-                        #77
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P3 · 118 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Andrej<br>
-                            Petrovic
-                        </div>
-
-                        <div class="driver-team">
-                            T-Code
-                        </div>
-
-                        <div class="driver-points">
-                            118 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 04 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P4 · 114 POINTS · GRIFFIN CORE · #81"
-                >
-
-                    <span class="driver-number">
-                        #81
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P4 · 114 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Noah<br>
-                            Monteiro
-                        </div>
-
-                        <div class="driver-team">
-                            Griffin Core
-                        </div>
-
-                        <div class="driver-points">
-                            114 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 05 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P5 · 111 POINTS · MP MOTORSPORT · #23"
-                >
-
-                    <span class="driver-number">
-                        #23
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P5 · 111 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Rocco<br>
-                            Coronel
-                        </div>
-
-                        <div class="driver-team">
-                            MP Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            111 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 06 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P6 · 97 POINTS · T-CODE · #17"
-                >
-
-                    <span class="driver-number">
-                        #17
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P6 · 97 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Nacho<br>
-                            Tuñón
-                        </div>
-
-                        <div class="driver-team">
-                            T-Code
-                        </div>
-
-                        <div class="driver-points">
-                            97 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 07 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P7 · 86 POINTS · DRIVEX · #46"
-                >
-
-                    <span class="driver-number">
-                        #46
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P7 · 86 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Nathan<br>
-                            Tye
-                        </div>
-
-                        <div class="driver-team">
-                            Drivex
-                        </div>
-
-                        <div class="driver-points">
-                            86 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 08 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P8 · 70 POINTS · GRIFFIN CORE · #22"
-                >
-
-                    <span class="driver-number">
-                        #22
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P8 · 70 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Vivek<br>
-                            Kanthan
-                        </div>
-
-                        <div class="driver-team">
-                            Griffin Core
-                        </div>
-
-                        <div class="driver-points">
-                            70 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 09 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P9 · 70 POINTS · TECNICAR · #25"
-                >
-
-                    <span class="driver-number">
-                        #25
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P9 · 70 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Aleix<br>
-                            Piñera
-                        </div>
-
-                        <div class="driver-team">
-                            Tecnicar
-                        </div>
-
-                        <div class="driver-points">
-                            70 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 10 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P10 · 53 POINTS · DRIVEX · #44"
-                >
-
-                    <span class="driver-number">
-                        #44
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P10 · 53 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Elliot<br>
-                            Kaczynski
-                        </div>
-
-                        <div class="driver-team">
-                            Drivex
-                        </div>
-
-                        <div class="driver-points">
-                            53 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 11 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P11 · 44 POINTS · GRIFFIN CORE · #37"
-                >
-
-                    <span class="driver-number">
-                        #37
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P11 · 44 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Ty<br>
-                            Fisher
-                        </div>
-
-                        <div class="driver-team">
-                            Griffin Core
-                        </div>
-
-                        <div class="driver-points">
-                            44 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 12 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P12 · 36 POINTS · CAMPOS RACING · #8"
-                >
-
-                    <span class="driver-number">
-                        #8
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P12 · 36 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Jacob<br>
-                            Micallef
-                        </div>
-
-                        <div class="driver-team">
-                            Campos Racing
-                        </div>
-
-                        <div class="driver-points">
-                            36 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 13 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P13 · 19 POINTS · MONLAU MOTORSPORT · #88"
-                >
-
-                    <span class="driver-number">
-                        #88
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P13 · 19 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Miki<br>
-                            Blascos
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            19 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 14 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P14 · 18 POINTS · KCL MOTORSPORT · #15"
-                >
-
-                    <span class="driver-number">
-                        #15
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P14 · 18 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Jensen<br>
-                            Burnett
-                        </div>
-
-                        <div class="driver-team">
-                            KCL Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            18 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 15 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P15 · 13 POINTS · CAMPOS RACING · #38"
-                >
-
-                    <span class="driver-number">
-                        #38
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P15 · 13 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Daniel<br>
-                            Kelleher
-                        </div>
-
-                        <div class="driver-team">
-                            Campos Racing
-                        </div>
-
-                        <div class="driver-points">
-                            13 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 16 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P16 · 7 POINTS · MONLAU MOTORSPORT · #27"
-                >
-
-                    <span class="driver-number">
-                        #27
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P16 · 7 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Juste<br>
-                            Mulder
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            7 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 17 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P17 · 6 POINTS · DXR · #28"
-                >
-
-                    <span class="driver-number">
-                        #28
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P17 · 6 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Max<br>
-                            Radeck
-                        </div>
-
-                        <div class="driver-team">
-                            DXR
-                        </div>
-
-                        <div class="driver-points">
-                            6 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 18 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P18 · 4 POINTS · CAMPOS RACING · #10"
-                >
-
-                    <span class="driver-number">
-                        #10
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P18 · 4 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Luna<br>
-                            Fluxà
-                        </div>
-
-                        <div class="driver-team">
-                            Campos Racing
-                        </div>
-
-                        <div class="driver-points">
-                            4 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 19 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P19 · 3 POINTS · MONLAU MOTORSPORT · #73"
-                >
-
-                    <span class="driver-number">
-                        #73
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P19 · 3 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Fausto<br>
-                            Arnaudo
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            3 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 20 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P20 · 3 POINTS · G4 RACING · #12"
-                >
-
-                    <span class="driver-number">
-                        #12
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P20 · 3 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Philippe<br>
-                            Armand Karras
-                        </div>
-
-                        <div class="driver-team">
-                            G4 Racing
-                        </div>
-
-                        <div class="driver-points">
-                            3 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 21 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P21 · 2 POINTS · KCL MOTORSPORT · #39"
-                >
-
-                    <span class="driver-number">
-                        #39
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P21 · 2 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Louis<br>
-                            Cochet
-                        </div>
-
-                        <div class="driver-team">
-                            KCL Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            2 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 22 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P22 · 2 POINTS · MONLAU MOTORSPORT · #11"
-                >
-
-                    <span class="driver-number">
-                        #11
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P22 · 2 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Rahim<br>
-                            Alibhai
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            2 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 23 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P23 · 1 POINT · MP MOTORSPORT · #7"
-                >
-
-                    <span class="driver-number">
-                        #7
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P23 · 1 Point
-                        </div>
-
-                        <div class="driver-name">
-                            Felipe<br>
-                            Reijs
-                        </div>
-
-                        <div class="driver-team">
-                            MP Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            1 POINT
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 24 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P24 · 1 POINT · G4 RACING · #9"
-                >
-
-                    <span class="driver-number">
-                        #9
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P24 · 1 Point
-                        </div>
-
-                        <div class="driver-name">
-                            Jean Paul<br>
-                            Karras
-                        </div>
-
-                        <div class="driver-team">
-                            G4 Racing
-                        </div>
-
-                        <div class="driver-points">
-                            1 POINT
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 25 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P25 · 0 POINTS · DRIVEX · #32"
-                >
-
-                    <span class="driver-number">
-                        #32
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P25 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Simon<br>
-                            Bulbarella
-                        </div>
-
-                        <div class="driver-team">
-                            Drivex
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 26 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P26 · 0 POINTS · TECNICAR · #18"
-                >
-
-                    <span class="driver-number">
-                        #18
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P26 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Zoe<br>
-                            Florescu
-                        </div>
-
-                        <div class="driver-team">
-                            Tecnicar
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 27 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P27 · 0 POINTS · TC RACING · #24"
-                >
-
-                    <span class="driver-number">
-                        #24
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P27 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Beau<br>
-                            Lowette
-                        </div>
-
-                        <div class="driver-team">
-                            TC Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 28 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P28 · 0 POINTS · GRS TEAM · #71"
-                >
-
-                    <span class="driver-number">
-                        #71
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P28 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Yani<br>
-                            Stevenheydens
-                        </div>
-
-                        <div class="driver-team">
-                            GRS Team
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 29 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P29 · 0 POINTS · TC RACING · #78"
-                >
-
-                    <span class="driver-number">
-                        #78
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P29 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Maria<br>
-                            Neto
-                        </div>
-
-                        <div class="driver-team">
-                            TC Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 30 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P30 · 0 POINTS · MONLAU MOTORSPORT · #27"
-                >
-
-                    <span class="driver-number">
-                        #27
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P30 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Yuzuki<br>
-                            Sato
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 31 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P31 · 0 POINTS · DXR · #80"
-                >
-
-                    <span class="driver-number">
-                        #80
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P31 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Sebastián<br>
-                            Frigolet
-                        </div>
-
-                        <div class="driver-team">
-                            DXR
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 32 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P32 · 0 POINTS · GRS TEAM · #74"
-                >
-
-                    <span class="driver-number">
-                        #74
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P32 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Pablo<br>
-                            Riccobono
-                        </div>
-
-                        <div class="driver-team">
-                            GRS Team
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 33 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P33 · 0 POINTS · TC RACING · #5"
-                >
-
-                    <span class="driver-number">
-                        #5
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P33 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Daniel<br>
-                            Mota
-                        </div>
-
-                        <div class="driver-team">
-                            TC Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 34 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P34 · 0 POINTS · TC RACING · #71"
-                >
-
-                    <span class="driver-number">
-                        #71
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P34 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Sam<br>
-                            Urus
-                        </div>
-
-                        <div class="driver-team">
-                            TC Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 35 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P35 · 0 POINTS · DXR · #71"
-                >
-
-                    <span class="driver-number">
-                        #71
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P35 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Dean<br>
-                            Pedersen
-                        </div>
-
-                        <div class="driver-team">
-                            DXR
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 36 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P36 · 0 POINTS · GRS TEAM · #83"
-                >
-
-                    <span class="driver-number">
-                        #83
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P36 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Alfons<br>
-                            Miettinen
-                        </div>
-
-                        <div class="driver-team">
-                            GRS Team
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 37 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P37 · 0 POINTS · G4 RACING · #94"
-                >
-
-                    <span class="driver-number">
-                        #94
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P37 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Jorden<br>
-                            Moodley
-                        </div>
-
-                        <div class="driver-team">
-                            G4 Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 38 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P38 · 0 POINTS · TECNICAR · #13"
-                >
-
-                    <span class="driver-number">
-                        #13
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P38 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Rodrigo<br>
-                            Martínez
-                        </div>
-
-                        <div class="driver-team">
-                            Tecnicar
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 39 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P39 · 0 POINTS · TC RACING · #5"
-                >
-
-                    <span class="driver-number">
-                        #5
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P39 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Sandro<br>
-                            Pérez
-                        </div>
-
-                        <div class="driver-team">
-                            TC Racing
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 40 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P40 · 0 POINTS · MONLAU MOTORSPORT · #27"
-                >
-
-                    <span class="driver-number">
-                        #27
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P40 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Alexander<br>
-                            Chartier
-                        </div>
-
-                        <div class="driver-team">
-                            Monlau Motorsport
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 41 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P41 · 0 POINTS · GRS TEAM · #96"
-                >
-
-                    <span class="driver-number">
-                        #96
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P41 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Ryusho<br>
-                            Nakazato
-                        </div>
-
-                        <div class="driver-team">
-                            GRS Team
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 42 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P42 · 0 POINTS · GRS TEAM · #62"
-                >
-
-                    <span class="driver-number">
-                        #62
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P42 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            André<br>
-                            Rodríguez
-                        </div>
-
-                        <div class="driver-team">
-                            GRS Team
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-                <!-- 43 -->
-
-                <div
-                    class="driver-card"
-                    data-hover="P43 · 0 POINTS · TECNICAR · #18"
-                >
-
-                    <span class="driver-number">
-                        #18
-                    </span>
-
-                    <div class="driver-info">
-
-                        <div class="driver-position">
-                            P43 · 0 Points
-                        </div>
-
-                        <div class="driver-name">
-                            Max<br>
-                            Mokarem
-                        </div>
-
-                        <div class="driver-team">
-                            Tecnicar
-                        </div>
-
-                        <div class="driver-points">
-                            0 POINTS
-                        </div>
-
-                    </div>
-
-                    <span class="driver-arrow">
-                        →
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="data-note">
-
-                <strong>Data source:</strong>
-                driver standings and team/driver entries are based on
-                the official F4 Spain 2026 championship pages.
-
-                <br><br>
-
-                <strong>Last checked:</strong>
-                September 2026.
-
-                <br><br>
-
-                The championship data will later be moved into a
-                separate JavaScript data layer so the standings can
-                be updated automatically without editing this page.
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer>
-
-        <div class="footer-inner">
-
-            <div class="footer-logo">
-                THE <span>PADDOCK</span> JOURNAL
-            </div>
-
-            <div class="footer-text">
-                © 2026 The Paddock Journal · Motorsport beyond the grid.
             </div>
 
         </div>
 
-    </footer>
+        <div class="race-stats">
 
+            <div class="stat">
+                <small>Championship Leader</small>
+                <strong>Kasper Schormans</strong>
+            </div>
+
+            <div class="stat">
+                <small>Points</small>
+                <strong>140 PTS</strong>
+            </div>
+
+            <div class="stat">
+                <small>Previous Round</small>
+                <strong>Jarama</strong>
+            </div>
+
+            <div class="stat">
+                <small>Last Winner</small>
+                <strong>Elliot Kaczynski</strong>
+            </div>
+
+            <div class="stat">
+                <small>Series</small>
+                <strong>F4 Spain</strong>
+            </div>
+
+            <div class="stat">
+                <small>Round</small>
+                <strong>05 / 07</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-number">03 / CALENDAR</div>
+
+    <div class="calendar">
+
+        <div class="calendar-row">
+            <span class="round-no">R01</span>
+            <strong>RICARDO TORMO</strong>
+            <span>10–12 APR 2026</span>
+            <span>Valencia</span>
+        </div>
+
+        <div class="calendar-row">
+            <span class="round-no">R02</span>
+            <strong>PORTIMÃO</strong>
+            <span>05–07 JUN 2026</span>
+            <span>Portugal</span>
+        </div>
+
+        <div class="calendar-row">
+            <span class="round-no">R03</span>
+            <strong>MOTORLAND</strong>
+            <span>19–21 JUN 2026</span>
+            <span>Aragón</span>
+        </div>
+
+        <div class="calendar-row">
+            <span class="round-no">R04</span>
+            <strong>JARAMA</strong>
+            <span>22–23 AUG 2026</span>
+            <span>Madrid</span>
+        </div>
+
+        <div class="calendar-row current">
+            <span class="round-no">R05</span>
+            <strong>JEREZ</strong>
+            <span>25–27 SEP 2026</span>
+            <span>Spain</span>
+        </div>
+
+        <div class="calendar-row">
+            <span class="round-no">R06</span>
+            <strong>NAVARRA</strong>
+            <span>09–11 OCT 2026</span>
+            <span>Spain</span>
+        </div>
+
+        <div class="calendar-row">
+            <span class="round-no">R07</span>
+            <strong>MONTMELÓ</strong>
+            <span>06–08 NOV 2026</span>
+            <span>Barcelona</span>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-number">04 / CHAMPIONSHIP</div>
+
+    <div class="standings-grid">
+
+        <div>
+
+            <h2 class="standings-title">Drivers</h2>
+
+            <div class="standing-row">
+                <span class="position">01</span>
+                <div>
+                    <div class="driver-name">Kasper Schormans</div>
+                    <div class="driver-team">MP Motorsport</div>
+                </div>
+                <div class="points">140</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">02</span>
+                <div>
+                    <div class="driver-name">Borys Lyzen</div>
+                    <div class="driver-team">KCL Motorsport</div>
+                </div>
+                <div class="points">122</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">03</span>
+                <div>
+                    <div class="driver-name">Andrej Petrovic</div>
+                    <div class="driver-team">T-Code</div>
+                </div>
+                <div class="points">118</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">04</span>
+                <div>
+                    <div class="driver-name">Noah Monteiro</div>
+                    <div class="driver-team">Griffin Core</div>
+                </div>
+                <div class="points">114</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">05</span>
+                <div>
+                    <div class="driver-name">Rocco Coronel</div>
+                    <div class="driver-team">MP Motorsport</div>
+                </div>
+                <div class="points">111</div>
+            </div>
+
+        </div>
+
+        <div>
+
+            <h2 class="standings-title">Teams</h2>
+
+            <div class="standing-row">
+                <span class="position">01</span>
+                <div>
+                    <div class="driver-name">MP Motorsport</div>
+                    <div class="driver-team">F4 Spain</div>
+                </div>
+                <div class="points">251</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">02</span>
+                <div>
+                    <div class="driver-name">T-Code</div>
+                    <div class="driver-team">F4 Spain</div>
+                </div>
+                <div class="points">211</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">03</span>
+                <div>
+                    <div class="driver-name">Griffin Core</div>
+                    <div class="driver-team">F4 Spain</div>
+                </div>
+                <div class="points">148</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">04</span>
+                <div>
+                    <div class="driver-name">KCL Motorsport</div>
+                    <div class="driver-team">F4 Spain</div>
+                </div>
+                <div class="points">138</div>
+            </div>
+
+            <div class="standing-row">
+                <span class="position">05</span>
+                <div>
+                    <div class="driver-name">Drivex</div>
+                    <div class="driver-team">F4 Spain</div>
+                </div>
+                <div class="points">135</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="section-number">05 / GRID</div>
+
+    <div class="driver-grid">
+
+        <div class="driver">
+            <span class="driver-number">40</span>
+            <div class="driver-name-large">Kasper<br>Schormans</div>
+            <div class="driver-team-small">MP Motorsport</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">21</span>
+            <div class="driver-name-large">Borys<br>Lyzen</div>
+            <div class="driver-team-small">KCL Motorsport</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">77</span>
+            <div class="driver-name-large">Andrej<br>Petrovic</div>
+            <div class="driver-team-small">T-Code</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">81</span>
+            <div class="driver-name-large">Noah<br>Monteiro</div>
+            <div class="driver-team-small">Griffin Core</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">23</span>
+            <div class="driver-name-large">Rocco<br>Coronel</div>
+            <div class="driver-team-small">MP Motorsport</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">17</span>
+            <div class="driver-name-large">Nacho<br>Tuñón</div>
+            <div class="driver-team-small">T-Code</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">46</span>
+            <div class="driver-name-large">Nathan<br>Tye</div>
+            <div class="driver-team-small">Drivex</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">22</span>
+            <div class="driver-name-large">Vivek<br>Kanthan</div>
+            <div class="driver-team-small">Griffin Core</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">25</span>
+            <div class="driver-name-large">Aleix<br>Piñera</div>
+            <div class="driver-team-small">Tecnicar</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">44</span>
+            <div class="driver-name-large">Elliot<br>Kaczynski</div>
+            <div class="driver-team-small">Drivex</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">37</span>
+            <div class="driver-name-large">Ty<br>Fisher</div>
+            <div class="driver-team-small">Griffin Core</div>
+        </div>
+
+        <div class="driver">
+            <span class="driver-number">8</span>
+            <div class="driver-name-large">Jacob<br>Micallef</div>
+            <div class="driver-team-small">Campos Racing</div>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <div>THE PADDOCK JOURNAL</div>
+    <div>F4 <span>SPAIN</span> · 2026</div>
+</footer>
 
 </body>
-
 </html>
