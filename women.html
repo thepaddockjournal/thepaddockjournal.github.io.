@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Women in Motorsport | The Paddock Journal</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #F4A6C7;
+    --black: #050505;
+    --dark: #0b0b0b;
+    --grey: #8d8d8d;
+    --light-grey: #bdbdbd;
+    --border: rgba(255,255,255,0.12);
+    --white: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 78px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(5,5,5,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    color: var(--light-grey);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--pink);
+}
+
+nav a.active {
+    color: var(--pink);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    padding: 105px 7% 80px;
+}
+
+.intro p {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -6px;
+    font-weight: 700;
+    max-width: 1100px;
+}
+
+.intro h1 span {
+    color: var(--pink);
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 0 7% 90px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+}
+
+.section-header h2 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-header span {
+    color: var(--grey);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   FEATURED STORY
+========================= */
+
+.featured {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    min-height: 500px;
+    border: 1px solid var(--border);
+    background: var(--dark);
+    overflow: hidden;
+}
+
+.featured-image {
+    min-height: 500px;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.9),
+            rgba(0,0,0,0.1)
+        ),
+        radial-gradient(
+            circle at center,
+            rgba(244,166,199,0.25),
+            rgba(5,5,5,1) 70%
+        );
+
+    display: flex;
+    align-items: flex-end;
+    padding: 45px;
+}
+
+.featured-label {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.featured-image h3 {
+    font-size: clamp(30px, 4vw, 58px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    max-width: 650px;
+}
+
+.featured-content {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--border);
+}
+
+.featured-content .category {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.featured-content h4 {
+    font-size: 28px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.featured-content p {
+    color: var(--light-grey);
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 30px;
+}
+
+.read-more {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.read-more:hover {
+    color: var(--pink);
+}
+
+
+/* =========================
+   EDITORIAL INTRO
+========================= */
+
+.editorial-intro {
+    max-width: 900px;
+    padding-bottom: 100px;
+}
+
+.editorial-intro p {
+    color: var(--light-grey);
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.editorial-intro p span {
+    color: var(--pink);
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category-section {
+    padding-bottom: 95px;
+}
+
+.category-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.category-number {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.category-title h2 {
+    font-size: 30px;
+    letter-spacing: -1px;
+}
+
+.category-title p {
+    color: var(--grey);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+
+/* =========================
+   ARTICLES
+========================= */
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.article-card {
+    min-height: 360px;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: 0.35s ease;
+}
+
+.article-card:hover {
+    border-color: rgba(244,166,199,0.6);
+    transform: translateY(-4px);
+}
+
+.article-image {
+    height: 210px;
+    position: relative;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.8)
+        ),
+        radial-gradient(
+            circle at center,
+            rgba(244,166,199,0.22),
+            rgba(10,10,10,1) 72%
+        );
+}
+
+.article-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.article-info {
+    padding: 23px;
+}
+
+.article-category {
+    color: var(--pink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.article-info h3 {
+    font-size: 20px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.article-info p {
+    color: var(--grey);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.article-number {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote-section {
+    padding: 15px 7% 110px;
+}
+
+.quote-box {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 65px 0;
+    text-align: center;
+}
+
+.quote-box p {
+    max-width: 900px;
+    margin: auto;
+
+    font-size: clamp(25px, 3vw, 43px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.quote-box span {
+    display: block;
+    margin-top: 25px;
+
+    color: var(--pink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.editorial-cta {
+    padding-bottom: 110px;
+}
+
+.cta-box {
+    padding: 55px;
+    border: 1px solid var(--border);
+    background: var(--dark);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.cta-box h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.cta-box h2 span {
+    color: var(--pink);
+}
+
+.cta-box p {
+    color: var(--grey);
+    font-size: 11px;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 45px 7%;
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    color: var(--grey);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+footer .footer-logo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1150px) {
+
+    nav {
+        gap: 18px;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 13px;
+    }
+
+    nav a {
+        font-size: 8px;
+    }
+
+    .intro,
+    section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .featured {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-image {
+        min-height: 400px;
+    }
+
+    .featured-content {
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .category-title p {
+        display: none;
+    }
+
+    .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+        min-height: 70px;
+        padding: 20px 5%;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+    }
+
+    .intro {
+        padding-top: 70px;
+        padding-bottom: 65px;
+    }
+
+    .intro h1 {
+        letter-spacing: -4px;
+    }
+
+    .featured-image {
+        min-height: 330px;
+        padding: 28px;
+    }
+
+    .featured-content {
+        padding: 30px;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-title h2 {
+        font-size: 25px;
+    }
+
+    .editorial-intro p {
+        font-size: 16px;
+    }
+
+    .quote-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .cta-box {
+        padding: 35px 25px;
+    }
+
+    footer {
+        padding: 35px 5%;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        THE PADDOCK JOURNAL
+    </div>
+
+    <nav>
+
+        <a href="f1.html">F1</a>
+        <a href="f2.html">F2</a>
+        <a href="f3.html">F3</a>
+        <a href="f4.html">F4</a>
+        <a href="f1-academy.html">F1 Academy</a>
+        <a href="women.html" class="active">Women</a>
+        <a href="live.html">Live</a>
+        <a href="about.html">About Me</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div class="intro">
+
+    <p>Women in Motorsport</p>
+
+    <h1>
+        BEYOND<br>
+        THE <span>GRID.</span>
+    </h1>
+
+</div>
+
+
+
+<!-- =========================
+     FEATURED STORY
+========================= -->
+
+<section>
+
+    <div class="section-header">
+        <h2>Featured Story</h2>
+        <span>The Paddock Journal / Women</span>
+    </div>
+
+
+    <div class="featured">
+
+        <div class="featured-image">
+
+            <div>
+
+                <div class="featured-label">
+                    Women in Motorsport
+                </div>
+
+                <h3>
+                    The women changing
+                    the world of racing.
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="featured-content">
+
+            <div class="category">
+                Featured
+            </div>
+
+            <h4>
+                More than a seat at the table.
+            </h4>
+
+            <p>
+                Motorsport has always been about people who are willing
+                to challenge what has come before. Behind the wheel,
+                inside the garage, on the pit wall and behind the
+                microphone, women continue to shape the sport.
+            </p>
+
+            <a href="#" class="read-more">
+                Read Story →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     EDITORIAL INTRO
+========================= -->
+
+<section class="editorial-intro">
+
+    <p>
+        <span>Women in Motorsport</span> is The Paddock Journal's
+        editorial space dedicated to the women who make racing what
+        it is — from the engineers designing the cars to the drivers
+        making history, the team principals leading organisations and
+        the journalists telling their stories.
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     ENGINEERS
+========================= -->
+
+<section class="category-section">
+
+    <div class="category-title">
+
+        <div class="category-number">
+            01
+        </div>
+
+        <h2>Engineers</h2>
+
+        <p>
+            Behind the machine
+        </p>
+
+    </div>
+
+
+    <div class="articles-grid">
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">01</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Engineers
+                </div>
+
+                <h3>
+                    The women behind the machines
+                </h3>
+
+                <p>
+                    The engineers, mechanics and technical minds
+                    working behind the scenes of motorsport.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">02</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Engineers
+                </div>
+
+                <h3>
+                    From the classroom to the pit wall
+                </h3>
+
+                <p>
+                    What does it take to build a career in
+                    motorsport engineering?
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">03</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Engineers
+                </div>
+
+                <h3>
+                    Designing the future of racing
+                </h3>
+
+                <p>
+                    The women working on the technology that
+                    will define the next generation of racing.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     TEAM PRINCIPALS
+========================= -->
+
+<section class="category-section">
+
+    <div class="category-title">
+
+        <div class="category-number">
+            02
+        </div>
+
+        <h2>Team Principals</h2>
+
+        <p>
+            Leading from the pit wall
+        </p>
+
+    </div>
+
+
+    <div class="articles-grid">
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">01</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Team Principals
+                </div>
+
+                <h3>
+                    Leading from the pit wall
+                </h3>
+
+                <p>
+                    The women who have taken leadership roles
+                    at the highest levels of motorsport.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">02</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Team Principals
+                </div>
+
+                <h3>
+                    What makes a racing leader?
+                </h3>
+
+                <p>
+                    Leadership, strategy and decision-making
+                    away from the spotlight.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">03</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Team Principals
+                </div>
+
+                <h3>
+                    Building teams beyond the grid
+                </h3>
+
+                <p>
+                    Stories of women helping create the future
+                    of racing organisations.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     JOURNALISTS
+========================= -->
+
+<section class="category-section">
+
+    <div class="category-title">
+
+        <div class="category-number">
+            03
+        </div>
+
+        <h2>Journalists</h2>
+
+        <p>
+            Telling the story
+        </p>
+
+    </div>
+
+
+    <div class="articles-grid">
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">01</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Journalists
+                </div>
+
+                <h3>
+                    Beyond the microphone
+                </h3>
+
+                <p>
+                    The women who have helped shape motorsport
+                    journalism and broadcasting.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">02</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Journalists
+                </div>
+
+                <h3>
+                    Reporting from the paddock
+                </h3>
+
+                <p>
+                    What it means to tell the story from
+                    inside the world of racing.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">03</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Journalists
+                </div>
+
+                <h3>
+                    Finding a voice in motorsport
+                </h3>
+
+                <p>
+                    How women are creating new spaces for
+                    motorsport storytelling.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     DRIVERS
+========================= -->
+
+<section class="category-section">
+
+    <div class="category-title">
+
+        <div class="category-number">
+            04
+        </div>
+
+        <h2>Drivers</h2>
+
+        <p>
+            Breaking the grid
+        </p>
+
+    </div>
+
+
+    <div class="articles-grid">
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">01</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Drivers
+                </div>
+
+                <h3>
+                    The women who made history
+                </h3>
+
+                <p>
+                    The female drivers whose achievements changed
+                    the story of motorsport.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">02</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Drivers
+                </div>
+
+                <h3>
+                    Breaking through the barriers
+                </h3>
+
+                <p>
+                    Stories of determination, competition and
+                    progress on the racing circuit.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="article-card">
+
+            <div class="article-image">
+                <div class="article-number">03</div>
+            </div>
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Drivers
+                </div>
+
+                <h3>
+                    The next generation
+                </h3>
+
+                <p>
+                    The young drivers looking to build the next
+                    chapter of women's motorsport.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     QUOTE
+========================= -->
+
+<div class="quote-section">
+
+    <div class="quote-box">
+
+        <p>
+            “There is no single way to belong in motorsport.
+            There are thousands of ways to leave your mark.”
+        </p>
+
+        <span>
+            The Paddock Journal
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="editorial-cta">
+
+    <div class="cta-box">
+
+        <h2>
+            STORIES<br>
+            <span>WORTH TELLING.</span>
+        </h2>
+
+        <p>
+            From the garage to the grid, Women in Motorsport
+            celebrates the people changing racing from every
+            corner of the paddock.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        THE PADDOCK JOURNAL
+    </div>
+
+    <p>
+        Women in Motorsport · 2026
+    </p>
+
+</footer>
+
+
+</body>
+</html>
