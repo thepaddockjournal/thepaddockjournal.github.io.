@@ -1,0 +1,2131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>F4 Spain | The Paddock Journal</title>
+
+    <meta
+        name="description"
+        content="F4 Spanish Championship — news, calendar, standings, teams and drivers."
+    >
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050505;
+            color: #ffffff;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background: rgba(5, 5, 5, 0.96);
+
+            border-bottom: 1px solid #222;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 20px 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 20px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #F4A6C7;
+        }
+
+        nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+        nav a {
+            transition: 0.25s ease;
+        }
+
+        nav a:hover {
+            color: #F4A6C7;
+        }
+
+        nav a.active {
+            color: #F4A6C7;
+        }
+
+        .live-link {
+            color: #F4A6C7;
+        }
+
+
+        /* =========================
+           PAGE INTRO
+        ========================= */
+
+        .page-intro {
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 110px 40px 80px;
+        }
+
+        .eyebrow {
+            color: #F4A6C7;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+        }
+
+        .page-intro h1 {
+            font-size: clamp(55px, 9vw, 125px);
+
+            line-height: 0.85;
+
+            letter-spacing: -6px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+        }
+
+        .page-intro h1 span {
+            color: #F4A6C7;
+        }
+
+        .page-intro p {
+            max-width: 680px;
+
+            margin-top: 30px;
+
+            color: #999;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 0 40px 100px;
+        }
+
+        .section {
+            margin-bottom: 110px;
+        }
+
+        .section-header {
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            margin-bottom: 35px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .section-title {
+            font-size: 38px;
+
+            line-height: 1;
+
+            text-transform: uppercase;
+
+            letter-spacing: -1px;
+        }
+
+        .section-number {
+            color: #F4A6C7;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            white-space: nowrap;
+        }
+
+        .section-link {
+            color: #999;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            transition: 0.25s ease;
+        }
+
+        .section-link:hover {
+            color: #F4A6C7;
+        }
+
+
+        /* =========================
+           CHAMPIONSHIP BADGE
+        ========================= */
+
+        .championship-bar {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 25px 30px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+        }
+
+        .championship-bar-label {
+            color: #888;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .championship-bar-title {
+            margin-top: 4px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+        }
+
+        .official-link {
+            color: #F4A6C7;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           NEWS
+        ========================= */
+
+        .news-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .news-card {
+            position: relative;
+
+            min-height: 300px;
+
+            overflow: hidden;
+
+            border: 1px solid #252525;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #181818,
+                    #080808
+                );
+
+            transition: 0.3s ease;
+        }
+
+        .news-card:hover {
+            border-color: #F4A6C7;
+
+            transform: translateY(-4px);
+        }
+
+        .news-image {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 70% 30%,
+                    #333,
+                    #111 45%,
+                    #050505 100%
+                );
+
+            transition: 0.4s ease;
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.04);
+        }
+
+        .news-image::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0.95),
+                    rgba(0,0,0,0.1) 70%
+                );
+        }
+
+        .news-content {
+            position: absolute;
+
+            left: 22px;
+
+            right: 22px;
+
+            bottom: 22px;
+
+            z-index: 2;
+        }
+
+        .news-category {
+            color: #F4A6C7;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .news-content h3 {
+            font-size: 21px;
+
+            line-height: 1.05;
+        }
+
+        .news-date {
+            margin-top: 10px;
+
+            color: #888;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           NEXT RACE
+        ========================= */
+
+        .next-race {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            min-height: 330px;
+
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+        }
+
+        .race-main {
+            position: relative;
+
+            padding: 40px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    #292929,
+                    #111 45%,
+                    #050505 100%
+                );
+        }
+
+        .race-main::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    transparent,
+                    rgba(244,166,199,0.06),
+                    transparent
+                );
+
+            pointer-events: none;
+        }
+
+        .race-round {
+            position: relative;
+
+            z-index: 2;
+
+            color: #F4A6C7;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .race-name {
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: auto;
+
+            font-size: clamp(42px, 6vw, 75px);
+
+            font-weight: 900;
+
+            line-height: 0.9;
+
+            letter-spacing: -4px;
+
+            text-transform: uppercase;
+        }
+
+        .race-location {
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 20px;
+
+            color: #999;
+
+            font-size: 13px;
+        }
+
+        .race-countdown {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            text-align: center;
+
+            border-left: 1px solid #252525;
+
+            color: #F4A6C7;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           CALENDAR
+        ========================= */
+
+        .calendar {
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+        }
+
+        .calendar-row {
+            display: grid;
+
+            grid-template-columns: 80px 1.4fr 1fr 150px;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 22px 25px;
+
+            border-bottom: 1px solid #202020;
+
+            transition: 0.2s ease;
+        }
+
+        .calendar-row:last-child {
+            border-bottom: 0;
+        }
+
+        .calendar-row:hover {
+            background: #111;
+        }
+
+        .calendar-row.completed {
+            opacity: 0.65;
+        }
+
+        .calendar-round {
+            color: #666;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .calendar-circuit {
+            font-size: 17px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        .calendar-location {
+            color: #888;
+
+            font-size: 12px;
+        }
+
+        .calendar-date {
+            color: #F4A6C7;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-align: right;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           STANDINGS
+        ========================= */
+
+        .standings-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .standings-card {
+            border: 1px solid #252525;
+
+            background: #0c0c0c;
+
+            overflow: hidden;
+        }
+
+        .standings-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 25px;
+
+            border-bottom: 1px solid #252525;
+        }
+
+        .standings-header h3 {
+            font-size: 22px;
+
+            text-transform: uppercase;
+        }
+
+        .standings-header span {
+            color: #F4A6C7;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .standing-row {
+            display: grid;
+
+            grid-template-columns: 45px 1fr 80px;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 16px 20px;
+
+            border-bottom: 1px solid #1c1c1c;
+
+            transition: 0.2s ease;
+        }
+
+        .standing-row:last-child {
+            border-bottom: 0;
+        }
+
+        .standing-row:hover {
+            background: #111;
+        }
+
+        .standing-position {
+            color: #666;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .standing-driver {
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .standing-team {
+            display: block;
+
+            margin-top: 2px;
+
+            color: #666;
+
+            font-size: 10px;
+        }
+
+        .standing-points {
+            color: #F4A6C7;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            text-align: right;
+        }
+
+        .standings-footer {
+            padding: 18px 20px;
+
+            border-top: 1px solid #252525;
+
+            color: #888;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           DRIVERS
+        ========================= */
+
+        .drivers-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .driver-card {
+            min-height: 250px;
+
+            padding: 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            border: 1px solid #252525;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #151515,
+                    #090909
+                );
+
+            transition: 0.3s ease;
+        }
+
+        .driver-card:hover {
+            border-color: #F4A6C7;
+
+            transform: translateY(-4px);
+        }
+
+        .driver-number {
+            color: #666;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .driver-name {
+            margin-top: auto;
+
+            font-size: 25px;
+
+            line-height: 1;
+
+            text-transform: uppercase;
+        }
+
+        .driver-team {
+            margin-top: 10px;
+
+            color: #888;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+        }
+
+        .driver-arrow {
+            align-self: flex-end;
+
+            margin-top: 20px;
+
+            color: #F4A6C7;
+
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           SOURCE NOTE
+        ========================= */
+
+        .source-note {
+            margin-top: 30px;
+
+            padding: 20px;
+
+            border: 1px solid #222;
+
+            background: #090909;
+
+            color: #777;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+        .source-note strong {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #222;
+
+            padding: 45px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: #F4A6C7;
+        }
+
+        .footer-text {
+            color: #666;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .header-inner {
+                padding: 18px 25px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .drivers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .header-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 5px;
+
+                gap: 20px;
+
+                white-space: nowrap;
+            }
+
+            .page-intro {
+                padding: 70px 25px 60px;
+            }
+
+            .page-intro h1 {
+                letter-spacing: -4px;
+            }
+
+            main {
+                padding: 0 25px 70px;
+            }
+
+            .section {
+                margin-bottom: 80px;
+            }
+
+            .section-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .championship-bar {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .next-race {
+                grid-template-columns: 1fr;
+            }
+
+            .race-countdown {
+                min-height: 110px;
+
+                border-left: 0;
+
+                border-top: 1px solid #252525;
+            }
+
+            .calendar-row {
+                grid-template-columns: 50px 1fr;
+
+                gap: 10px 15px;
+            }
+
+            .calendar-location {
+                grid-column: 2;
+            }
+
+            .calendar-date {
+                grid-column: 2;
+
+                text-align: left;
+            }
+
+            .standings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .drivers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .page-intro h1 {
+                font-size: 58px;
+            }
+
+            .race-name {
+                font-size: 46px;
+
+                letter-spacing: -3px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <a href="index.html" class="logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </a>
+
+
+            <nav>
+
+                <a href="f1.html">
+                    F1
+                </a>
+
+                <a href="f2.html">
+                    F2
+                </a>
+
+                <a href="f3.html">
+                    F3
+                </a>
+
+                <a href="f4.html" class="active">
+                    F4
+                </a>
+
+                <a href="f1-academy.html">
+                    F1 Academy
+                </a>
+
+                <a href="women.html">
+                    Women
+                </a>
+
+                <a href="live.html" class="live-link">
+                    Live
+                </a>
+
+                <a href="about.html">
+                    About Me
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         INTRO
+    ========================= -->
+
+    <section class="page-intro">
+
+        <div class="eyebrow">
+            F4 Spanish Championship · 2026 Season
+        </div>
+
+        <h1>
+            F4<br>
+            <span>SPAIN.</span>
+        </h1>
+
+        <p>
+            The latest stories, race calendar, championship standings
+            and the drivers competing in the F4 Spanish Championship.
+        </p>
+
+    </section>
+
+
+    <main>
+
+
+        <!-- =========================
+             CHAMPIONSHIP BAR
+        ========================= -->
+
+        <div class="championship-bar">
+
+            <div>
+
+                <div class="championship-bar-label">
+                    FIA Certified Championship
+                </div>
+
+                <div class="championship-bar-title">
+                    F4 Spanish Championship
+                </div>
+
+            </div>
+
+            <a
+                href="https://f4spain.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="official-link"
+            >
+                Official Website →
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             NEWS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    News
+                </h2>
+
+                <span class="section-number">
+                    01 / F4 SPAIN
+                </span>
+
+            </div>
+
+
+            <div class="news-grid">
+
+
+                <a
+                    href="https://f4spain.org/newsarticle/schormans-storms-into-the-championship-lead-at-jarama/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="news-card"
+                >
+
+                    <div class="news-image"></div>
+
+                    <div class="news-content">
+
+                        <div class="news-category">
+                            Championship
+                        </div>
+
+                        <h3>
+                            Schormans storms into the championship lead at Jarama
+                        </h3>
+
+                        <div class="news-date">
+                            24 August 2026
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/newsarticle/f4-spanish-championship-heads-to-jarama-for-a-crucial-fourth-round-of-the-season/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="news-card"
+                >
+
+                    <div class="news-image"></div>
+
+                    <div class="news-content">
+
+                        <div class="news-category">
+                            Preview
+                        </div>
+
+                        <h3>
+                            F4 Spanish Championship heads to Jarama
+                        </h3>
+
+                        <div class="news-date">
+                            21 August 2026
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/newsarticle/t-code-by-amtog-regains-portimao-race-3-one-two/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="news-card"
+                >
+
+                    <div class="news-image"></div>
+
+                    <div class="news-content">
+
+                        <div class="news-category">
+                            Race Report
+                        </div>
+
+                        <h3>
+                            T-Code by Amtog regains Portimão Race 3 one-two
+                        </h3>
+
+                        <div class="news-date">
+                            30 June 2026
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/newsarticle/monteiro-takes-championship-lead-as-motorland-aragon-delivers-another-thrilling-f4-spanish-championship-weekend/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="news-card"
+                >
+
+                    <div class="news-image"></div>
+
+                    <div class="news-content">
+
+                        <div class="news-category">
+                            Race Report
+                        </div>
+
+                        <h3>
+                            Monteiro takes the championship lead at MotorLand Aragón
+                        </h3>
+
+                        <div class="news-date">
+                            21 June 2026
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NEXT RACE
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Next Race
+                </h2>
+
+                <span class="section-number">
+                    02 / F4 SPAIN
+                </span>
+
+            </div>
+
+
+            <div class="next-race">
+
+                <div class="race-main">
+
+                    <div>
+
+                        <div class="race-round">
+                            ROUND 5 · 2026
+                        </div>
+
+                        <div class="race-name">
+                            JEREZ
+                        </div>
+
+                        <div class="race-location">
+                            Circuito de Jerez–Ángel Nieto · Spain
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="race-countdown">
+                    25–27 September 2026
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CALENDAR
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Calendar
+                </h2>
+
+                <span class="section-number">
+                    03 / 2026
+                </span>
+
+            </div>
+
+
+            <div class="calendar">
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-ricardo-tormo-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row completed"
+                >
+
+                    <div class="calendar-round">
+                        R01
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Ricardo Tormo
+                    </div>
+
+                    <div class="calendar-location">
+                        Valencia · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        10–12 Apr
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-portimao-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row completed"
+                >
+
+                    <div class="calendar-round">
+                        R02
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Portimão
+                    </div>
+
+                    <div class="calendar-location">
+                        Algarve · Portugal
+                    </div>
+
+                    <div class="calendar-date">
+                        5–7 Jun
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-motorland-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row completed"
+                >
+
+                    <div class="calendar-round">
+                        R03
+                    </div>
+
+                    <div class="calendar-circuit">
+                        MotorLand Aragón
+                    </div>
+
+                    <div class="calendar-location">
+                        Aragón · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        19–21 Jun
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-round-4-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row completed"
+                >
+
+                    <div class="calendar-round">
+                        R04
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Jarama
+                    </div>
+
+                    <div class="calendar-location">
+                        Madrid · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        22–23 Aug
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-jerez-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row"
+                >
+
+                    <div class="calendar-round">
+                        R05
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Jerez
+                    </div>
+
+                    <div class="calendar-location">
+                        Andalucía · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        25–27 Sep
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-navarra-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row"
+                >
+
+                    <div class="calendar-round">
+                        R06
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Navarra
+                    </div>
+
+                    <div class="calendar-location">
+                        Navarra · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        9–11 Oct
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="https://f4spain.org/round/f4s-barcelona-2026/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="calendar-row"
+                >
+
+                    <div class="calendar-round">
+                        R07
+                    </div>
+
+                    <div class="calendar-circuit">
+                        Montmeló
+                    </div>
+
+                    <div class="calendar-location">
+                        Barcelona · Spain
+                    </div>
+
+                    <div class="calendar-date">
+                        6–8 Nov
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STANDINGS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Standings
+                </h2>
+
+                <span class="section-number">
+                    04 / 2026
+                </span>
+
+            </div>
+
+
+            <div class="standings-grid">
+
+
+                <!-- DRIVERS -->
+
+                <div class="standings-card">
+
+                    <div class="standings-header">
+
+                        <h3>
+                            Drivers
+                        </h3>
+
+                        <span>
+                            Championship
+                        </span>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            01
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Kasper Schormans
+                            </div>
+
+                            <span class="standing-team">
+                                MP Motorsport
+                            </span>
+                        </div>
+
+                        <div class="standing-points">
+                            140
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            02
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Borys Lyzen
+                            </div>
+
+                            <span class="standing-team">
+                                KCL Motorsport
+                            </span>
+                        </div>
+
+                        <div class="standing-points">
+                            122
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            03
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Andrej Petrovic
+                            </div>
+
+                            <span class="standing-team">
+                                T-Code
+                            </span>
+                        </div>
+
+                        <div class="standing-points">
+                            118
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            04
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Noah Monteiro
+                            </div>
+
+                            <span class="standing-team">
+                                Griffin Core
+                            </span>
+                        </div>
+
+                        <div class="standing-points">
+                            114
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            05
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Rocco Coronel
+                            </div>
+
+                            <span class="standing-team">
+                                MP Motorsport
+                            </span>
+                        </div>
+
+                        <div class="standing-points">
+                            111
+                        </div>
+
+                    </div>
+
+
+                    <div class="standings-footer">
+                        Official F4 Spain standings →
+                    </div>
+
+                </div>
+
+
+                <!-- TEAMS -->
+
+                <div class="standings-card">
+
+                    <div class="standings-header">
+
+                        <h3>
+                            Teams
+                        </h3>
+
+                        <span>
+                            Championship
+                        </span>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            01
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                MP Motorsport
+                            </div>
+                        </div>
+
+                        <div class="standing-points">
+                            251
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            02
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                T-Code
+                            </div>
+                        </div>
+
+                        <div class="standing-points">
+                            211
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            03
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Griffin Core
+                            </div>
+                        </div>
+
+                        <div class="standing-points">
+                            148
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            04
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                KCL Motorsport
+                            </div>
+                        </div>
+
+                        <div class="standing-points">
+                            138
+                        </div>
+
+                    </div>
+
+
+                    <div class="standing-row">
+
+                        <div class="standing-position">
+                            05
+                        </div>
+
+                        <div>
+                            <div class="standing-driver">
+                                Drivex
+                            </div>
+                        </div>
+
+                        <div class="standing-points">
+                            135
+                        </div>
+
+                    </div>
+
+
+                    <div class="standings-footer">
+                        Official F4 Spain standings →
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DRIVERS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+                    Drivers
+                </h2>
+
+                <span class="section-number">
+                    05 / F4 SPAIN
+                </span>
+
+            </div>
+
+
+            <div class="drivers-grid">
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #40
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Kasper<br>
+                            Schormans
+                        </div>
+
+                        <div class="driver-team">
+                            MP Motorsport
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #21
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Borys<br>
+                            Lyzen
+                        </div>
+
+                        <div class="driver-team">
+                            KCL Motorsport
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #77
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Andrej<br>
+                            Petrovic
+                        </div>
+
+                        <div class="driver-team">
+                            T-Code
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #81
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Noah<br>
+                            Monteiro
+                        </div>
+
+                        <div class="driver-team">
+                            Griffin Core
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #23
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Rocco<br>
+                            Coronel
+                        </div>
+
+                        <div class="driver-team">
+                            MP Motorsport
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #17
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Nacho<br>
+                            Tuñón
+                        </div>
+
+                        <div class="driver-team">
+                            T-Code
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #46
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Nathan<br>
+                            Tye
+                        </div>
+
+                        <div class="driver-team">
+                            Drivex
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a href="#" class="driver-card">
+
+                    <span class="driver-number">
+                        #22
+                    </span>
+
+                    <div>
+
+                        <div class="driver-name">
+                            Vivek<br>
+                            Kanthan
+                        </div>
+
+                        <div class="driver-team">
+                            Griffin Core
+                        </div>
+
+                    </div>
+
+                    <span class="driver-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+            <div class="source-note">
+
+                <strong>Data source:</strong>
+                Championship information, calendar and standings are
+                based on the official F4 Spanish Championship website.
+
+                Driver and team information should be refreshed from
+                the official championship data when the automatic
+                data layer is connected.
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-logo">
+                THE <span>PADDOCK</span> JOURNAL
+            </div>
+
+            <div class="footer-text">
+                © 2026 The Paddock Journal · Motorsport beyond the grid.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
+```
