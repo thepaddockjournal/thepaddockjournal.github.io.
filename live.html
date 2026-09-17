@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Live Timing | The Paddock Journal</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #F4A6C7;
+    --black: #050505;
+    --dark: #0b0b0b;
+    --grey: #8d8d8d;
+    --light-grey: #bdbdbd;
+    --border: rgba(255,255,255,0.12);
+    --white: #fff;
+    --green: #9ee6b5;
+    --red: #ff8e8e;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 78px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(5,5,5,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    color: var(--light-grey);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--pink);
+}
+
+nav a.active {
+    color: var(--pink);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    padding: 105px 7% 80px;
+}
+
+.intro p {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.intro h1 {
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -6px;
+    font-weight: 700;
+}
+
+.intro h1 span {
+    color: var(--pink);
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 0 7% 90px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+}
+
+.section-header h2 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-header span {
+    color: var(--grey);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   LIVE STATUS
+========================= */
+
+.live-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 12px rgba(244,166,199,0.8);
+}
+
+.live-status span {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   CURRENT SESSION
+========================= */
+
+.current-session {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+
+    min-height: 300px;
+
+    border: 1px solid var(--border);
+    background: var(--dark);
+}
+
+.session-main {
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right: 1px solid var(--border);
+}
+
+.session-label {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.session-main h2 {
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 0.95;
+    letter-spacing: -3px;
+}
+
+.session-info {
+    display: flex;
+    gap: 35px;
+}
+
+.session-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.session-info small {
+    color: var(--grey);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.session-info strong {
+    font-size: 13px;
+}
+
+
+/* =========================
+   NEXT SESSION
+========================= */
+
+.next-session {
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.next-session-label {
+    color: var(--grey);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.next-session h3 {
+    font-size: 30px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.next-session p {
+    color: var(--light-grey);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   TIMING TABLE
+========================= */
+
+.timing-wrapper {
+    border: 1px solid var(--border);
+    background: var(--dark);
+    overflow-x: auto;
+}
+
+.timing-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.timing-table th {
+    padding: 17px 18px;
+
+    color: var(--grey);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    text-align: left;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.timing-table td {
+    padding: 19px 18px;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.timing-table tr:last-child td {
+    border-bottom: none;
+}
+
+.timing-table tbody tr {
+    transition: 0.25s ease;
+}
+
+.timing-table tbody tr:hover {
+    background: rgba(244,166,199,0.04);
+}
+
+.position {
+    width: 60px;
+
+    color: var(--grey);
+    font-weight: 700;
+}
+
+.driver {
+    font-weight: 700;
+}
+
+.team {
+    color: var(--grey);
+}
+
+.time {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.gap {
+    color: var(--grey);
+}
+
+.fastest {
+    color: var(--pink);
+    font-weight: 700;
+}
+
+.pit {
+    color: var(--red);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   DRIVER NUMBER
+========================= */
+
+.driver-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.driver-number {
+    color: var(--pink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   TWO COLUMN SECTION
+========================= */
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+
+/* =========================
+   RACE CONTROL
+========================= */
+
+.control-box {
+    border: 1px solid var(--border);
+    background: var(--dark);
+}
+
+.control-row {
+    min-height: 65px;
+
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.control-row:last-child {
+    border-bottom: none;
+}
+
+.control-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-title {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.control-subtitle {
+    color: var(--grey);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+}
+
+.control-value {
+    color: var(--pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   CIRCUIT INFO
+========================= */
+
+.circuit-box {
+    border: 1px solid var(--border);
+    background: var(--dark);
+
+    padding: 35px;
+}
+
+.circuit-box h3 {
+    font-size: 28px;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.circuit-box > p {
+    color: var(--grey);
+    font-size: 11px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.circuit-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.circuit-stat {
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+.circuit-stat span {
+    display: block;
+
+    color: var(--grey);
+
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.circuit-stat strong {
+    font-size: 15px;
+}
+
+
+/* =========================
+   UPCOMING EVENTS
+========================= */
+
+.events {
+    border: 1px solid var(--border);
+    background: var(--dark);
+}
+
+.event-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 150px;
+
+    min-height: 75px;
+
+    align-items: center;
+
+    padding: 0 25px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+
+    transition: 0.3s ease;
+}
+
+.event-row:last-child {
+    border-bottom: none;
+}
+
+.event-row:hover {
+    background: rgba(244,166,199,0.04);
+}
+
+.event-round {
+    color: var(--pink);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.event-name {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.event-date {
+    color: var(--grey);
+    font-size: 10px;
+    text-align: right;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 45px 7%;
+
+    border-top: 1px solid var(--border);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    color: var(--grey);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.footer-logo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1150px) {
+
+    nav {
+        gap: 18px;
+    }
+
+    .current-session {
+        grid-template-columns: 1fr;
+    }
+
+    .session-main {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 13px;
+    }
+
+    nav a {
+        font-size: 8px;
+    }
+
+    .intro,
+    section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+        height: auto;
+        min-height: 70px;
+
+        padding: 20px 5%;
+
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+    }
+
+    .intro {
+        padding-top: 70px;
+        padding-bottom: 65px;
+    }
+
+    .intro h1 {
+        letter-spacing: -4px;
+    }
+
+    .session-main,
+    .next-session {
+        padding: 28px;
+    }
+
+    .session-info {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .event-row {
+        grid-template-columns: 70px 1fr;
+        padding: 15px 18px;
+    }
+
+    .event-date {
+        grid-column: 2;
+        text-align: left;
+        margin-top: 4px;
+    }
+
+    footer {
+        padding: 35px 5%;
+
+        flex-direction: column;
+        gap: 15px;
+
+        text-align: center;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        THE PADDOCK JOURNAL
+    </div>
+
+    <nav>
+
+        <a href="f1.html">F1</a>
+        <a href="f2.html">F2</a>
+        <a href="f3.html">F3</a>
+        <a href="f4.html">F4</a>
+        <a href="f1-academy.html">F1 Academy</a>
+        <a href="women.html">Women</a>
+        <a href="live.html" class="active">Live</a>
+        <a href="about.html">About Me</a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div class="intro">
+
+    <p>Live Timing</p>
+
+    <h1>
+        LIVE<br>
+        <span>TIMING.</span>
+    </h1>
+
+</div>
+
+
+
+<!-- =========================
+     CURRENT SESSION
+========================= -->
+
+<section>
+
+    <div class="section-header">
+
+        <h2>Track Status</h2>
+
+        <div class="live-status">
+
+            <div class="live-dot"></div>
+
+            <span>Live</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="current-session">
+
+
+        <div class="session-main">
+
+            <div>
+
+                <div class="session-label">
+                    Current Session
+                </div>
+
+                <h2>
+                    RACE
+                </h2>
+
+            </div>
+
+
+            <div class="session-info">
+
+                <div>
+
+                    <small>
+                        Championship
+                    </small>
+
+                    <strong>
+                        Formula 1
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Circuit
+                    </small>
+
+                    <strong>
+                        Baku City Circuit
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Status
+                    </small>
+
+                    <strong>
+                        Live
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="next-session">
+
+            <div class="next-session-label">
+                Next Session
+            </div>
+
+            <h3>
+                Qualifying
+            </h3>
+
+            <p>
+                Live timing and session information will appear
+                here when the session begins.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     LIVE TIMING
+========================= -->
+
+<section>
+
+    <div class="section-header">
+
+        <h2>Live Timing</h2>
+
+        <span>Formula 1 · Baku</span>
+
+    </div>
+
+
+    <div class="timing-wrapper">
+
+        <table class="timing-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Team</th>
+                    <th>Lap</th>
+                    <th>Time</th>
+                    <th>Gap</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td class="position">
+                        1
+                    </td>
+
+                    <td class="driver">
+
+                        <div class="driver-name">
+
+                            <span class="driver-number">
+                                12
+                            </span>
+
+                            Kimi Antonelli
+
+                        </div>
+
+                    </td>
+
+                    <td class="team">
+                        Mercedes
+                    </td>
+
+                    <td>
+                        00
+                    </td>
+
+                    <td class="time fastest">
+                        —
+                    </td>
+
+                    <td class="gap">
+                        —
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="position">
+                        2
+                    </td>
+
+                    <td class="driver">
+
+                        <div class="driver-name">
+
+                            <span class="driver-number">
+                                63
+                            </span>
+
+                            George Russell
+
+                        </div>
+
+                    </td>
+
+                    <td class="team">
+                        Mercedes
+                    </td>
+
+                    <td>
+                        00
+                    </td>
+
+                    <td class="time">
+                        —
+                    </td>
+
+                    <td class="gap">
+                        —
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="position">
+                        3
+                    </td>
+
+                    <td class="driver">
+
+                        <div class="driver-name">
+
+                            <span class="driver-number">
+                                44
+                            </span>
+
+                            Lewis Hamilton
+
+                        </div>
+
+                    </td>
+
+                    <td class="team">
+                        Ferrari
+                    </td>
+
+                    <td>
+                        00
+                    </td>
+
+                    <td class="time">
+                        —
+                    </td>
+
+                    <td class="gap">
+                        —
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="position">
+                        4
+                    </td>
+
+                    <td class="driver">
+
+                        <div class="driver-name">
+
+                            <span class="driver-number">
+                                4
+                            </span>
+
+                            Lando Norris
+
+                        </div>
+
+                    </td>
+
+                    <td class="team">
+                        McLaren
+                    </td>
+
+                    <td>
+                        00
+                    </td>
+
+                    <td class="time">
+                        —
+                    </td>
+
+                    <td class="gap">
+                        —
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="position">
+                        5
+                    </td>
+
+                    <td class="driver">
+
+                        <div class="driver-name">
+
+                            <span class="driver-number">
+                                16
+                            </span>
+
+                            Charles Leclerc
+
+                        </div>
+
+                    </td>
+
+                    <td class="team">
+                        Ferrari
+                    </td>
+
+                    <td>
+                        00
+                    </td>
+
+                    <td class="time">
+                        —
+                    </td>
+
+                    <td class="gap">
+                        —
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     RACE CONTROL + CIRCUIT
+========================= -->
+
+<section>
+
+    <div class="two-column">
+
+
+        <!-- RACE CONTROL -->
+
+        <div>
+
+            <div class="section-header">
+
+                <h2>Race Control</h2>
+
+                <span>Track Information</span>
+
+            </div>
+
+
+            <div class="control-box">
+
+
+                <div class="control-row">
+
+                    <div class="control-left">
+
+                        <div class="control-title">
+                            Track Status
+                        </div>
+
+                        <div class="control-subtitle">
+                            Current circuit status
+                        </div>
+
+                    </div>
+
+                    <div class="control-value">
+                        Green
+                    </div>
+
+                </div>
+
+
+                <div class="control-row">
+
+                    <div class="control-left">
+
+                        <div class="control-title">
+                            Safety Car
+                        </div>
+
+                        <div class="control-subtitle">
+                            Safety car deployment
+                        </div>
+
+                    </div>
+
+                    <div class="control-value">
+                        No
+                    </div>
+
+                </div>
+
+
+                <div class="control-row">
+
+                    <div class="control-left">
+
+                        <div class="control-title">
+                            Virtual Safety Car
+                        </div>
+
+                        <div class="control-subtitle">
+                            VSC status
+                        </div>
+
+                    </div>
+
+                    <div class="control-value">
+                        No
+                    </div>
+
+                </div>
+
+
+                <div class="control-row">
+
+                    <div class="control-left">
+
+                        <div class="control-title">
+                            Red Flag
+                        </div>
+
+                        <div class="control-subtitle">
+                            Session interruption
+                        </div>
+
+                    </div>
+
+                    <div class="control-value">
+                        No
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CIRCUIT -->
+
+        <div>
+
+            <div class="section-header">
+
+                <h2>Circuit</h2>
+
+                <span>Current Round</span>
+
+            </div>
+
+
+            <div class="circuit-box">
+
+                <h3>
+                    Baku City Circuit
+                </h3>
+
+                <p>
+                    Azerbaijan Grand Prix · Round 17
+                </p>
+
+
+                <div class="circuit-stats">
+
+                    <div class="circuit-stat">
+
+                        <span>
+                            Length
+                        </span>
+
+                        <strong>
+                            6.003 km
+                        </strong>
+
+                    </div>
+
+
+                    <div class="circuit-stat">
+
+                        <span>
+                            Laps
+                        </span>
+
+                        <strong>
+                            51
+                        </strong>
+
+                    </div>
+
+
+                    <div class="circuit-stat">
+
+                        <span>
+                            Race Distance
+                        </span>
+
+                        <strong>
+                            306.049 km
+                        </strong>
+
+                    </div>
+
+
+                    <div class="circuit-stat">
+
+                        <span>
+                            Lap Record
+                        </span>
+
+                        <strong>
+                            1:43.009
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     UPCOMING SESSIONS
+========================= -->
+
+<section>
+
+    <div class="section-header">
+
+        <h2>Upcoming Sessions</h2>
+
+        <span>Azerbaijan Grand Prix</span>
+
+    </div>
+
+
+    <div class="events">
+
+
+        <div class="event-row">
+
+            <div class="event-round">
+                FP1
+            </div>
+
+            <div class="event-name">
+                Free Practice 1
+            </div>
+
+            <div class="event-date">
+                25 SEP · 10:30
+            </div>
+
+        </div>
+
+
+        <div class="event-row">
+
+            <div class="event-round">
+                FP2
+            </div>
+
+            <div class="event-name">
+                Free Practice 2
+            </div>
+
+            <div class="event-date">
+                25 SEP · 14:00
+            </div>
+
+        </div>
+
+
+        <div class="event-row">
+
+            <div class="event-round">
+                FP3
+            </div>
+
+            <div class="event-name">
+                Free Practice 3
+            </div>
+
+            <div class="event-date">
+                26 SEP · 10:30
+            </div>
+
+        </div>
+
+
+        <div class="event-row">
+
+            <div class="event-round">
+                Q
+            </div>
+
+            <div class="event-name">
+                Qualifying
+            </div>
+
+            <div class="event-date">
+                26 SEP · 14:00
+            </div>
+
+        </div>
+
+
+        <div class="event-row">
+
+            <div class="event-round">
+                RACE
+            </div>
+
+            <div class="event-name">
+                Azerbaijan Grand Prix
+            </div>
+
+            <div class="event-date">
+                27 SEP · 13:00
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        THE PADDOCK JOURNAL
+    </div>
+
+    <p>
+        Live Timing · 2026
+    </p>
+
+</footer>
+
+
+</body>
+</html>
