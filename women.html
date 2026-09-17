@@ -164,6 +164,7 @@ section {
 
 .featured-image {
     min-height: 500px;
+
     background:
         linear-gradient(
             to top,
@@ -296,6 +297,26 @@ section {
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-left: auto;
+}
+
+
+/* =========================
+   SEE MORE
+========================= */
+
+.see-more {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.see-more:hover {
+    color: var(--pink);
 }
 
 
@@ -537,8 +558,17 @@ footer .footer-logo {
         border-top: 1px solid var(--border);
     }
 
+    .category-title {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
     .category-title p {
-        display: none;
+        margin-left: 0;
+    }
+
+    .see-more {
+        margin-left: auto;
     }
 
     .cta-box {
@@ -588,8 +618,25 @@ footer .footer-logo {
         grid-template-columns: 1fr;
     }
 
+    .category-title {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 10px;
+    }
+
     .category-title h2 {
         font-size: 25px;
+    }
+
+    .category-title p {
+        grid-column: 2 / 4;
+        margin: 0;
+    }
+
+    .see-more {
+        grid-column: 3;
+        grid-row: 1;
     }
 
     .editorial-intro p {
@@ -762,6 +809,10 @@ footer .footer-logo {
             Behind the machine
         </p>
 
+        <a href="#" class="see-more">
+            See More →
+        </a>
+
     </div>
 
 
@@ -868,6 +919,10 @@ footer .footer-logo {
         <p>
             Leading from the pit wall
         </p>
+
+        <a href="#" class="see-more">
+            See More →
+        </a>
 
     </div>
 
@@ -976,6 +1031,10 @@ footer .footer-logo {
             Telling the story
         </p>
 
+        <a href="#" class="see-more">
+            See More →
+        </a>
+
     </div>
 
 
@@ -1082,6 +1141,10 @@ footer .footer-logo {
         <p>
             Breaking the grid
         </p>
+
+        <a href="#" class="see-more">
+            See More →
+        </a>
 
     </div>
 
