@@ -3,2098 +3,1751 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>F2 | The Paddock Journal</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html{
-    scroll-behavior:smooth;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #111;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#fff;
-    color:#111;
-    overflow-x:hidden;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+header {
+    height: 90px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header{
-    width:100%;
-    border-bottom:1px solid #ddd;
-    background:#fff;
-    position:sticky;
-    top:0;
-    z-index:1000;
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.header-inner{
-    max-width:1400px;
-    margin:auto;
-    min-height:82px;
-    padding:0 35px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
+nav {
+    display: flex;
+    gap: 26px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:2px;
-    white-space:nowrap;
+nav a {
+    position: relative;
 }
 
-nav{
-    display:flex;
-    align-items:center;
-    gap:25px;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.7px;
-    text-transform:uppercase;
-}
-
-nav a{
-    position:relative;
-    padding:8px 0;
-}
-
-nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:2px;
-    width:0;
-    height:1px;
-    background:#e7a9bb;
-    transition:.25s ease;
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: #e7a9bd;
+    transition: 0.3s;
 }
 
 nav a:hover::after,
-nav a.active::after{
-    width:100%;
+nav a.active::after {
+    width: 100%;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    max-width:1400px;
-    margin:auto;
-    padding:75px 35px 55px;
+.page-header {
+    padding: 80px 6% 55px;
+    border-bottom: 1px solid #ddd;
 }
 
-.hero-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:30px;
+.page-header p {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 18px;
 }
 
-.hero h1{
-    font-size:clamp(52px,8vw,120px);
-    line-height:.85;
-    letter-spacing:-5px;
-    font-weight:900;
-    max-width:1000px;
+.page-header h1 {
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.85;
+    letter-spacing: -5px;
+    font-weight: 800;
 }
 
-.hero h1 span{
-    color:#e7a9bb;
+.page-header h1 span {
+    color: #e7a9bd;
 }
 
-.hero-side{
-    max-width:240px;
-    font-size:12px;
-    line-height:1.6;
-    text-transform:uppercase;
-    letter-spacing:1px;
+section {
+    padding: 75px 6%;
 }
 
-/* =========================
-   GENERAL
-========================= */
-
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:0 35px;
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
 }
 
-.section{
-    padding:70px 0;
+.section-title h2 {
+    font-size: 30px;
+    letter-spacing: -1px;
 }
 
-.section-header{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    margin-bottom:30px;
-    gap:20px;
+.section-title span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #999;
 }
 
-.section-title{
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
+/* NEWS */
 
-.section-number{
-    font-size:11px;
-    color:#888;
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 0.75fr;
+    gap: 18px;
 }
 
-/* =========================
-   NEWS
-========================= */
+.news-card {
+    min-height: 270px;
+    border: 1px solid #ddd;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
 
-.news-grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: #e7a9bd;
 }
 
-.news-card{
-    min-height:240px;
-    border:1px solid #ddd;
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    position:relative;
-    overflow:hidden;
-    transition:.3s ease;
-    background:#fff;
+.news-card .tag {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #999;
 }
 
-.news-card:hover{
-    transform:translateY(-5px);
-    border-color:#e7a9bb;
+.news-card h3 {
+    font-size: 19px;
+    line-height: 1.15;
 }
 
-.news-tag{
-    font-size:9px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#999;
+.news-card p {
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+    line-height: 1.5;
 }
 
-.news-card h3{
-    font-size:18px;
-    line-height:1.15;
-    max-width:270px;
+.see-more {
+    background: #111;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.news-date{
-    font-size:10px;
-    color:#888;
+.see-more h3 {
+    color: white;
+    font-size: 15px;
+    letter-spacing: 2px;
 }
+
+/* NEXT RACE */
 
-.news-card.featured{
-    background:#f8e8ee;
+.next-race {
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
-.news-more{
-    min-height:240px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #111;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:2px;
-    transition:.3s ease;
+.race-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 50px;
 }
 
-.news-more:hover{
-    background:#111;
-    color:#fff;
+.race-main {
+    border: 1px solid #ddd;
+    padding: 35px;
+    background: white;
 }
 
-/* =========================
-   NEXT RACE
-========================= */
+.race-round {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 15px;
+}
 
-.next-race{
-    border-top:1px solid #111;
-    border-bottom:1px solid #111;
-    padding:40px 0;
+.race-main h3 {
+    font-size: clamp(38px, 5vw, 65px);
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-bottom: 15px;
 }
 
-.race-main{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:50px;
+.race-main .location {
+    color: #e19ab2;
+    font-size: 15px;
+    margin-bottom: 30px;
 }
 
-.race-heading{
-    font-size:clamp(42px,6vw,80px);
-    line-height:.9;
-    letter-spacing:-3px;
-    margin-bottom:8px;
+.countdown {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
-.race-location{
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    color:#888;
+.race-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid #ddd;
 }
 
-.circuit-name{
-    font-size:17px;
-    font-weight:700;
-    margin-top:28px;
-    margin-bottom:15px;
+.info-box {
+    padding: 18px 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.circuit-map{
-    width:100%;
-    max-width:620px;
-    height:250px;
-    border:1px solid #ddd;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fafafa;
-    overflow:hidden;
-    padding:15px;
+.info-box:nth-child(odd) {
+    border-right: 1px solid #ddd;
 }
 
-.circuit-map img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    filter:grayscale(1);
-    opacity:.85;
+.info-box span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 7px;
 }
 
-.race-description{
-    font-size:12px;
-    line-height:1.7;
-    color:#555;
-    max-width:600px;
-    margin-top:18px;
+.info-box strong {
+    font-size: 14px;
 }
 
-.race-details{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    border-top:1px solid #ddd;
-    border-left:1px solid #ddd;
+.race-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.detail{
-    padding:20px;
-    border-right:1px solid #ddd;
-    border-bottom:1px solid #ddd;
+.circuit-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 12px;
 }
 
-.detail-label{
-    font-size:9px;
-    color:#999;
-    text-transform:uppercase;
-    letter-spacing:1.2px;
-    margin-bottom:8px;
+.circuit-name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
-.detail-value{
-    font-size:17px;
-    font-weight:700;
+.previous {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
-.detail-value.small{
-    font-size:14px;
+.previous-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background: white;
 }
 
-.countdown{
-    margin-top:25px;
-    padding:20px;
-    background:#111;
-    color:#fff;
+.previous-box span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 10px;
 }
 
-.countdown-label{
-    font-size:9px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#bbb;
-    margin-bottom:8px;
+.previous-box strong {
+    font-size: 16px;
 }
 
-.countdown-time{
-    font-size:26px;
-    font-weight:800;
+.previous-box small {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+    font-size: 10px;
 }
 
-/* =========================
-   CALENDAR
-========================= */
+/* CALENDAR */
 
-.calendar-list{
-    border-top:1px solid #111;
+.calendar {
+    border-top: 1px solid #ddd;
 }
 
-.calendar-row{
-    display:grid;
-    grid-template-columns:70px 1fr 1fr 150px;
-    align-items:center;
-    padding:20px 0;
-    border-bottom:1px solid #ddd;
-    transition:.25s ease;
+.calendar-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 180px 180px;
+    align-items: center;
+    padding: 22px 10px;
+    border-bottom: 1px solid #ddd;
+    transition: 0.25s;
 }
 
-.calendar-row:hover{
-    background:#faf4f6;
-    padding-left:12px;
-    padding-right:12px;
+.calendar-row:hover {
+    background: #faf4f6;
 }
 
-.calendar-round{
-    font-size:10px;
-    color:#999;
-    text-transform:uppercase;
-    letter-spacing:1px;
+.calendar-round {
+    font-size: 11px;
+    color: #999;
 }
 
-.calendar-name{
-    font-size:17px;
-    font-weight:700;
+.calendar-location {
+    font-weight: 700;
+    font-size: 16px;
 }
 
-.calendar-country{
-    font-size:11px;
-    color:#888;
-    text-transform:uppercase;
-    letter-spacing:1px;
+.calendar-country {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
 }
 
-.calendar-date{
-    font-size:11px;
-    text-align:right;
-    color:#666;
+.calendar-date {
+    font-size: 12px;
 }
 
-.calendar-next{
-    border-left:3px solid #e7a9bb;
+.calendar-winner {
+    text-align: right;
+    font-size: 11px;
+    color: #777;
 }
 
-.more-button{
-    display:block;
-    margin:25px auto 0;
-    padding:13px 28px;
-    background:#111;
-    color:#fff;
-    border:none;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    cursor:pointer;
+.calendar-winner strong {
+    display: block;
+    color: #111;
+    font-size: 12px;
 }
 
-.more-button:hover{
-    background:#e7a9bb;
-    color:#111;
+.more-button {
+    display: block;
+    margin: 30px auto 0;
+    background: #111;
+    color: white;
+    border: none;
+    padding: 13px 30px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
 }
-
-/* =========================
-   STANDINGS
-========================= */
 
-.standings-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:35px;
+.more-button:hover {
+    background: #e7a9bd;
+    color: #111;
 }
 
-.standings-box{
-    border-top:1px solid #111;
-}
+/* STANDINGS */
 
-.standings-heading{
-    padding:20px 0;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-weight:800;
+.standings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
 }
 
-.standing-row{
-    display:grid;
-    grid-template-columns:40px 1fr auto;
-    align-items:center;
-    gap:15px;
-    padding:17px 0;
-    border-bottom:1px solid #ddd;
+.standings-card {
+    border: 1px solid #ddd;
 }
 
-.position{
-    font-size:11px;
-    color:#999;
+.standings-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
 }
 
-.standing-name{
-    font-size:15px;
-    font-weight:700;
+.standings-header h3 {
+    font-size: 15px;
 }
 
-.standing-team{
-    display:block;
-    margin-top:4px;
-    font-size:9px;
-    color:#999;
-    text-transform:uppercase;
-    letter-spacing:.7px;
+.standings-header span {
+    font-size: 10px;
+    color: #999;
 }
 
-.points{
-    font-size:15px;
-    font-weight:800;
+.standing-row {
+    display: grid;
+    grid-template-columns: 45px 1fr 70px;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid #eee;
 }
 
-.leader{
-    background:#f8e8ee;
-    padding-left:12px;
-    padding-right:12px;
+.standing-row:last-child {
+    border-bottom: none;
 }
 
-/* =========================
-   DRIVERS
-========================= */
-
-.driver-grid{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:12px;
+.position {
+    font-size: 11px;
+    color: #999;
 }
 
-.driver-card{
-    min-width:0;
-    height:190px;
-    border:1px solid #ddd;
-    position:relative;
-    overflow:visible;
-    background:#fff;
-    transition:.3s ease;
-    cursor:pointer;
+.driver-name {
+    font-size: 14px;
+    font-weight: 700;
 }
 
-.driver-card:hover{
-    z-index:20;
-    border-color:#e7a9bb;
+.driver-team {
+    font-size: 10px;
+    color: #999;
+    margin-top: 4px;
 }
 
-.driver-card-photo{
-    width:100%;
-    height:125px;
-    overflow:hidden;
-    background:#f2f2f2;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
+.points {
+    text-align: right;
+    font-weight: 700;
+    font-size: 14px;
 }
 
-.driver-card-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
-}
+/* DRIVERS */
 
-.driver-initials{
-    font-size:45px;
-    font-weight:900;
-    color:#ccc;
-    align-self:center;
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
 }
 
-.driver-number{
-    position:absolute;
-    top:8px;
-    right:8px;
-    font-size:10px;
-    font-weight:800;
-    background:#fff;
-    padding:5px 7px;
+.driver-card {
+    border: 1px solid #ddd;
+    height: 175px;
+    position: relative;
+    overflow: visible;
+    background: white;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
-.driver-info{
-    padding:11px 12px;
+.driver-card:hover {
+    border-color: #e7a9bd;
+    z-index: 10;
 }
 
-.driver-team{
-    font-size:8px;
-    color:#999;
-    text-transform:uppercase;
-    letter-spacing:.7px;
-    margin-bottom:5px;
+.driver-photo {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    object-position: top center;
+    background: #f4f4f4;
 }
 
-.driver-name{
-    font-size:14px;
-    font-weight:800;
-    line-height:1.05;
+.driver-number {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.9);
+    padding: 4px 7px;
 }
 
-/* HOVER POPUP */
+.driver-content {
+    padding: 9px 10px;
+}
 
-.driver-popup{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%) scale(.94);
-    width:430px;
-    min-height:220px;
-    background:#fff;
-    border:1px solid #111;
-    box-shadow:0 20px 60px rgba(0,0,0,.18);
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:.25s ease;
-    display:grid;
-    grid-template-columns:180px 1fr;
+.driver-team-small {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
-.driver-card:hover .driver-popup{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,-50%) scale(1);
+.driver-name-small {
+    font-size: 13px;
+    font-weight: 700;
 }
+
+/* DRIVER POPUP */
 
-.popup-photo{
-    background:#eee;
-    overflow:hidden;
+.driver-popup {
+    position: absolute;
+    width: 360px;
+    min-height: 175px;
+    background: white;
+    border: 1px solid #e7a9bd;
+    display: none;
+    grid-template-columns: 145px 1fr;
+    gap: 15px;
+    padding: 12px;
+    z-index: 100;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-.popup-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
+.driver-card:hover .driver-popup {
+    display: grid;
 }
 
-.popup-info{
-    padding:25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+.driver-card:nth-child(6n + 1) .driver-popup,
+.driver-card:nth-child(6n + 2) .driver-popup,
+.driver-card:nth-child(6n + 3) .driver-popup {
+    left: 0;
+    top: 100%;
 }
 
-.popup-team{
-    font-size:9px;
-    text-transform:uppercase;
-    letter-spacing:1.3px;
-    color:#999;
-    margin-bottom:10px;
+.driver-card:nth-child(6n + 4) .driver-popup,
+.driver-card:nth-child(6n + 5) .driver-popup,
+.driver-card:nth-child(6n + 6) .driver-popup {
+    right: 0;
+    top: 100%;
 }
 
-.popup-name{
-    font-size:25px;
-    line-height:1;
-    font-weight:900;
-    margin-bottom:22px;
+.driver-popup img {
+    width: 145px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top center;
+    background: #f3f3f3;
 }
 
-.popup-detail{
-    margin-bottom:9px;
+.popup-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.popup-detail span{
-    display:block;
-    font-size:8px;
-    color:#999;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:3px;
+.popup-info .popup-team {
+    font-size: 8px;
+    color: #999;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
 }
 
-.popup-detail strong{
-    font-size:11px;
+.popup-info h4 {
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 14px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.popup-info p {
+    font-size: 10px;
+    line-height: 1.7;
+    color: #555;
+}
 
-footer{
-    margin-top:80px;
-    border-top:1px solid #111;
+.popup-info strong {
+    color: #111;
 }
 
-.footer-inner{
-    max-width:1400px;
-    margin:auto;
-    padding:45px 35px;
+/* FOOTER */
 
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:30px;
+footer {
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding: 50px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.footer-logo{
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:1.5px;
+footer .footer-logo {
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
-.footer-copy{
-    max-width:300px;
-    font-size:10px;
-    line-height:1.6;
-    color:#888;
-    text-align:right;
+footer p {
+    font-size: 10px;
+    color: #999;
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
-@media(max-width:1100px){
+/* RESPONSIVE */
 
-    nav{
-        gap:14px;
+@media (max-width: 1100px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .news-grid{
-        grid-template-columns:repeat(3,1fr);
+    .drivers-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 
-    .news-more{
-        min-height:180px;
+    .race-layout {
+        grid-template-columns: 1fr;
     }
-
-    .driver-grid{
-        grid-template-columns:repeat(4,1fr);
-    }
-
 }
 
-@media(max-width:850px){
-
-    .header-inner{
-        padding:20px;
-        flex-direction:column;
-        align-items:flex-start;
+@media (max-width: 800px) {
+    header {
+        height: auto;
+        padding: 22px 5%;
+        flex-direction: column;
+        gap: 18px;
     }
 
-    nav{
-        flex-wrap:wrap;
-        gap:12px 18px;
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
     }
 
-    .hero,
-    .container{
-        padding-left:20px;
-        padding-right:20px;
+    section {
+        padding: 55px 5%;
     }
 
-    .hero{
-        padding-top:55px;
+    .page-header {
+        padding: 60px 5% 45px;
     }
 
-    .hero-top{
-        flex-direction:column;
-        align-items:flex-start;
+    .news-grid {
+        grid-template-columns: 1fr;
     }
 
-    .hero h1{
-        letter-spacing:-3px;
+    .standings-grid {
+        grid-template-columns: 1fr;
     }
 
-    .race-main{
-        grid-template-columns:1fr;
+    .calendar-row {
+        grid-template-columns: 50px 1fr;
+        gap: 8px;
     }
 
-    .standings-grid{
-        grid-template-columns:1fr;
+    .calendar-date,
+    .calendar-winner {
+        grid-column: 2;
+        text-align: left;
     }
 
-    .driver-grid{
-        grid-template-columns:repeat(3,1fr);
+    .drivers-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .driver-popup{
-        width:360px;
-        grid-template-columns:140px 1fr;
+    .driver-popup {
+        width: 330px;
     }
 
+    .driver-card:nth-child(even) .driver-popup {
+        right: 0;
+        left: auto;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }
 
-@media(max-width:600px){
-
-    .news-grid{
-        grid-template-columns:1fr;
+@media (max-width: 480px) {
+    .drivers-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
-    .news-card,
-    .news-more{
-        min-height:190px;
+    .driver-card {
+        height: 160px;
     }
 
-    .calendar-row{
-        grid-template-columns:50px 1fr;
-        gap:7px;
+    .driver-photo {
+        height: 98px;
     }
 
-    .calendar-country{
-        grid-column:2;
+    .driver-popup {
+        width: 300px;
+        grid-template-columns: 110px 1fr;
     }
 
-    .calendar-date{
-        grid-column:2;
-        text-align:left;
+    .driver-popup img {
+        width: 110px;
+        height: 135px;
     }
 
-    .driver-grid{
-        grid-template-columns:repeat(2,1fr);
+    .previous {
+        grid-template-columns: 1fr;
     }
-
-    .driver-card{
-        height:175px;
-    }
-
-    .driver-card-photo{
-        height:110px;
-    }
-
-    .driver-popup{
-        position:fixed;
-        width:min(92vw,380px);
-        grid-template-columns:1fr;
-        min-height:400px;
-    }
-
-    .popup-photo{
-        height:180px;
-    }
-
-    .popup-info{
-        padding:20px;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-    }
-
-    .footer-copy{
-        text-align:left;
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
+    <a href="index.html" class="logo">THE PADDOCK JOURNAL</a>
 
-<div class="header-inner">
-
-<a href="index.html" class="logo">
-THE PADDOCK JOURNAL
-</a>
-
-<nav>
-
-<a href="f1.html">F1</a>
-<a href="f2.html" class="active">F2</a>
-<a href="f3.html">F3</a>
-<a href="f4.html">F4</a>
-<a href="f1-academy.html">F1 Academy</a>
-<a href="women.html">Women</a>
-<a href="live.html">Live</a>
-<a href="about.html">About Me</a>
-
-</nav>
-
-</div>
-
+    <nav>
+        <a href="f1.html">F1</a>
+        <a href="f2.html" class="active">F2</a>
+        <a href="f3.html">F3</a>
+        <a href="f4.html">F4</a>
+        <a href="f1-academy.html">F1 Academy</a>
+        <a href="women.html">Women</a>
+        <a href="live.html">Live</a>
+        <a href="about.html">About Me</a>
+    </nav>
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-<div class="hero-top">
-
-<div>
-
-<h1>
-FORMULA<br>
-<span>2.</span>
-</h1>
-
+<div class="page-header">
+    <p>THE PADDOCK JOURNAL / FORMULA 2</p>
+    <h1>FORMULA <span>2.</span></h1>
 </div>
 
-<div class="hero-side">
-The final step before Formula 1.
-Talent, pressure and the next generation
-of the grid.
-</div>
+<!-- NEWS -->
 
-</div>
+<section>
+    <div class="section-title">
+        <h2>Latest News</h2>
+        <span>FIA FORMULA 2</span>
+    </div>
+
+    <div class="news-grid">
+
+        <a class="news-card"
+           href="https://www.fiaformula2.com/en/latest/article/preview-return-to-baku-for-an-exciting-round-12.1WXP9C16FGt9U0KWjrvz77"
+           target="_blank">
+            <span class="tag">F2 / PREVIEW</span>
+            <h3>Formula 2 returns to Baku for a unique Round 12</h3>
+            <p>The championship heads to Azerbaijan for a supersized weekend.</p>
+        </a>
+
+        <a class="news-card"
+           href="https://www.fiaformula2.com/en/latest/article/feature-race-duerksen-goes-back-to-back-and-sweeps-monza-weekend.56mePYrED9igQy8p4A4XfC"
+           target="_blank">
+            <span class="tag">F2 / MONZA</span>
+            <h3>Dürksen completes a perfect Monza weekend</h3>
+            <p>The Invicta driver swept both races in Italy.</p>
+        </a>
+
+        <a class="news-card"
+           href="https://www.fiaformula2.com/en/racing/2026"
+           target="_blank">
+            <span class="tag">F2 / CALENDAR</span>
+            <h3>Three rounds remain in the 2026 championship</h3>
+            <p>Baku, Lusail and Yas Marina will decide the final stages of the season.</p>
+        </a>
+
+        <a class="news-card"
+           href="https://www.fiaformula2.com/en/standings/2026/drivers"
+           target="_blank">
+            <span class="tag">F2 / STANDINGS</span>
+            <h3>Tsolov leads the championship heading to Baku</h3>
+            <p>The Bulgarian sits at the top of the drivers' standings.</p>
+        </a>
+
+        <a class="news-card see-more"
+           href="https://www.fiaformula2.com/en/latest"
+           target="_blank">
+            <h3>SEE<br>MORE</h3>
+        </a>
+
+    </div>
+</section>
+
+<!-- NEXT RACE -->
+
+<section class="next-race">
+
+    <div class="section-title">
+        <h2>Next Race</h2>
+        <span>ROUND 12 / 2026</span>
+    </div>
+
+    <div class="race-layout">
+
+        <div class="race-main">
+
+            <div class="race-round">ROUND 12</div>
+
+            <h3>BAKU</h3>
+
+            <div class="location">
+                Azerbaijan · Baku City Circuit
+            </div>
+
+            <div class="countdown" id="countdown">
+                Loading...
+            </div>
+
+            <div class="race-info">
+
+                <div class="info-box">
+                    <span>WEEKEND</span>
+                    <strong>24 – 26 SEP 2026</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>CIRCUIT</span>
+                    <strong>Baku City Circuit</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>LENGTH</span>
+                    <strong>6.003 KM</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>FORMAT</span>
+                    <strong>1 Sprint + 2 Features</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>QUALIFYING</span>
+                    <strong>2 Sessions</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>FEATURE RACE</span>
+                    <strong>Sunday · 11:00</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="race-side">
+
+            <div class="circuit-label">BAKU CITY CIRCUIT</div>
+
+            <div class="circuit-name">
+                HIGH SPEED.<br>
+                LOW MARGIN.
+            </div>
+
+            <div class="previous">
+
+                <div class="previous-box">
+                    <span>2025 FEATURE WINNER</span>
+                    <strong>Jak Crawford</strong>
+                    <small>DAMS Lucas Oil</small>
+                </div>
+
+                <div class="previous-box">
+                    <span>2025 FEATURE POLE</span>
+                    <strong>Jak Crawford</strong>
+                    <small>DAMS Lucas Oil</small>
+                </div>
+
+                <div class="previous-box">
+                    <span>2025 SPRINT WINNER</span>
+                    <strong>Dino Beganovic</strong>
+                    <small>Hitech TGR</small>
+                </div>
+
+                <div class="previous-box">
+                    <span>2025 FASTEST LAP</span>
+                    <strong>Joshua Dürksen</strong>
+                    <small>1:56.794</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
+<!-- CALENDAR -->
 
-<main class="container">
+<section>
 
+    <div class="section-title">
+        <h2>Calendar</h2>
+        <span>2026 SEASON</span>
+    </div>
 
-<!-- =========================
-     NEWS
-========================= -->
+    <div class="calendar" id="calendar">
 
-<section class="section">
+        <div class="calendar-row">
+            <div class="calendar-round">01</div>
+            <div>
+                <div class="calendar-location">Melbourne</div>
+                <div class="calendar-country">Australia</div>
+            </div>
+            <div class="calendar-date">06 – 08 MAR</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Joshua Dürksen</strong>
+                Feature
+                <strong>Nikola Tsolov</strong>
+            </div>
+        </div>
 
-<div class="section-header">
+        <div class="calendar-row">
+            <div class="calendar-round">02</div>
+            <div>
+                <div class="calendar-location">Miami</div>
+                <div class="calendar-country">United States</div>
+            </div>
+            <div class="calendar-date">01 – 03 MAY</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Nikola Tsolov</strong>
+                Feature
+                <strong>Gabriele Minì</strong>
+            </div>
+        </div>
 
-<div class="section-title">Latest News</div>
+        <div class="calendar-row">
+            <div class="calendar-round">03</div>
+            <div>
+                <div class="calendar-location">Montréal</div>
+                <div class="calendar-country">Canada</div>
+            </div>
+            <div class="calendar-date">22 – 24 MAY</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Noel León</strong>
+                Feature
+                <strong>Martinius Stenshorne</strong>
+            </div>
+        </div>
 
-<div class="section-number">01 / F2</div>
+        <div class="calendar-row">
+            <div class="calendar-round">04</div>
+            <div>
+                <div class="calendar-location">Monte Carlo</div>
+                <div class="calendar-country">Monaco</div>
+            </div>
+            <div class="calendar-date">04 – 07 JUN</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Noel León</strong>
+                Feature
+                <strong>Nikola Tsolov</strong>
+            </div>
+        </div>
 
-</div>
+        <div class="calendar-row">
+            <div class="calendar-round">05</div>
+            <div>
+                <div class="calendar-location">Barcelona</div>
+                <div class="calendar-country">Spain</div>
+            </div>
+            <div class="calendar-date">12 – 14 JUN</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Kush Maini</strong>
+                Feature
+                <strong>Rafael Câmara</strong>
+            </div>
+        </div>
 
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">06</div>
+            <div>
+                <div class="calendar-location">Spielberg</div>
+                <div class="calendar-country">Austria</div>
+            </div>
+            <div class="calendar-date">26 – 28 JUN</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>John Bennett</strong>
+                Feature
+                <strong>Nikola Tsolov</strong>
+            </div>
+        </div>
 
-<div class="news-grid">
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">07</div>
+            <div>
+                <div class="calendar-location">Silverstone</div>
+                <div class="calendar-country">Great Britain</div>
+            </div>
+            <div class="calendar-date">03 – 05 JUL</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Nikola Tsolov</strong>
+                Feature
+                <strong>Nikola Tsolov</strong>
+            </div>
+        </div>
 
-<a
-class="news-card featured"
-href="https://www.fiaformula2.com/en/latest/article/feature-race-dominant-beganovic-takes-lights-to-flag-victory-in-madrid.1hqA4akOQzyJq8BbVfeS0S"
-target="_blank"
->
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">08</div>
+            <div>
+                <div class="calendar-location">Spa-Francorchamps</div>
+                <div class="calendar-country">Belgium</div>
+            </div>
+            <div class="calendar-date">17 – 19 JUL</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Joshua Dürksen</strong>
+                Feature
+                <strong>Rafael Câmara</strong>
+            </div>
+        </div>
 
-<div class="news-tag">
-F2 · MADRID
-</div>
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">09</div>
+            <div>
+                <div class="calendar-location">Budapest</div>
+                <div class="calendar-country">Hungary</div>
+            </div>
+            <div class="calendar-date">24 – 26 JUL</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Gabriele Minì</strong>
+                Feature
+                <strong>Noel León</strong>
+            </div>
+        </div>
 
-<h3>
-Beganovic dominates the Madrid Feature Race
-</h3>
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">10</div>
+            <div>
+                <div class="calendar-location">Monza</div>
+                <div class="calendar-country">Italy</div>
+            </div>
+            <div class="calendar-date">04 – 06 SEP</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Joshua Dürksen</strong>
+                Feature
+                <strong>Joshua Dürksen</strong>
+            </div>
+        </div>
 
-<div class="news-date">
-13 SEPTEMBER 2026
-</div>
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">11</div>
+            <div>
+                <div class="calendar-location">Madrid</div>
+                <div class="calendar-country">Spain</div>
+            </div>
+            <div class="calendar-date">11 – 13 SEP</div>
+            <div class="calendar-winner">
+                Sprint
+                <strong>Ritomo Miyata</strong>
+                Feature
+                <strong>Dino Beganovic</strong>
+            </div>
+        </div>
 
-</a>
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">12</div>
+            <div>
+                <div class="calendar-location">Baku</div>
+                <div class="calendar-country">Azerbaijan</div>
+            </div>
+            <div class="calendar-date">24 – 26 SEP</div>
+            <div class="calendar-winner">
+                <strong>UPCOMING</strong>
+            </div>
+        </div>
 
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">13</div>
+            <div>
+                <div class="calendar-location">Lusail</div>
+                <div class="calendar-country">Qatar</div>
+            </div>
+            <div class="calendar-date">27 – 29 NOV</div>
+            <div class="calendar-winner">
+                <strong>UPCOMING</strong>
+            </div>
+        </div>
 
-<a
-class="news-card"
-href="https://www.fiaformula2.com/en/latest/article/qualifying-beganovic-storms-to-pole-around-madring.1F66FDFsmULmE0S6nFa6mJ"
-target="_blank"
->
+        <div class="calendar-row extra-round">
+            <div class="calendar-round">14</div>
+            <div>
+                <div class="calendar-location">Yas Marina</div>
+                <div class="calendar-country">United Arab Emirates</div>
+            </div>
+            <div class="calendar-date">04 – 06 DEC</div>
+            <div class="calendar-winner">
+                <strong>UPCOMING</strong>
+            </div>
+        </div>
 
-<div class="news-tag">
-QUALIFYING
-</div>
+    </div>
 
-<h3>
-Beganovic storms to pole around the Madring
-</h3>
-
-<div class="news-date">
-11 SEPTEMBER 2026
-</div>
-
-</a>
-
-
-<a
-class="news-card"
-href="https://www.fiaformula2.com/en/latest/article/fia-formula-2-announce-supersized-baku-round.5ixzvM3F663c6zjTWZHLDX"
-target="_blank"
->
-
-<div class="news-tag">
-BAKU
-</div>
-
-<h3>
-F2 announces a supersized Baku round
-</h3>
-
-<div class="news-date">
-2026 SEASON
-</div>
-
-</a>
-
-
-<a
-class="news-card"
-href="https://www.fiaformula2.com/en/latest/article/preview-return-to-baku-for-an-exciting-round-12.1WXP9C16FGt9U0KWjrvz77"
-target="_blank"
->
-
-<div class="news-tag">
-PREVIEW
-</div>
-
-<h3>
-The championship heads to Baku for Round 12
-</h3>
-
-<div class="news-date">
-ROUND 12
-</div>
-
-</a>
-
-
-<a href="news.html" class="news-more">
-SEE MORE
-</a>
-
-</div>
+    <button class="more-button" id="calendarButton" onclick="toggleCalendar()">
+        MORE
+    </button>
 
 </section>
 
-
-<!-- =========================
-     NEXT RACE
-========================= -->
-
-<section class="section">
-
-<div class="section-header">
-
-<div class="section-title">Next Race</div>
-
-<div class="section-number">02 / F2</div>
-
-</div>
-
-
-<div class="next-race">
-
-<div class="race-main">
-
-
-<div>
-
-<div class="race-heading">
-BAKU
-</div>
-
-<div class="race-location">
-AZERBAIJAN · ROUND 12
-</div>
-
-
-<div class="circuit-name">
-Baku City Circuit
-</div>
-
-
-<div class="circuit-map">
-
-<img
-src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Baku_Formula_One_circuit_map.svg"
-alt="Baku City Circuit layout"
->
-
-</div>
-
-
-<div class="race-description">
-
-One of the fastest street circuits on the calendar,
-Baku combines a long full-throttle run with a tight,
-technical section around the Old City. The 2026 F2
-round will feature a unique three-race format:
-one Sprint Race and two Feature Races.
-
-</div>
-
-
-<div class="countdown">
-
-<div class="countdown-label">
-Time until Round 12
-</div>
-
-<div class="countdown-time" id="countdown">
-LOADING...
-</div>
-
-</div>
-
-</div>
-
-
-<div>
-
-<div class="race-details">
-
-<div class="detail">
-
-<div class="detail-label">
-Circuit Length
-</div>
-
-<div class="detail-value">
-6.003 km
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Turns
-</div>
-
-<div class="detail-value">
-20
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Previous Winner
-</div>
-
-<div class="detail-value small">
-Jak Crawford
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Previous Pole
-</div>
-
-<div class="detail-value small">
-Jak Crawford
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Previous Fastest Lap
-</div>
-
-<div class="detail-value small">
-Dino Beganovic
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Fastest Lap
-</div>
-
-<div class="detail-value small">
-1:56.561
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Race Distance
-</div>
-
-<div class="detail-value small">
-174.087 km
-</div>
-
-</div>
-
-
-<div class="detail">
-
-<div class="detail-label">
-Weekend
-</div>
-
-<div class="detail-value small">
-24–26 SEP
-</div>
-
-</div>
-
-</div>
-
-
-<div style="margin-top:25px;border:1px solid #ddd;">
-
-<div style="padding:18px;border-bottom:1px solid #ddd;">
-
-<div class="detail-label">
-2026 Baku Schedule
-</div>
-
-</div>
-
-
-<div style="padding:16px 18px;border-bottom:1px solid #ddd;font-size:11px;">
-
-<strong>24 SEP</strong>
-&nbsp; Practice · 06:00–06:45
-
-</div>
-
-
-<div style="padding:16px 18px;border-bottom:1px solid #ddd;font-size:11px;">
-
-<strong>24 SEP</strong>
-&nbsp; Qualifying 1 + Qualifying 2 · TBC
-
-</div>
-
-
-<div style="padding:16px 18px;border-bottom:1px solid #ddd;font-size:11px;">
-
-<strong>25 SEP</strong>
-&nbsp; Sprint Race · 04:15–05:05
-
-</div>
-
-
-<div style="padding:16px 18px;border-bottom:1px solid #ddd;font-size:11px;">
-
-<strong>25 SEP</strong>
-&nbsp; Feature Race 1 · 10:15–11:20
-
-</div>
-
-
-<div style="padding:16px 18px;font-size:11px;">
-
-<strong>26 SEP</strong>
-&nbsp; Feature Race 2 · 07:00–08:05
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+<!-- STANDINGS -->
+
+<section>
+
+    <div class="section-title">
+        <h2>Standings</h2>
+        <span>2026 CHAMPIONSHIP</span>
+    </div>
+
+    <div class="standings-grid">
+
+        <div class="standings-card">
+
+            <div class="standings-header">
+                <h3>Top 5 Drivers</h3>
+                <span>POINTS</span>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">01</div>
+                <div>
+                    <div class="driver-name">Nikola Tsolov</div>
+                    <div class="driver-team">Campos Racing</div>
+                </div>
+                <div class="points">177</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">02</div>
+                <div>
+                    <div class="driver-name">Rafael Câmara</div>
+                    <div class="driver-team">Invicta Racing</div>
+                </div>
+                <div class="points">170</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">03</div>
+                <div>
+                    <div class="driver-name">Gabriele Minì</div>
+                    <div class="driver-team">MP Motorsport</div>
+                </div>
+                <div class="points">153</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">04</div>
+                <div>
+                    <div class="driver-name">Alexander Dunne</div>
+                    <div class="driver-team">Rodin Motorsport</div>
+                </div>
+                <div class="points">139</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">05</div>
+                <div>
+                    <div class="driver-name">Noel León</div>
+                    <div class="driver-team">Campos Racing</div>
+                </div>
+                <div class="points">119</div>
+            </div>
+
+        </div>
+
+        <div class="standings-card">
+
+            <div class="standings-header">
+                <h3>Top 5 Teams</h3>
+                <span>POINTS</span>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">01</div>
+                <div>
+                    <div class="driver-name">Campos Racing</div>
+                    <div class="driver-team">2026</div>
+                </div>
+                <div class="points">296</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">02</div>
+                <div>
+                    <div class="driver-name">Invicta Racing</div>
+                    <div class="driver-team">2026</div>
+                </div>
+                <div class="points">260</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">03</div>
+                <div>
+                    <div class="driver-name">Rodin Motorsport</div>
+                    <div class="driver-team">2026</div>
+                </div>
+                <div class="points">209</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">04</div>
+                <div>
+                    <div class="driver-name">MP Motorsport</div>
+                    <div class="driver-team">2026</div>
+                </div>
+                <div class="points">190</div>
+            </div>
+
+            <div class="standing-row">
+                <div class="position">05</div>
+                <div>
+                    <div class="driver-name">ART Grand Prix</div>
+                    <div class="driver-team">2026</div>
+                </div>
+                <div class="points">159</div>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
+<!-- DRIVERS -->
 
-<!-- =========================
-     CALENDAR
-========================= -->
+<section>
 
-<section class="section">
+    <div class="section-title">
+        <h2>Drivers</h2>
+        <span>2026 GRID / 22 DRIVERS</span>
+    </div>
 
-<div class="section-header">
+    <div class="drivers-grid">
 
-<div class="section-title">Calendar</div>
+        <!-- 1 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/01-Rafael-Camara.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Rafael+Camara'">
+            <div class="driver-number">1</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Invicta Racing</div>
+                <div class="driver-name-small">Rafael Câmara</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/01-Rafael-Camara.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Rafael+Camara'">
+                <div class="popup-info">
+                    <div class="popup-team">INVICTA RACING</div>
+                    <h4>Rafael Câmara</h4>
+                    <p>
+                        <strong>Nationality:</strong> Brazil<br>
+                        <strong>Number:</strong> 1<br>
+                        <strong>Team:</strong> Invicta Racing
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<div class="section-number">03 / 14 ROUNDS</div>
+        <!-- 2 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/02-Joshua-Duerksen.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Joshua+Duerksen'">
+            <div class="driver-number">2</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Invicta Racing</div>
+                <div class="driver-name-small">Joshua Dürksen</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/02-Joshua-Duerksen.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Joshua+Duerksen'">
+                <div class="popup-info">
+                    <div class="popup-team">INVICTA RACING</div>
+                    <h4>Joshua Dürksen</h4>
+                    <p><strong>Nationality:</strong> Paraguay<br><strong>Number:</strong> 2<br><strong>Team:</strong> Invicta Racing</p>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- 3 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/03-Ritomo-Miyata.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Ritomo+Miyata'">
+            <div class="driver-number">3</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Hitech</div>
+                <div class="driver-name-small">Ritomo Miyata</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/03-Ritomo-Miyata.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Ritomo+Miyata'">
+                <div class="popup-info">
+                    <div class="popup-team">HITECH</div>
+                    <h4>Ritomo Miyata</h4>
+                    <p><strong>Nationality:</strong> Japan<br><strong>Number:</strong> 3<br><strong>Team:</strong> Hitech</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- 4 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/04-Colton-Herta.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Colton+Herta'">
+            <div class="driver-number">4</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Hitech</div>
+                <div class="driver-name-small">Colton Herta</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/04-Colton-Herta.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Colton+Herta'">
+                <div class="popup-info">
+                    <div class="popup-team">HITECH</div>
+                    <h4>Colton Herta</h4>
+                    <p><strong>Nationality:</strong> United States<br><strong>Number:</strong> 4<br><strong>Team:</strong> Hitech</p>
+                </div>
+            </div>
+        </div>
 
-<div class="calendar-list" id="calendarList">
+        <!-- 5 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/05-Noel-Leon.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Noel+Leon'">
+            <div class="driver-number">5</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Campos Racing</div>
+                <div class="driver-name-small">Noel León</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/05-Noel-Leon.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Noel+Leon'">
+                <div class="popup-info">
+                    <div class="popup-team">CAMPOS RACING</div>
+                    <h4>Noel León</h4>
+                    <p><strong>Nationality:</strong> Mexico<br><strong>Number:</strong> 5<br><strong>Team:</strong> Campos Racing</p>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- 6 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/06-Nikola-Tsolov.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Nikola+Tsolov'">
+            <div class="driver-number">6</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Campos Racing</div>
+                <div class="driver-name-small">Nikola Tsolov</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/06-Nikola-Tsolov.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Nikola+Tsolov'">
+                <div class="popup-info">
+                    <div class="popup-team">CAMPOS RACING</div>
+                    <h4>Nikola Tsolov</h4>
+                    <p><strong>Nationality:</strong> Bulgaria<br><strong>Number:</strong> 6<br><strong>Team:</strong> Campos Racing</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- 7 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/07-Dino-Beganovic.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Dino+Beganovic'">
+            <div class="driver-number">7</div>
+            <div class="driver-content">
+                <div class="driver-team-small">DAMS Lucas Oil</div>
+                <div class="driver-name-small">Dino Beganovic</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/07-Dino-Beganovic.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Dino+Beganovic'">
+                <div class="popup-info">
+                    <div class="popup-team">DAMS LUCAS OIL</div>
+                    <h4>Dino Beganovic</h4>
+                    <p><strong>Nationality:</strong> Sweden<br><strong>Number:</strong> 7<br><strong>Team:</strong> DAMS Lucas Oil</p>
+                </div>
+            </div>
+        </div>
 
-<button class="more-button" id="calendarButton">
-MORE
-</button>
+        <!-- 8 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/08-Roman-Bilinski.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Roman+Bilinski'">
+            <div class="driver-number">8</div>
+            <div class="driver-content">
+                <div class="driver-team-small">DAMS Lucas Oil</div>
+                <div class="driver-name-small">Roman Bilinski</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/08-Roman-Bilinski.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Roman+Bilinski'">
+                <div class="popup-info">
+                    <div class="popup-team">DAMS LUCAS OIL</div>
+                    <h4>Roman Bilinski</h4>
+                    <p><strong>Nationality:</strong> Poland<br><strong>Number:</strong> 8<br><strong>Team:</strong> DAMS Lucas Oil</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/09-Gabriele-Mini.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Gabriele+Mini'">
+            <div class="driver-number">9</div>
+            <div class="driver-content">
+                <div class="driver-team-small">MP Motorsport</div>
+                <div class="driver-name-small">Gabriele Minì</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/09-Gabriele-Mini.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Gabriele+Mini'">
+                <div class="popup-info">
+                    <div class="popup-team">MP MOTORSPORT</div>
+                    <h4>Gabriele Minì</h4>
+                    <p><strong>Nationality:</strong> Italy<br><strong>Number:</strong> 9<br><strong>Team:</strong> MP Motorsport</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/10-Oliver-Goethe.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Oliver+Goethe'">
+            <div class="driver-number">10</div>
+            <div class="driver-content">
+                <div class="driver-team-small">MP Motorsport</div>
+                <div class="driver-name-small">Oliver Goethe</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/10-Oliver-Goethe.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Oliver+Goethe'">
+                <div class="popup-info">
+                    <div class="popup-team">MP MOTORSPORT</div>
+                    <h4>Oliver Goethe</h4>
+                    <p><strong>Nationality:</strong> Germany<br><strong>Number:</strong> 10<br><strong>Team:</strong> MP Motorsport</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/11-Sebastian-Montoya.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Sebastian+Montoya'">
+            <div class="driver-number">11</div>
+            <div class="driver-content">
+                <div class="driver-team-small">PREMA Racing</div>
+                <div class="driver-name-small">Sebastian Montoya</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/11-Sebastian-Montoya.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Sebastian+Montoya'">
+                <div class="popup-info">
+                    <div class="popup-team">PREMA RACING</div>
+                    <h4>Sebastian Montoya</h4>
+                    <p><strong>Nationality:</strong> Colombia<br><strong>Number:</strong> 11<br><strong>Team:</strong> PREMA Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/12-Mari-Boya.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Mari+Boya'">
+            <div class="driver-number">12</div>
+            <div class="driver-content">
+                <div class="driver-team-small">PREMA Racing</div>
+                <div class="driver-name-small">Mari Boya</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/12-Mari-Boya.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Mari+Boya'">
+                <div class="popup-info">
+                    <div class="popup-team">PREMA RACING</div>
+                    <h4>Mari Boya</h4>
+                    <p><strong>Nationality:</strong> Spain<br><strong>Number:</strong> 12<br><strong>Team:</strong> PREMA Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/14-Martinius-Stenshorne.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Martinius+Stenshorne'">
+            <div class="driver-number">14</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Rodin Motorsport</div>
+                <div class="driver-name-small">Martinius Stenshorne</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/14-Martinius-Stenshorne.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Martinius+Stenshorne'">
+                <div class="popup-info">
+                    <div class="popup-team">RODIN MOTORSPORT</div>
+                    <h4>Martinius Stenshorne</h4>
+                    <p><strong>Nationality:</strong> Norway<br><strong>Number:</strong> 14<br><strong>Team:</strong> Rodin Motorsport</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/15-Alexander-Dunne.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Alexander+Dunne'">
+            <div class="driver-number">15</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Rodin Motorsport</div>
+                <div class="driver-name-small">Alexander Dunne</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/15-Alexander-Dunne.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Alexander+Dunne'">
+                <div class="popup-info">
+                    <div class="popup-team">RODIN MOTORSPORT</div>
+                    <h4>Alexander Dunne</h4>
+                    <p><strong>Nationality:</strong> Ireland<br><strong>Number:</strong> 15<br><strong>Team:</strong> Rodin Motorsport</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/16-Kush-Maini.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Kush+Maini'">
+            <div class="driver-number">16</div>
+            <div class="driver-content">
+                <div class="driver-team-small">ART Grand Prix</div>
+                <div class="driver-name-small">Kush Maini</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/16-Kush-Maini.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Kush+Maini'">
+                <div class="popup-info">
+                    <div class="popup-team">ART GRAND PRIX</div>
+                    <h4>Kush Maini</h4>
+                    <p><strong>Nationality:</strong> India<br><strong>Number:</strong> 16<br><strong>Team:</strong> ART Grand Prix</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/17-Tasanapol-Inthraphuvasak.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Tasanapol+Inthraphuvasak'">
+            <div class="driver-number">17</div>
+            <div class="driver-content">
+                <div class="driver-team-small">ART Grand Prix</div>
+                <div class="driver-name-small">Tasanapol Inthraphuvasak</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/17-Tasanapol-Inthraphuvasak.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Tasanapol+Inthraphuvasak'">
+                <div class="popup-info">
+                    <div class="popup-team">ART GRAND PRIX</div>
+                    <h4>Tasanapol Inthraphuvasak</h4>
+                    <p><strong>Nationality:</strong> Thailand<br><strong>Number:</strong> 17<br><strong>Team:</strong> ART Grand Prix</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 20 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/20-Emerson-Fittipaldi.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Emerson+Fittipaldi'">
+            <div class="driver-number">20</div>
+            <div class="driver-content">
+                <div class="driver-team-small">AIX Racing</div>
+                <div class="driver-name-small">Emerson Fittipaldi</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/20-Emerson-Fittipaldi.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Emerson+Fittipaldi'">
+                <div class="popup-info">
+                    <div class="popup-team">AIX RACING</div>
+                    <h4>Emerson Fittipaldi</h4>
+                    <p><strong>Nationality:</strong> Brazil<br><strong>Number:</strong> 20<br><strong>Team:</strong> AIX Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 21 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/21-Cian-Shields.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Cian+Shields'">
+            <div class="driver-number">21</div>
+            <div class="driver-content">
+                <div class="driver-team-small">AIX Racing</div>
+                <div class="driver-name-small">Cian Shields</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/21-Cian-Shields.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Cian+Shields'">
+                <div class="popup-info">
+                    <div class="popup-team">AIX RACING</div>
+                    <h4>Cian Shields</h4>
+                    <p><strong>Nationality:</strong> Great Britain<br><strong>Number:</strong> 21<br><strong>Team:</strong> AIX Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 22 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/22-Nico-Varrone.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Nico+Varrone'">
+            <div class="driver-number">22</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Van Amersfoort Racing</div>
+                <div class="driver-name-small">Nico Varrone</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/22-Nico-Varrone.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Nico+Varrone'">
+                <div class="popup-info">
+                    <div class="popup-team">VAN AMERSFOORT RACING</div>
+                    <h4>Nico Varrone</h4>
+                    <p><strong>Nationality:</strong> Argentina<br><strong>Number:</strong> 22<br><strong>Team:</strong> Van Amersfoort Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 23 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/23-Rafael-Villagomez.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Rafael+Villagomez'">
+            <div class="driver-number">23</div>
+            <div class="driver-content">
+                <div class="driver-team-small">Van Amersfoort Racing</div>
+                <div class="driver-name-small">Rafael Villagómez</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/23-Rafael-Villagomez.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Rafael+Villagomez'">
+                <div class="popup-info">
+                    <div class="popup-team">VAN AMERSFOORT RACING</div>
+                    <h4>Rafael Villagómez</h4>
+                    <p><strong>Nationality:</strong> Mexico<br><strong>Number:</strong> 23<br><strong>Team:</strong> Van Amersfoort Racing</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 24 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/24-Laurens-van-Hoepen.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=Laurens+van+Hoepen'">
+            <div class="driver-number">24</div>
+            <div class="driver-content">
+                <div class="driver-team-small">TRIDENT</div>
+                <div class="driver-name-small">Laurens van Hoepen</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/24-Laurens-van-Hoepen.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=Laurens+van+Hoepen'">
+                <div class="popup-info">
+                    <div class="popup-team">TRIDENT</div>
+                    <h4>Laurens van Hoepen</h4>
+                    <p><strong>Nationality:</strong> Netherlands<br><strong>Number:</strong> 24<br><strong>Team:</strong> TRIDENT</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 25 -->
+        <div class="driver-card">
+            <img class="driver-photo"
+                 src="https://www.fiaformula2.com/Content/Images/Drivers/2026/25-John-Bennett.png"
+                 onerror="this.src='https://via.placeholder.com/400x500?text=John+Bennett'">
+            <div class="driver-number">25</div>
+            <div class="driver-content">
+                <div class="driver-team-small">TRIDENT</div>
+                <div class="driver-name-small">John Bennett</div>
+            </div>
+            <div class="driver-popup">
+                <img src="https://www.fiaformula2.com/Content/Images/Drivers/2026/25-John-Bennett.png"
+                     onerror="this.src='https://via.placeholder.com/400x500?text=John+Bennett'">
+                <div class="popup-info">
+                    <div class="popup-team">TRIDENT</div>
+                    <h4>John Bennett</h4>
+                    <p><strong>Nationality:</strong> Great Britain<br><strong>Number:</strong> 25<br><strong>Team:</strong> TRIDENT</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </section>
-
-
-<!-- =========================
-     STANDINGS
-========================= -->
-
-<section class="section">
-
-<div class="section-header">
-
-<div class="section-title">Standings</div>
-
-<div class="section-number">04 / 2026</div>
-
-</div>
-
-
-<div class="standings-grid">
-
-
-<div class="standings-box">
-
-<div class="standings-heading">
-Top 5 Drivers
-</div>
-
-
-<div class="standing-row leader">
-
-<div class="position">01</div>
-
-<div>
-<div class="standing-name">
-Nikola Tsolov
-</div>
-
-<div class="standing-team">
-Campos Racing
-</div>
-</div>
-
-<div class="points">
-177
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">02</div>
-
-<div>
-<div class="standing-name">
-Rafael Câmara
-</div>
-
-<div class="standing-team">
-Invicta Racing
-</div>
-</div>
-
-<div class="points">
-170
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">03</div>
-
-<div>
-<div class="standing-name">
-Gabriele Minì
-</div>
-
-<div class="standing-team">
-MP Motorsport
-</div>
-</div>
-
-<div class="points">
-153
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">04</div>
-
-<div>
-<div class="standing-name">
-Alexander Dunne
-</div>
-
-<div class="standing-team">
-Rodin Motorsport
-</div>
-</div>
-
-<div class="points">
-139
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">05</div>
-
-<div>
-<div class="standing-name">
-Noel León
-</div>
-
-<div class="standing-team">
-Campos Racing
-</div>
-</div>
-
-<div class="points">
-119
-</div>
-
-</div>
-
-</div>
-
-
-<div class="standings-box">
-
-<div class="standings-heading">
-Top 5 Teams
-</div>
-
-
-<div class="standing-row leader">
-
-<div class="position">01</div>
-
-<div>
-<div class="standing-name">
-Campos Racing
-</div>
-</div>
-
-<div class="points">
-296
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">02</div>
-
-<div>
-<div class="standing-name">
-Invicta Racing
-</div>
-</div>
-
-<div class="points">
-260
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">03</div>
-
-<div>
-<div class="standing-name">
-Rodin Motorsport
-</div>
-</div>
-
-<div class="points">
-209
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">04</div>
-
-<div>
-<div class="standing-name">
-MP Motorsport
-</div>
-</div>
-
-<div class="points">
-190
-</div>
-
-</div>
-
-
-<div class="standing-row">
-
-<div class="position">05</div>
-
-<div>
-<div class="standing-name">
-ART Grand Prix
-</div>
-</div>
-
-<div class="points">
-159
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     DRIVERS
-========================= -->
-
-<section class="section">
-
-<div class="section-header">
-
-<div class="section-title">Drivers</div>
-
-<div class="section-number">05 / 22</div>
-
-</div>
-
-
-<div class="driver-grid" id="driverGrid">
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
-
-<div class="footer-inner">
-
-<div class="footer-logo">
-THE PADDOCK JOURNAL
-</div>
-
-<div class="footer-copy">
-Independent motorsport journalism.<br>
-F1 · F2 · F3 · F4 · F1 Academy · Women in Motorsport
-</div>
-
-</div>
-
+    <div class="footer-logo">THE PADDOCK JOURNAL</div>
+    <p>Independent motorsport editorial · 2026</p>
 </footer>
-
 
 <script>
 
-/* =========================
-   CALENDAR
-========================= */
+function toggleCalendar() {
 
-const calendar = [
+    const extras = document.querySelectorAll(".extra-round");
+    const button = document.getElementById("calendarButton");
 
-{
-round:1,
-name:"Melbourne",
-country:"Australia",
-date:"06–08 MAR"
-},
+    const hidden = extras[0].style.display === "" || extras[0].style.display === "none";
 
-{
-round:2,
-name:"Miami",
-country:"United States",
-date:"01–03 MAY"
-},
+    extras.forEach(row => {
+        row.style.display = hidden ? "grid" : "none";
+    });
 
-{
-round:3,
-name:"Montréal",
-country:"Canada",
-date:"22–24 MAY"
-},
-
-{
-round:4,
-name:"Monaco",
-country:"Monaco",
-date:"04–07 JUN"
-},
-
-{
-round:5,
-name:"Barcelona",
-country:"Spain",
-date:"12–14 JUN"
-},
-
-{
-round:6,
-name:"Spielberg",
-country:"Austria",
-date:"26–28 JUN"
-},
-
-{
-round:7,
-name:"Silverstone",
-country:"Great Britain",
-date:"03–05 JUL"
-},
-
-{
-round:8,
-name:"Spa-Francorchamps",
-country:"Belgium",
-date:"17–19 JUL"
-},
-
-{
-round:9,
-name:"Budapest",
-country:"Hungary",
-date:"24–26 JUL"
-},
-
-{
-round:10,
-name:"Monza",
-country:"Italy",
-date:"04–06 SEP"
-},
-
-{
-round:11,
-name:"Madrid",
-country:"Spain",
-date:"11–13 SEP"
-},
-
-{
-round:12,
-name:"Baku",
-country:"Azerbaijan",
-date:"24–26 SEP",
-next:true
-},
-
-{
-round:13,
-name:"Lusail",
-country:"Qatar",
-date:"27–29 NOV"
-},
-
-{
-round:14,
-name:"Yas Marina",
-country:"Abu Dhabi",
-date:"04–06 DEC"
-}
-
-];
-
-
-const calendarList =
-document.getElementById("calendarList");
-
-const calendarButton =
-document.getElementById("calendarButton");
-
-
-let showingAll = false;
-
-
-function renderCalendar(){
-
-const visible =
-showingAll
-? calendar
-: calendar.slice(0,5);
-
-
-calendarList.innerHTML =
-visible.map(race => `
-
-<div class="calendar-row ${race.next ? "calendar-next" : ""}">
-
-<div class="calendar-round">
-R${String(race.round).padStart(2,"0")}
-</div>
-
-<div class="calendar-name">
-${race.name}
-</div>
-
-<div class="calendar-country">
-${race.country}
-</div>
-
-<div class="calendar-date">
-${race.date}
-</div>
-
-</div>
-
-`).join("");
-
-
-calendarButton.textContent =
-showingAll ? "SHOW LESS" : "MORE";
-
+    button.textContent = hidden ? "SHOW LESS" : "MORE";
 }
 
 
-calendarButton.addEventListener("click",()=>{
+/* COUNTDOWN */
 
-showingAll = !showingAll;
+const raceDate = new Date("2026-09-26T11:00:00+04:00").getTime();
 
-renderCalendar();
+function updateCountdown() {
 
-});
+    const now = new Date().getTime();
+    const difference = raceDate - now;
 
+    if (difference <= 0) {
+        document.getElementById("countdown").textContent = "RACE WEEKEND";
+        return;
+    }
 
-renderCalendar();
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+        (difference % (1000 * 60 * 60)) /
+        (1000 * 60)
+    );
 
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-const raceDate =
-new Date("2026-09-25T04:15:00+04:00");
-
-
-function updateCountdown(){
-
-const now = new Date();
-
-const difference =
-raceDate - now;
-
-
-if(difference <= 0){
-
-document.getElementById("countdown").textContent =
-"ROUND 12 IS UNDERWAY";
-
-return;
-
+    document.getElementById("countdown").textContent =
+        `${days}D ${hours}H ${minutes}M`;
 }
-
-
-const days =
-Math.floor(difference / 86400000);
-
-const hours =
-Math.floor(
-(difference % 86400000) / 3600000
-);
-
-const minutes =
-Math.floor(
-(difference % 3600000) / 60000
-);
-
-
-document.getElementById("countdown").textContent =
-`${days}D ${hours}H ${minutes}M`;
-
-}
-
 
 updateCountdown();
+setInterval(updateCountdown, 60000);
 
-setInterval(updateCountdown,60000);
 
+/* HIDE CALENDAR EXTRAS ON LOAD */
 
-/* =========================
-   DRIVERS
-========================= */
-
-const drivers = [
-
-{
-number:1,
-name:"Rafael Câmara",
-team:"Invicta Racing",
-dob:"05/05/2005",
-nationality:"Brazil",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Rafael%20Camara.jpg"
-},
-
-{
-number:2,
-name:"Joshua Dürksen",
-team:"Invicta Racing",
-dob:"27/10/2003",
-nationality:"Paraguay",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Joshua%20Duerksen.jpg"
-},
-
-{
-number:3,
-name:"Ritomo Miyata",
-team:"Hitech",
-dob:"10/08/1999",
-nationality:"Japan",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Ritomo%20Miyata.jpg"
-},
-
-{
-number:4,
-name:"Colton Herta",
-team:"Hitech",
-dob:"30/03/2000",
-nationality:"United States",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Colton%20Herta.jpg"
-},
-
-{
-number:5,
-name:"Noel León",
-team:"Campos Racing",
-dob:"21/12/2004",
-nationality:"Mexico",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Noel%20Leon%20racing%20driver.jpg"
-},
-
-{
-number:6,
-name:"Nikola Tsolov",
-team:"Campos Racing",
-dob:"21/12/2006",
-nationality:"Bulgaria",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Nikola%20Tsolov.jpg"
-},
-
-{
-number:7,
-name:"Dino Beganovic",
-team:"DAMS Lucas Oil",
-dob:"19/01/2004",
-nationality:"Sweden",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Dino%20Beganovic.jpg"
-},
-
-{
-number:8,
-name:"Roman Bilinski",
-team:"DAMS Lucas Oil",
-dob:"04/03/2004",
-nationality:"Poland",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Roman%20Bilinski.jpg"
-},
-
-{
-number:9,
-name:"Gabriele Minì",
-team:"MP Motorsport",
-dob:"20/03/2005",
-nationality:"Italy",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Gabriele%20Mini.jpg"
-},
-
-{
-number:10,
-name:"Oliver Goethe",
-team:"MP Motorsport",
-dob:"14/10/2004",
-nationality:"Germany",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Oliver%20Goethe.jpg"
-},
-
-{
-number:11,
-name:"Sebastian Montoya",
-team:"PREMA Racing",
-dob:"11/04/2005",
-nationality:"Colombia",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Sebastian%20Montoya.jpg"
-},
-
-{
-number:12,
-name:"Mari Boya",
-team:"PREMA Racing",
-dob:"13/04/2004",
-nationality:"Spain",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Mari%20Boya.jpg"
-},
-
-{
-number:14,
-name:"Martinius Stenshorne",
-team:"Rodin Motorsport",
-dob:"02/02/2006",
-nationality:"Norway",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Martinius%20Stenshorne.jpg"
-},
-
-{
-number:15,
-name:"Alexander Dunne",
-team:"Rodin Motorsport",
-dob:"11/11/2005",
-nationality:"Ireland",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Alexander%20Dunne.jpg"
-},
-
-{
-number:16,
-name:"Kush Maini",
-team:"ART Grand Prix",
-dob:"22/09/2000",
-nationality:"India",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Kush%20Maini.jpg"
-},
-
-{
-number:17,
-name:"Tasanapol Inthraphuvasak",
-team:"ART Grand Prix",
-dob:"—",
-nationality:"Thailand",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Tasanapol%20Inthraphuvasak.jpg"
-},
-
-{
-number:20,
-name:"Emerson Fittipaldi",
-team:"AIX Racing",
-dob:"06/03/2007",
-nationality:"Brazil",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Emerson%20Fittipaldi%20Jr.jpg"
-},
-
-{
-number:21,
-name:"Cian Shields",
-team:"AIX Racing",
-dob:"07/03/2005",
-nationality:"Great Britain",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Cian%20Shields.jpg"
-},
-
-{
-number:22,
-name:"Nicolás Varrone",
-team:"Van Amersfoort Racing",
-dob:"06/12/2000",
-nationality:"Argentina",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Nicolas%20Varrone.jpg"
-},
-
-{
-number:23,
-name:"Rafael Villagómez",
-team:"Van Amersfoort Racing",
-dob:"10/11/2001",
-nationality:"Mexico",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Rafael%20Villagomez.jpg"
-},
-
-{
-number:24,
-name:"Laurens van Hoepen",
-team:"TRIDENT",
-dob:"06/05/2005",
-nationality:"Netherlands",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/Laurens%20van%20Hoepen.jpg"
-},
-
-{
-number:25,
-name:"John Bennett",
-team:"TRIDENT",
-dob:"15/09/2003",
-nationality:"Great Britain",
-photo:"https://commons.wikimedia.org/wiki/Special:FilePath/John%20Bennett.jpg"
-}
-
-];
-
-
-const driverGrid =
-document.getElementById("driverGrid");
-
-
-function initials(name){
-
-return name
-.split(" ")
-.slice(0,2)
-.map(word => word[0])
-.join("");
-
-}
-
-
-function driverPhotoHTML(driver, popup=false){
-
-return `
-
-<img
-src="${driver.photo}"
-alt="${driver.name}"
-onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
->
-
-<div
-class="${popup ? "driver-initials" : "driver-initials"}"
-style="display:none;width:100%;height:100%;align-items:center;justify-content:center;"
->
-${initials(driver.name)}
-</div>
-
-`;
-
-}
-
-
-driverGrid.innerHTML =
-drivers.map(driver => `
-
-<div class="driver-card">
-
-<div class="driver-card-photo">
-
-${driverPhotoHTML(driver)}
-
-</div>
-
-
-<div class="driver-number">
-#${driver.number}
-</div>
-
-
-<div class="driver-info">
-
-<div class="driver-team">
-${driver.team}
-</div>
-
-<div class="driver-name">
-${driver.name}
-</div>
-
-</div>
-
-
-<div class="driver-popup">
-
-<div class="popup-photo">
-
-${driverPhotoHTML(driver,true)}
-
-</div>
-
-
-<div class="popup-info">
-
-<div class="popup-team">
-${driver.team}
-</div>
-
-<div class="popup-name">
-${driver.name}
-</div>
-
-
-<div class="popup-detail">
-
-<span>Date of Birth</span>
-
-<strong>
-${driver.dob}
-</strong>
-
-</div>
-
-
-<div class="popup-detail">
-
-<span>Nationality</span>
-
-<strong>
-${driver.nationality}
-</strong>
-
-</div>
-
-
-<div class="popup-detail">
-
-<span>Number</span>
-
-<strong>
-#${driver.number}
-</strong>
-
-</div>
-
-
-<div class="popup-detail">
-
-<span>Team</span>
-
-<strong>
-${driver.team}
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-`).join("");
+document.querySelectorAll(".extra-round").forEach(row => {
+    row.style.display = "none";
+});
 
 </script>
 
