@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,11 +9,20 @@
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 :root {
     --pink: #F4A6C7;
@@ -23,6 +33,11 @@
     --border: rgba(255,255,255,0.12);
     --white: #fff;
 }
+
+
+/* =========================================================
+   BODY
+========================================================= */
 
 html {
     scroll-behavior: smooth;
@@ -35,20 +50,26 @@ body {
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header {
     height: 78px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 7%;
+
     border-bottom: 1px solid var(--border);
+
     position: sticky;
     top: 0;
+
     z-index: 1000;
+
     background: rgba(5,5,5,0.92);
     backdrop-filter: blur(12px);
 }
@@ -67,9 +88,11 @@ nav {
 nav a {
     color: var(--light-grey);
     text-decoration: none;
+
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+
     transition: 0.3s ease;
 }
 
@@ -79,9 +102,9 @@ nav a.active {
 }
 
 
-/* =========================
+/* =========================================================
    INTRO
-========================= */
+========================================================= */
 
 .intro {
     padding: 105px 7% 70px;
@@ -89,6 +112,7 @@ nav a.active {
 
 .intro span {
     color: var(--pink);
+
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -96,23 +120,29 @@ nav a.active {
 
 .intro h1 {
     font-size: clamp(55px, 8vw, 110px);
+
     line-height: 0.9;
+
     letter-spacing: -6px;
+
     margin-top: 18px;
 }
 
 .intro p {
     max-width: 620px;
+
     margin-top: 28px;
+
     color: var(--grey);
+
     font-size: 14px;
     line-height: 1.7;
 }
 
 
-/* =========================
-   GENERAL
-========================= */
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
 
 section {
     padding: 70px 7%;
@@ -122,57 +152,80 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+
     border-bottom: 1px solid var(--border);
+
     padding-bottom: 18px;
     margin-bottom: 25px;
 }
 
 .section-title h2 {
     font-size: 11px;
+
     letter-spacing: 2.5px;
+
     text-transform: uppercase;
 }
 
 .section-title span {
     color: var(--grey);
+
     font-size: 10px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
 }
 
 
-/* =========================
+/* =========================================================
    NEWS
-========================= */
+========================================================= */
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 0.55fr;
+
+    grid-template-columns:
+        repeat(4, 1fr)
+        0.55fr;
+
     gap: 12px;
 }
 
 .news-card {
     min-height: 300px;
+
     position: relative;
+
     overflow: hidden;
+
     background:
         linear-gradient(
             to top,
             rgba(0,0,0,0.95),
             rgba(0,0,0,0.1)
         ),
-        linear-gradient(135deg, #191919, #080808);
+        linear-gradient(
+            135deg,
+            #191919,
+            #080808
+        );
+
     border: 1px solid var(--border);
+
     transition: 0.35s ease;
 }
 
 .news-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(244,166,199,0.45);
+
+    border-color:
+        rgba(244,166,199,0.45);
 }
 
 .news-content {
     position: absolute;
+
     left: 20px;
     right: 20px;
     bottom: 20px;
@@ -180,92 +233,130 @@ section {
 
 .news-tag {
     color: var(--pink);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
+
     margin-bottom: 10px;
 }
 
 .news-card h3 {
     font-size: 18px;
+
     line-height: 1.15;
 }
 
 .news-card p {
     color: var(--light-grey);
+
     font-size: 11px;
+
     line-height: 1.5;
+
     margin-top: 10px;
 }
 
 .see-more {
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     text-align: center;
+
     text-decoration: none;
+
     color: var(--white);
+
     border: 1px solid var(--border);
+
     font-size: 10px;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
+
     transition: 0.3s ease;
 }
 
 .see-more:hover {
     background: var(--pink);
+
     color: var(--black);
 }
 
 
-/* =========================
+/* =========================================================
    NEXT ROUND
-========================= */
+========================================================= */
 
 .next-round {
     display: grid;
-    grid-template-columns: 1.25fr 1fr;
+
+    grid-template-columns:
+        1.25fr 1fr;
+
     min-height: 460px;
+
     border: 1px solid var(--border);
 }
 
 .round-main {
     padding: 45px;
+
     background: #090909;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
 }
 
 .round-label {
     color: var(--pink);
+
     font-size: 10px;
+
     letter-spacing: 2px;
+
     text-transform: uppercase;
 }
 
 .round-main h3 {
     font-size: clamp(42px, 5vw, 70px);
+
     letter-spacing: -3px;
+
     margin-top: 15px;
 }
 
 .round-main .date {
     color: var(--grey);
+
     font-size: 12px;
+
     margin-top: 12px;
 }
 
 .round-side {
     padding: 45px;
+
     border-left: 1px solid var(--border);
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 }
 
 .round-stat {
     padding: 20px 0;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -275,10 +366,15 @@ section {
 
 .round-stat span {
     display: block;
+
     color: var(--grey);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
+
     margin-bottom: 8px;
 }
 
@@ -287,9 +383,9 @@ section {
 }
 
 
-/* =========================
+/* =========================================================
    CALENDAR
-========================= */
+========================================================= */
 
 .calendar {
     border: 1px solid var(--border);
@@ -297,10 +393,19 @@ section {
 
 .calendar-row {
     display: grid;
-    grid-template-columns: 80px 1fr 1fr 130px;
+
+    grid-template-columns:
+        80px
+        1fr
+        1fr
+        130px;
+
     min-height: 70px;
+
     align-items: center;
+
     border-bottom: 1px solid var(--border);
+
     padding: 0 25px;
 }
 
@@ -310,30 +415,39 @@ section {
 
 .calendar-row.header {
     color: var(--grey);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
 }
 
 .calendar-round {
     color: var(--pink);
+
     font-size: 11px;
 }
 
 .calendar-name {
     font-size: 13px;
+
     font-weight: 600;
 }
 
 .calendar-date {
     color: var(--grey);
+
     font-size: 11px;
 }
 
 .calendar-status {
     text-align: right;
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 }
 
@@ -346,13 +460,16 @@ section {
 }
 
 
-/* =========================
+/* =========================================================
    CHAMPIONSHIP
-========================= */
+========================================================= */
 
 .championship {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap: 25px;
 }
 
@@ -362,28 +479,42 @@ section {
 
 .standings-header {
     padding: 22px 25px;
+
     border-bottom: 1px solid var(--border);
+
     display: flex;
+
     justify-content: space-between;
 }
 
 .standings-header h3 {
     font-size: 11px;
+
     text-transform: uppercase;
+
     letter-spacing: 2px;
 }
 
 .standings-header span {
     color: var(--grey);
+
     font-size: 9px;
 }
 
 .standing-row {
     display: grid;
-    grid-template-columns: 45px 1fr 70px;
+
+    grid-template-columns:
+        45px
+        1fr
+        70px;
+
     align-items: center;
+
     min-height: 65px;
+
     padding: 0 25px;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -393,6 +524,7 @@ section {
 
 .position {
     color: var(--grey);
+
     font-size: 10px;
 }
 
@@ -403,13 +535,17 @@ section {
 
 .driver-team {
     color: var(--grey);
+
     font-size: 9px;
+
     margin-top: 4px;
 }
 
 .points {
     text-align: right;
+
     font-size: 12px;
+
     font-weight: 700;
 }
 
@@ -418,164 +554,164 @@ section {
 }
 
 
-/* =========================
-   DRIVERS
-========================= */
+/* =========================================================
+   DRIVERS GRID
+========================================================= */
 
 .drivers-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
     gap: 12px;
 }
 
+
+/* =========================================================
+   DRIVER CARD
+========================================================= */
+
 .driver-card {
     height: 175px;
-    border: 1px solid var(--border);
-    background: var(--dark);
+
     position: relative;
+
+    background: var(--dark);
+
+    border: 1px solid var(--border);
+
     overflow: visible;
+
     transition: 0.35s ease;
 }
 
 .driver-card:hover {
-    border-color: rgba(244,166,199,0.5);
     transform: translateY(-4px);
-    z-index: 30;
+
+    border-color:
+        rgba(244,166,199,0.5);
+
+    z-index: 50;
 }
+
+
+/* =========================================================
+   DRIVER NUMBER
+========================================================= */
 
 .driver-number {
     position: absolute;
+
     top: 15px;
     right: 15px;
-    color: rgba(255,255,255,0.25);
+
+    color:
+        rgba(255,255,255,0.25);
+
     font-size: 27px;
+
     font-weight: 700;
 }
 
+
+/* =========================================================
+   CARD DECORATION
+========================================================= */
+
 .driver-card::before {
     content: "";
+
     position: absolute;
+
     width: 90px;
     height: 90px;
+
     border-radius: 50%;
+
     right: -30px;
     bottom: -35px;
-    background: rgba(244,166,199,0.08);
+
+    background:
+        rgba(244,166,199,0.08);
+
     pointer-events: none;
 }
 
+
+/* =========================================================
+   DRIVER INFO
+========================================================= */
+
 .driver-info {
     position: absolute;
+
     left: 17px;
     bottom: 17px;
 }
 
 .driver-info .name {
     font-size: 13px;
+
     font-weight: 700;
 }
 
 .driver-info .team {
     color: var(--grey);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
+
     margin-top: 5px;
 }
 
 .driver-info .academy {
     color: var(--pink);
+
     font-size: 8px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
+
     margin-top: 7px;
 }
 
+
 /* =========================================================
-   DRIVER PHOTOS
-========================================================= */
-
-const driverPhotos = {
-
-    nina:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812732/FA/Global/drivers/2026/Nina_Gademan_Cutout.png",
-
-    megan:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812729/FA/Global/drivers/2026/Megan_Bruce_Cutout.png",
-
-    emma:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772811296/FA/Global/drivers/2026/Emma_Felbermayr_Cutout.png",
-
-    mathilda:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812729/FA/Global/drivers/2026/Mathilda_Paatz_Cutout.png",
-
-    payton:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812732/FA/Global/drivers/2026/Payton_Westcott_Cutout.png",
-
-    alba:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812719/FA/Global/drivers/2026/Alba_Larsen_Cutout.png",
-
-    lisa:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812727/FA/Global/drivers/2026/Lisa_Billard_Cutout.png",
-
-    rafaela:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812736/FA/Global/drivers/2026/Rafaela_Ferreira_Cutout.png",
-
-    natalia:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812730/FA/Global/drivers/2026/Natalia_Granada_Cutout.png",
-
-    ella:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812721/FA/Global/drivers/2026/Ella_Lloyd_Cutout.png",
-
-    alisha:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812720/FA/Global/drivers/2026/Alisha_Palmowski_Cutout.png",
-
-    stevens:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812722/FA/Global/drivers/2026/Ella_Stevens_Cutout.png",
-
-    esmee:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812724/FA/Global/drivers/2026/Esmee_Kosterman_Cutout.png",
-
-    alexia:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/f_auto/q_auto/v1789565734/FA/Global/drivers/2026/Alexia_Danielsson_Cutout.png",
-
-    ava:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812721/FA/Global/drivers/2026/Ava_Dobson_Cutout.png",
-
-    rachel:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812734/FA/Global/drivers/2026/Rachel_Robertson_Cutout.png",
-
-    kaylee:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812727/FA/Global/drivers/2026/Kaylee_Countryman_Cutout.png",
-
-    jacquet:
-        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812726/FA/Global/drivers/2026/Jade_Jacquet_Cutout.png",
-
-};
-
-
-/* =========================
    DRIVER POPUP
-========================= */
+========================================================= */
 
 .driver-popup {
     position: absolute;
+
     width: 520px;
     height: 350px;
 
     left: 50%;
+
     bottom: calc(100% + 15px);
 
-    transform: translateX(-50%) translateY(12px);
+    transform:
+        translateX(-50%)
+        translateY(12px);
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
 
     background: #0b0b0b;
+
     border: 1px solid var(--border);
 
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 
     transition:
@@ -584,32 +720,42 @@ const driverPhotos = {
         visibility 0.25s ease;
 
     z-index: 100;
+
     overflow: hidden;
 }
 
 .driver-card:hover .driver-popup {
     opacity: 1;
+
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+
+    transform:
+        translateX(-50%)
+        translateY(0);
 }
 
+
+/* =========================================================
+   DRIVER POPUP IMAGE
+========================================================= */
+
 .driver-popup-image {
+    position: relative;
+
     width: 100%;
     height: 100%;
+
     background:
         linear-gradient(
             to top,
-            rgba(5,5,5,0.55),
+            rgba(5,5,5,0.65),
             rgba(5,5,5,0.05)
         ),
-        linear-gradient(
-            135deg,
-            #242424,
-            #0a0a0a
-        );
+        #171717;
 
     display: flex;
-    align-items: center;
+
+    align-items: flex-end;
     justify-content: center;
 
     overflow: hidden;
@@ -618,110 +764,160 @@ const driverPhotos = {
 .driver-popup-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
+    object-fit: contain;
+
+    object-position: center bottom;
+
+    transform:
+        scale(1.05);
+
+    transition:
+        transform 0.4s ease;
 }
 
-.driver-popup-placeholder {
-    color: rgba(255,255,255,0.25);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.driver-card:hover
+.driver-popup-image img {
+    transform:
+        scale(1.09);
 }
+
+
+/* =========================================================
+   POPUP INFO
+========================================================= */
 
 .driver-popup-info {
     padding: 30px;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-end;
 }
 
 .driver-popup-number {
     color: var(--pink);
+
     font-size: 10px;
+
     letter-spacing: 2px;
+
     margin-bottom: 12px;
 }
 
 .driver-popup-info h3 {
     font-size: 27px;
+
     line-height: 1;
+
     letter-spacing: -1px;
 }
 
 .driver-popup-team {
     color: var(--light-grey);
+
     font-size: 11px;
+
     margin-top: 12px;
 }
 
 .driver-popup-academy {
     color: var(--pink);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
+
     margin-top: 9px;
 }
 
 .driver-popup-status {
     color: var(--grey);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
+
     margin-top: 20px;
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer {
     padding: 70px 7% 35px;
+
     border-top: 1px solid var(--border);
+
     margin-top: 60px;
 }
 
 .footer-top {
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
 }
 
 .footer-logo {
     font-size: 16px;
+
     font-weight: 700;
+
     letter-spacing: 3px;
 }
 
 .footer-text {
     max-width: 350px;
+
     color: var(--grey);
+
     font-size: 11px;
+
     line-height: 1.6;
+
     text-align: right;
 }
 
 .footer-bottom {
     margin-top: 60px;
+
     padding-top: 20px;
+
     border-top: 1px solid var(--border);
+
     display: flex;
+
     justify-content: space-between;
+
     color: var(--grey);
+
     font-size: 9px;
+
     text-transform: uppercase;
+
     letter-spacing: 1.5px;
 }
 
 
-/* =========================
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media (max-width: 1150px) {
 
     .news-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .see-more {
@@ -729,10 +925,12 @@ footer {
     }
 
     .drivers-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, 1fr);
     }
 
 }
+
 
 @media (max-width: 850px) {
 
@@ -750,7 +948,9 @@ footer {
 
     .round-side {
         border-left: none;
-        border-top: 1px solid var(--border);
+
+        border-top:
+            1px solid var(--border);
     }
 
     .championship {
@@ -758,7 +958,10 @@ footer {
     }
 
     .calendar-row {
-        grid-template-columns: 60px 1fr 1fr;
+        grid-template-columns:
+            60px
+            1fr
+            1fr;
     }
 
     .calendar-row > :last-child {
@@ -766,7 +969,8 @@ footer {
     }
 
     .drivers-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
     .driver-popup {
@@ -774,6 +978,7 @@ footer {
     }
 
 }
+
 
 @media (max-width: 600px) {
 
@@ -794,11 +999,13 @@ footer {
     }
 
     .intro {
-        padding: 80px 5% 55px;
+        padding:
+            80px 5% 55px;
     }
 
     section {
-        padding: 55px 5%;
+        padding:
+            55px 5%;
     }
 
     .news-grid {
@@ -815,8 +1022,13 @@ footer {
     }
 
     .calendar-row {
-        grid-template-columns: 50px 1fr;
-        padding: 15px 18px;
+        grid-template-columns:
+            50px
+            1fr;
+
+        padding:
+            15px 18px;
+
         row-gap: 7px;
     }
 
@@ -825,31 +1037,41 @@ footer {
     }
 
     .drivers-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .driver-popup {
         position: fixed;
 
-        width: calc(100vw - 30px);
+        width:
+            calc(100vw - 30px);
+
         max-width: 500px;
+
         height: 330px;
 
         left: 50%;
+
         top: 50%;
+
         bottom: auto;
 
-        transform: translate(-50%, -45%);
+        transform:
+            translate(-50%, -45%);
 
         z-index: 2000;
     }
 
-    .driver-card:hover .driver-popup {
-        transform: translate(-50%, -50%);
+    .driver-card:hover
+    .driver-popup {
+        transform:
+            translate(-50%, -50%);
     }
 
     .footer-top {
         flex-direction: column;
+
         gap: 25px;
     }
 
@@ -859,21 +1081,23 @@ footer {
 
     .footer-bottom {
         flex-direction: column;
+
         gap: 12px;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      HEADER
-========================= -->
+========================================================= -->
 
 <header>
 
@@ -882,26 +1106,54 @@ footer {
     </div>
 
     <nav>
-        <a href="f1.html">F1</a>
-        <a href="f2.html">F2</a>
-        <a href="f3.html">F3</a>
-        <a href="f4.html">F4</a>
-        <a href="f1-academy.html" class="active">F1 Academy</a>
-        <a href="women.html">Women</a>
-        <a href="live.html">Live</a>
-        <a href="about.html">About Me</a>
+
+        <a href="f1.html">
+            F1
+        </a>
+
+        <a href="f2.html">
+            F2
+        </a>
+
+        <a href="f3.html">
+            F3
+        </a>
+
+        <a href="f4.html">
+            F4
+        </a>
+
+        <a href="f1-academy.html"
+           class="active">
+            F1 Academy
+        </a>
+
+        <a href="women.html">
+            Women
+        </a>
+
+        <a href="live.html">
+            Live
+        </a>
+
+        <a href="about.html">
+            About Me
+        </a>
+
     </nav>
 
 </header>
 
 
-<!-- =========================
+<!-- =========================================================
      INTRO
-========================= -->
+========================================================= -->
 
 <div class="intro">
 
-    <span>F1 ACADEMY™ · 2026 SEASON</span>
+    <span>
+        F1 ACADEMY™ · 2026 SEASON
+    </span>
 
     <h1>
         F1<br>
@@ -909,25 +1161,34 @@ footer {
     </h1>
 
     <p>
-        The all-female single-seater championship created to develop
-        the next generation of women in motorsport.
+        The all-female single-seater championship created
+        to develop the next generation of women in motorsport.
     </p>
 
 </div>
 
 
-<!-- =========================
+<!-- =========================================================
      NEWS
-========================= -->
+========================================================= -->
 
 <section>
 
     <div class="section-title">
-        <h2>Latest News</h2>
-        <span>F1 Academy</span>
+
+        <h2>
+            Latest News
+        </h2>
+
+        <span>
+            F1 Academy
+        </span>
+
     </div>
 
+
     <div class="news-grid">
+
 
         <article class="news-card">
 
@@ -938,11 +1199,12 @@ footer {
                 </div>
 
                 <h3>
-                    Palmowski leads the championship after Zandvoort
+                    Palmowski leads the championship
+                    after Zandvoort
                 </h3>
 
                 <p>
-                    Alisha Palmowski heads the standings with 136 points
+                    Alisha Palmowski heads the standings
                     after four completed rounds.
                 </p>
 
@@ -960,12 +1222,13 @@ footer {
                 </div>
 
                 <h3>
-                    Palmowski takes another Feature Race victory
+                    Palmowski takes another
+                    Feature Race victory
                 </h3>
 
                 <p>
-                    The Campos Racing driver continued her championship
-                    campaign with another Feature Race win.
+                    The Campos Racing driver continued
+                    her championship campaign with another win.
                 </p>
 
             </div>
@@ -982,12 +1245,13 @@ footer {
                 </div>
 
                 <h3>
-                    Westcott claims maiden F1 Academy victory
+                    Westcott claims maiden
+                    F1 Academy victory
                 </h3>
 
                 <p>
-                    Payton Westcott took the Reverse Grid Race win
-                    at Zandvoort for her first victory in the series.
+                    Payton Westcott took the Reverse Grid
+                    Race win at Zandvoort.
                 </p>
 
             </div>
@@ -1008,8 +1272,8 @@ footer {
                 </h3>
 
                 <p>
-                    The championship now heads to the Circuit of the
-                    Americas for Round 5.
+                    The championship now heads to the
+                    Circuit of the Americas for Round 5.
                 </p>
 
             </div>
@@ -1017,7 +1281,10 @@ footer {
         </article>
 
 
-        <a href="news.html" class="see-more">
+        <a
+            href="news.html"
+            class="see-more"
+        >
             See More
         </a>
 
@@ -1026,15 +1293,17 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      NEXT ROUND
-========================= -->
+========================================================= -->
 
 <section>
 
     <div class="section-title">
 
-        <h2>Next Round</h2>
+        <h2>
+            Next Round
+        </h2>
 
         <span>
             Round 5 · 2026
@@ -1134,15 +1403,17 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      CALENDAR
-========================= -->
+========================================================= -->
 
 <section>
 
     <div class="section-title">
 
-        <h2>Calendar</h2>
+        <h2>
+            Calendar
+        </h2>
 
         <span>
             2026
@@ -1300,15 +1571,14 @@ footer {
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      CHAMPIONSHIP
-========================= -->
+========================================================= -->
 
 <section>
 
@@ -1328,7 +1598,9 @@ footer {
     <div class="championship">
 
 
-        <!-- DRIVERS -->
+        <!-- =========================
+             DRIVER STANDINGS
+        ========================= -->
 
         <div class="standings-box">
 
@@ -1472,7 +1744,9 @@ footer {
         </div>
 
 
-        <!-- TEAMS -->
+        <!-- =========================
+             TEAM STANDINGS
+        ========================= -->
 
         <div class="standings-box">
 
@@ -1600,9 +1874,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      DRIVERS
-========================= -->
+========================================================= -->
 
 <section>
 
@@ -1622,17 +1896,23 @@ footer {
     <div class="drivers-grid">
 
 
-        <!-- NINA GADEMAN -->
+        <!-- =================================================
+             NINA GADEMAN
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        "https://res.cloudinary.com/prod-f2f3/image/upload/v1772812732/FA/Global/drivers/2026/Nina_Gademan_Cutout.png"
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812732/FA/Global/drivers/2026/Nina_Gademan_Cutout.png"
+                        alt="Nina Gademan"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1684,17 +1964,23 @@ footer {
         </div>
 
 
-        <!-- MEGAN BRUCE -->
+        <!-- =================================================
+             MEGAN BRUCE
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812729/FA/Global/drivers/2026/Megan_Bruce_Cutout.png"
+                        alt="Megan Bruce"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1746,17 +2032,23 @@ footer {
         </div>
 
 
-        <!-- EMMA FELBERMAYR -->
+        <!-- =================================================
+             EMMA FELBERMAYR
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772811296/FA/Global/drivers/2026/Emma_Felbermayr_Cutout.png"
+                        alt="Emma Felbermayr"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1808,17 +2100,23 @@ footer {
         </div>
 
 
-        <!-- MATHILDA PAATZ -->
+        <!-- =================================================
+             MATHILDA PAATZ
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812729/FA/Global/drivers/2026/Mathilda_Paatz_Cutout.png"
+                        alt="Mathilda Paatz"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1870,17 +2168,23 @@ footer {
         </div>
 
 
-        <!-- PAYTON WESTCOTT -->
+        <!-- =================================================
+             PAYTON WESTCOTT
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812732/FA/Global/drivers/2026/Payton_Westcott_Cutout.png"
+                        alt="Payton Westcott"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1932,17 +2236,23 @@ footer {
         </div>
 
 
-        <!-- ALBA LARSEN -->
+        <!-- =================================================
+             ALBA LARSEN
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812719/FA/Global/drivers/2026/Alba_Larsen_Cutout.png"
+                        alt="Alba Larsen"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -1994,17 +2304,23 @@ footer {
         </div>
 
 
-        <!-- LISA BILLARD -->
+        <!-- =================================================
+             LISA BILLARD
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812727/FA/Global/drivers/2026/Lisa_Billard_Cutout.png"
+                        alt="Lisa Billard"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2056,17 +2372,23 @@ footer {
         </div>
 
 
-        <!-- RAFAELA FERREIRA -->
+        <!-- =================================================
+             RAFAELA FERREIRA
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812736/FA/Global/drivers/2026/Rafaela_Ferreira_Cutout.png"
+                        alt="Rafaela Ferreira"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2118,17 +2440,23 @@ footer {
         </div>
 
 
-        <!-- NATALIA GRANADA -->
+        <!-- =================================================
+             NATALIA GRANADA
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812730/FA/Global/drivers/2026/Natalia_Granada_Cutout.png"
+                        alt="Natalia Granada"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2180,17 +2508,23 @@ footer {
         </div>
 
 
-        <!-- ELLA LLOYD -->
+        <!-- =================================================
+             ELLA LLOYD
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812721/FA/Global/drivers/2026/Ella_Lloyd_Cutout.png"
+                        alt="Ella Lloyd"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2242,17 +2576,23 @@ footer {
         </div>
 
 
-        <!-- ALISHA PALMOWSKI -->
+        <!-- =================================================
+             ALISHA PALMOWSKI
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812720/FA/Global/drivers/2026/Alisha_Palmowski_Cutout.png"
+                        alt="Alisha Palmowski"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2304,17 +2644,23 @@ footer {
         </div>
 
 
-        <!-- ELLA STEVENS -->
+        <!-- =================================================
+             ELLA STEVENS
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812722/FA/Global/drivers/2026/Ella_Stevens_Cutout.png"
+                        alt="Ella Stevens"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2331,7 +2677,7 @@ footer {
                     </div>
 
                     <div class="driver-popup-academy">
-                        McLaren
+                        McLaren Oxagon
                     </div>
 
                     <div class="driver-popup-status">
@@ -2358,7 +2704,7 @@ footer {
                 </div>
 
                 <div class="academy">
-                    McLaren
+                    McLaren Oxagon
                 </div>
 
             </div>
@@ -2366,17 +2712,23 @@ footer {
         </div>
 
 
-        <!-- ESMEE KOSTERMAN -->
+        <!-- =================================================
+             ESMEE KOSTERMAN
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812724/FA/Global/drivers/2026/Esmee_Kosterman_Cutout.png"
+                        alt="Esmee Kosterman"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2428,22 +2780,28 @@ footer {
         </div>
 
 
-        <!-- ALEXIA DANIELSSON -->
+        <!-- =================================================
+             ALEXIA DANIELSSON
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/f_auto/q_auto/v1789565734/FA/Global/drivers/2026/Alexia_Danielsson_Cutout.png"
+                        alt="Alexia Danielsson"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
                     <div class="driver-popup-number">
-                        #45
+                        WILD CARD
                     </div>
 
                     <h3>
@@ -2451,15 +2809,15 @@ footer {
                     </h3>
 
                     <div class="driver-popup-team">
-                        Hitech
+                        Wild Card
                     </div>
 
                     <div class="driver-popup-academy">
-                        TeamViewer
+                        F1 Academy
                     </div>
 
                     <div class="driver-popup-status">
-                        Wild Card
+                        Wild Card Entry
                     </div>
 
                 </div>
@@ -2468,7 +2826,7 @@ footer {
 
 
             <div class="driver-number">
-                45
+                WC
             </div>
 
             <div class="driver-info">
@@ -2478,11 +2836,11 @@ footer {
                 </div>
 
                 <div class="team">
-                    Hitech
+                    Wild Card
                 </div>
 
                 <div class="academy">
-                    Wild Card
+                    F1 Academy
                 </div>
 
             </div>
@@ -2490,17 +2848,23 @@ footer {
         </div>
 
 
-        <!-- AVA DOBSON -->
+        <!-- =================================================
+             AVA DOBSON
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812721/FA/Global/drivers/2026/Ava_Dobson_Cutout.png"
+                        alt="Ava Dobson"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2552,17 +2916,23 @@ footer {
         </div>
 
 
-        <!-- RACHEL ROBERTSON -->
+        <!-- =================================================
+             RACHEL ROBERTSON
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812734/FA/Global/drivers/2026/Rachel_Robertson_Cutout.png"
+                        alt="Rachel Robertson"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2614,17 +2984,23 @@ footer {
         </div>
 
 
-        <!-- KAYLEE COUNTRYMAN -->
+        <!-- =================================================
+             KAYLEE COUNTRYMAN
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812727/FA/Global/drivers/2026/Kaylee_Countryman_Cutout.png"
+                        alt="Kaylee Countryman"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2676,17 +3052,23 @@ footer {
         </div>
 
 
-        <!-- JADE JACQUET -->
+        <!-- =================================================
+             JADE JACQUET
+        ================================================== -->
 
         <div class="driver-card">
 
             <div class="driver-popup">
 
                 <div class="driver-popup-image">
-                    <div class="driver-popup-placeholder">
-                        Driver Photo
-                    </div>
+
+                    <img
+                        src="https://res.cloudinary.com/prod-f2f3/image/upload/v1772812726/FA/Global/drivers/2026/Jade_Jacquet_Cutout.png"
+                        alt="Jade Jacquet"
+                    >
+
                 </div>
+
 
                 <div class="driver-popup-info">
 
@@ -2742,9 +3124,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      FOOTER
-========================= -->
+========================================================= -->
 
 <footer>
 
