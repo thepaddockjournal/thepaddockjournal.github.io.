@@ -19,6 +19,7 @@
     --black: #050505;
     --dark: #0b0b0b;
     --grey: #8d8d8d;
+    --light-grey: #bdbdbd;
     --border: rgba(255,255,255,0.12);
     --white: #fff;
 }
@@ -32,6 +33,10 @@ body {
     color: var(--white);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header {
     height: 78px;
@@ -64,13 +69,17 @@ nav a {
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    transition: .25s;
+    transition: 0.25s;
 }
 
 nav a:hover,
 nav a.active {
     color: var(--pink);
 }
+
+/* =========================
+   INTRO
+========================= */
 
 .intro {
     padding: 105px 7% 80px;
@@ -88,17 +97,21 @@ nav a.active {
 .intro h1 {
     margin-top: 18px;
     font-size: clamp(55px, 8vw, 110px);
-    line-height: .9;
+    line-height: 0.9;
     letter-spacing: -6px;
 }
 
 .intro p {
     margin-top: 30px;
-    max-width: 570px;
+    max-width: 600px;
     color: var(--grey);
     font-size: 14px;
     line-height: 1.7;
 }
+
+/* =========================
+   SECTIONS
+========================= */
 
 section {
     padding: 90px 7%;
@@ -108,11 +121,13 @@ section {
     margin-bottom: 30px;
 }
 
-/* NEWS */
+/* =========================
+   NEWS
+========================= */
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr) .55fr;
+    grid-template-columns: repeat(4, 1fr) 0.55fr;
     gap: 12px;
 }
 
@@ -123,15 +138,27 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+
     background:
-        linear-gradient(180deg,transparent 20%,rgba(0,0,0,.95)),
-        radial-gradient(circle at 70% 20%,rgba(244,166,199,.16),transparent 45%),
+        linear-gradient(
+            180deg,
+            transparent 20%,
+            rgba(0,0,0,0.95)
+        ),
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(244,166,199,0.16),
+            transparent 45%
+        ),
         #101010;
-    transition: .3s;
+
+    transition: 0.3s;
 }
 
 .news-card:hover {
-    border-color: rgba(244,166,199,.55);
+    border-color: rgba(244,166,199,0.55);
     transform: translateY(-3px);
 }
 
@@ -162,9 +189,12 @@ section {
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-decoration: none;
 }
 
-/* NEXT */
+/* =========================
+   NEXT RACE
+========================= */
 
 .next-race {
     display: grid;
@@ -179,8 +209,13 @@ section {
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid var(--border);
+
     background:
-        radial-gradient(circle at 75% 20%,rgba(244,166,199,.12),transparent 40%),
+        radial-gradient(
+            circle at 75% 20%,
+            rgba(244,166,199,0.12),
+            transparent 40%
+        ),
         var(--dark);
 }
 
@@ -191,9 +226,9 @@ section {
 }
 
 .race-main h2 {
-    font-size: clamp(55px,8vw,100px);
+    font-size: clamp(55px, 8vw, 100px);
     letter-spacing: -5px;
-    line-height: .85;
+    line-height: 0.85;
 }
 
 .race-location {
@@ -228,7 +263,13 @@ section {
     font-size: 14px;
 }
 
-/* CALENDAR */
+/* =========================
+   CALENDAR
+========================= */
+
+.calendar {
+    border-top: 1px solid var(--border);
+}
 
 .calendar-row {
     display: grid;
@@ -247,16 +288,19 @@ section {
     font-size: 14px;
 }
 
-.round-no {
-    color: var(--pink) !important;
-    font-size: 10px !important;
+.calendar-row .round-no {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 1px;
 }
 
 .calendar-row.current {
-    background: rgba(244,166,199,.045);
+    background: rgba(244,166,199,0.045);
 }
 
-/* STANDINGS */
+/* =========================
+   STANDINGS
+========================= */
 
 .standings-grid {
     display: grid;
@@ -301,11 +345,13 @@ section {
     font-weight: 700;
 }
 
-/* DRIVERS */
+/* =========================
+   GRID
+========================= */
 
 .driver-grid {
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 10px;
 }
 
@@ -317,14 +363,21 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
+
     background:
-        radial-gradient(circle at 80% 20%,rgba(244,166,199,.09),transparent 45%),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(244,166,199,0.09),
+            transparent 45%
+        ),
         var(--dark);
-    transition: .3s;
+
+    transition: 0.3s;
 }
 
 .driver:hover {
-    border-color: rgba(244,166,199,.55);
+    border-color: rgba(244,166,199,0.55);
     transform: translateY(-3px);
 }
 
@@ -350,7 +403,9 @@ section {
     margin-top: 8px;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     border-top: 1px solid var(--border);
@@ -366,20 +421,22 @@ footer span {
     color: var(--pink);
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
-@media (max-width:1150px) {
+@media (max-width: 1150px) {
 
     .news-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .driver-grid {
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media (max-width:850px) {
+@media (max-width: 850px) {
 
     header {
         padding: 0 5%;
@@ -410,11 +467,11 @@ footer span {
     }
 
     .driver-grid {
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
 
     header {
         height: auto;
@@ -426,6 +483,7 @@ footer span {
     nav {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 12px;
     }
 
     .intro {
@@ -445,6 +503,10 @@ footer span {
         padding: 30px;
     }
 
+    .race-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .calendar-row {
         grid-template-columns: 45px 1fr 100px;
     }
@@ -454,7 +516,7 @@ footer span {
     }
 
     .driver-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     footer {
@@ -485,112 +547,235 @@ footer span {
 
 </header>
 
+
 <main>
+
+<!-- =========================
+     INTRO
+========================= -->
 
 <section class="intro">
 
-    <div class="eyebrow">Formula 4 · Italy · 2026</div>
+    <div class="eyebrow">
+        Formula 4 · Italy · 2026
+    </div>
 
-    <h1>F4<br>ITALY.</h1>
+    <h1>
+        F4<br>
+        ITALY.
+    </h1>
 
     <p>
-        The Italian Formula 4 Championship — one of the key
-        stepping stones for young drivers pursuing a career in
-        single-seater racing.
+        The Italian Formula 4 Championship — one of Europe's
+        leading entry-level single-seater championships and a key
+        step on the road towards professional motorsport.
     </p>
 
 </section>
 
+
+<!-- =========================
+     NEWS
+========================= -->
+
 <section>
 
-    <div class="section-number">01 / F4 ITALY</div>
+    <div class="section-number">
+        01 / F4 ITALY
+    </div>
 
     <div class="news-grid">
 
         <div class="news-card">
+
             <span>Championship</span>
-            <h3>Sammalisto leads the Italian F4 standings</h3>
-            <p>The Finnish driver heads the championship with 374 points.</p>
+
+            <h3>
+                Sammalisto arrives at Misano with match point
+            </h3>
+
+            <p>
+                The US Racing driver leads the championship
+                with 374 points.
+            </p>
+
         </div>
 
+
         <div class="news-card">
+
             <span>Round 05</span>
-            <h3>Imola is now in the books</h3>
-            <p>The championship moves into the final part of the season.</p>
+
+            <h3>
+                Sammalisto dominates the Imola weekend
+            </h3>
+
+            <p>
+                The Finn won two races and extended his
+                championship advantage.
+            </p>
+
         </div>
 
+
         <div class="news-card">
+
             <span>Next</span>
-            <h3>Misano awaits the grid</h3>
-            <p>The sixth round takes place from 18–20 September.</p>
+
+            <h3>
+                Misano is next
+            </h3>
+
+            <p>
+                The penultimate round of the 2026 season
+                takes place from 18–20 September.
+            </p>
+
         </div>
 
+
         <div class="news-card">
-            <span>2026</span>
-            <h3>Two rounds remain</h3>
-            <p>The title fight continues towards the season finale.</p>
+
+            <span>Title Fight</span>
+
+            <h3>
+                28 points could be enough
+            </h3>
+
+            <p>
+                Sammalisto needs 28 points at Misano
+                to mathematically secure the title.
+            </p>
+
         </div>
+
 
         <a href="news.html" class="news-card see-more">
+
             See More →
+
         </a>
 
     </div>
 
 </section>
 
+
+<!-- =========================
+     NEXT ROUND
+========================= -->
+
 <section>
 
-    <div class="section-number">02 / NEXT ROUND</div>
+    <div class="section-number">
+        02 / NEXT ROUND
+    </div>
 
     <div class="next-race">
 
         <div class="race-main">
 
             <div>
-                <div class="round">ROUND 06 · 18–20 SEP 2026</div>
+
+                <div class="round">
+                    ROUND 06 · 18–20 SEP 2026
+                </div>
+
             </div>
 
+
             <div>
-                <h2>MISANO</h2>
+
+                <h2>
+                    MISANO
+                </h2>
 
                 <div class="race-location">
                     Misano World Circuit Marco Simoncelli · Italy
                 </div>
+
             </div>
 
         </div>
+
 
         <div class="race-stats">
 
             <div class="stat">
-                <small>Championship Leader</small>
-                <strong>Luka Sammalisto</strong>
+
+                <small>
+                    Championship Leader
+                </small>
+
+                <strong>
+                    Luka Sammalisto
+                </strong>
+
             </div>
 
-            <div class="stat">
-                <small>Points</small>
-                <strong>374 PTS</strong>
-            </div>
 
             <div class="stat">
-                <small>Previous Round</small>
-                <strong>Imola</strong>
+
+                <small>
+                    Points
+                </small>
+
+                <strong>
+                    374 PTS
+                </strong>
+
             </div>
 
-            <div class="stat">
-                <small>Season</small>
-                <strong>2026</strong>
-            </div>
 
             <div class="stat">
-                <small>Series</small>
-                <strong>Italian F4</strong>
+
+                <small>
+                    Previous Round
+                </small>
+
+                <strong>
+                    Imola
+                </strong>
+
             </div>
 
+
             <div class="stat">
-                <small>Round</small>
-                <strong>06 / 07</strong>
+
+                <small>
+                    Last Winner
+                </small>
+
+                <strong>
+                    Luka Sammalisto
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    Series
+                </small>
+
+                <strong>
+                    Italian F4
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    Round
+                </small>
+
+                <strong>
+                    06 / 07
+                </strong>
+
             </div>
 
         </div>
@@ -599,169 +784,450 @@ footer span {
 
 </section>
 
+
+<!-- =========================
+     CALENDAR
+========================= -->
+
 <section>
 
-    <div class="section-number">03 / CALENDAR</div>
+    <div class="section-number">
+        03 / CALENDAR
+    </div>
 
     <div class="calendar">
 
         <div class="calendar-row">
-            <span class="round-no">R01</span>
-            <strong>MISANO</strong>
-            <span>10–12 MAY 2026</span>
-            <span>Italy</span>
+
+            <span class="round-no">
+                R01
+            </span>
+
+            <strong>
+                MISANO
+            </strong>
+
+            <span>
+                08–10 MAY 2026
+            </span>
+
+            <span>
+                Italy
+            </span>
+
         </div>
 
-        <div class="calendar-row">
-            <span class="round-no">R02</span>
-            <strong>VALLELUNGA</strong>
-            <span>24–26 MAY 2026</span>
-            <span>Italy</span>
-        </div>
 
         <div class="calendar-row">
-            <span class="round-no">R03</span>
-            <strong>MONZA</strong>
-            <span>21–23 JUN 2026</span>
-            <span>Italy</span>
+
+            <span class="round-no">
+                R02
+            </span>
+
+            <strong>
+                VALLELUNGA
+            </strong>
+
+            <span>
+                22–24 MAY 2026
+            </span>
+
+            <span>
+                Italy
+            </span>
+
         </div>
 
-        <div class="calendar-row">
-            <span class="round-no">R04</span>
-            <strong>MUGELLO</strong>
-            <span>24–26 JUL 2026</span>
-            <span>Tuscany</span>
-        </div>
 
         <div class="calendar-row">
-            <span class="round-no">R05</span>
-            <strong>IMOLA</strong>
-            <span>03–06 SEP 2026</span>
-            <span>Italy</span>
+
+            <span class="round-no">
+                R03
+            </span>
+
+            <strong>
+                MONZA
+            </strong>
+
+            <span>
+                19–21 JUN 2026
+            </span>
+
+            <span>
+                Italy
+            </span>
+
         </div>
+
+
+        <div class="calendar-row">
+
+            <span class="round-no">
+                R04
+            </span>
+
+            <strong>
+                MUGELLO
+            </strong>
+
+            <span>
+                24–26 JUL 2026
+            </span>
+
+            <span>
+                Tuscany
+            </span>
+
+        </div>
+
+
+        <div class="calendar-row">
+
+            <span class="round-no">
+                R05
+            </span>
+
+            <strong>
+                IMOLA
+            </strong>
+
+            <span>
+                04–06 SEP 2026
+            </span>
+
+            <span>
+                Italy
+            </span>
+
+        </div>
+
 
         <div class="calendar-row current">
-            <span class="round-no">R06</span>
-            <strong>MISANO</strong>
-            <span>18–20 SEP 2026</span>
-            <span>Italy</span>
+
+            <span class="round-no">
+                R06
+            </span>
+
+            <strong>
+                MISANO
+            </strong>
+
+            <span>
+                18–20 SEP 2026
+            </span>
+
+            <span>
+                Italy
+            </span>
+
         </div>
 
+
         <div class="calendar-row">
-            <span class="round-no">R07</span>
-            <strong>MUGELLO</strong>
-            <span>30 OCT–01 NOV 2026</span>
-            <span>Tuscany</span>
+
+            <span class="round-no">
+                R07
+            </span>
+
+            <strong>
+                MUGELLO
+            </strong>
+
+            <span>
+                30 OCT–01 NOV 2026
+            </span>
+
+            <span>
+                Tuscany
+            </span>
+
         </div>
 
     </div>
 
 </section>
 
+
+<!-- =========================
+     CHAMPIONSHIP
+========================= -->
+
 <section>
 
-    <div class="section-number">04 / CHAMPIONSHIP</div>
+    <div class="section-number">
+        04 / CHAMPIONSHIP
+    </div>
 
     <div class="standings-grid">
 
+
+        <!-- DRIVERS -->
+
         <div>
 
-            <h2 class="standings-title">Drivers</h2>
+            <h2 class="standings-title">
+                Drivers
+            </h2>
+
 
             <div class="standing-row">
-                <span class="position">01</span>
+
+                <span class="position">
+                    01
+                </span>
+
                 <div>
-                    <div class="driver-name">Luka Sammalisto</div>
-                    <div class="driver-team">US Racing</div>
+
+                    <div class="driver-name">
+                        Luka Sammalisto
+                    </div>
+
+                    <div class="driver-team">
+                        US Racing
+                    </div>
+
                 </div>
-                <div class="points">374</div>
+
+                <div class="points">
+                    374
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <span class="position">02</span>
-                <div>
-                    <div class="driver-name">Cristofor Davi Cosma</div>
-                    <div class="driver-team">Italian F4</div>
-                </div>
-                <div class="points">275</div>
-            </div>
 
             <div class="standing-row">
-                <span class="position">03</span>
+
+                <span class="position">
+                    02
+                </span>
+
                 <div>
-                    <div class="driver-name">Ary Bansal</div>
-                    <div class="driver-team">Italian F4</div>
+
+                    <div class="driver-name">
+                        David Cosma-Cristofor
+                    </div>
+
+                    <div class="driver-team">
+                        Prema Racing
+                    </div>
+
                 </div>
-                <div class="points">254</div>
+
+                <div class="points">
+                    275
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <span class="position">04</span>
-                <div>
-                    <div class="driver-name">Alp Hasan Aksoy</div>
-                    <div class="driver-team">Italian F4</div>
-                </div>
-                <div class="points">244</div>
-            </div>
 
             <div class="standing-row">
-                <span class="position">05</span>
+
+                <span class="position">
+                    03
+                </span>
+
                 <div>
-                    <div class="driver-name">Kenzo Craigie</div>
-                    <div class="driver-team">Italian F4</div>
+
+                    <div class="driver-name">
+                        Ary Bansal
+                    </div>
+
+                    <div class="driver-team">
+                        US Racing
+                    </div>
+
                 </div>
-                <div class="points">226</div>
+
+                <div class="points">
+                    254
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <span class="position">
+                    04
+                </span>
+
+                <div>
+
+                    <div class="driver-name">
+                        Alp Hasan Aksoy
+                    </div>
+
+                    <div class="driver-team">
+                        Prema Racing
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    244
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <span class="position">
+                    05
+                </span>
+
+                <div>
+
+                    <div class="driver-name">
+                        Kenzo Craigie
+                    </div>
+
+                    <div class="driver-team">
+                        R-ACE GP
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    226
+                </div>
+
             </div>
 
         </div>
 
+
+        <!-- TEAMS -->
+
         <div>
 
-            <h2 class="standings-title">Drivers · Top 10</h2>
+            <h2 class="standings-title">
+                Teams
+            </h2>
+
 
             <div class="standing-row">
-                <span class="position">06</span>
+
+                <span class="position">
+                    01
+                </span>
+
                 <div>
-                    <div class="driver-name">Edward Robinson</div>
-                    <div class="driver-team">Italian F4</div>
+
+                    <div class="driver-name">
+                        US Racing
+                    </div>
+
+                    <div class="driver-team">
+                        Italian F4
+                    </div>
+
                 </div>
-                <div class="points">214</div>
+
+                <div class="points">
+                    952
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <span class="position">07</span>
-                <div>
-                    <div class="driver-name">Thomas Bearman</div>
-                    <div class="driver-team">Italian F4</div>
-                </div>
-                <div class="points">189</div>
-            </div>
 
             <div class="standing-row">
-                <span class="position">08</span>
+
+                <span class="position">
+                    02
+                </span>
+
                 <div>
-                    <div class="driver-name">Oleksandr Savinkov</div>
-                    <div class="driver-team">Italian F4</div>
+
+                    <div class="driver-name">
+                        Prema Racing
+                    </div>
+
+                    <div class="driver-team">
+                        Italian F4
+                    </div>
+
                 </div>
-                <div class="points">179</div>
+
+                <div class="points">
+                    766
+                </div>
+
             </div>
 
-            <div class="standing-row">
-                <span class="position">09</span>
-                <div>
-                    <div class="driver-name">Niccolò Maccagnani</div>
-                    <div class="driver-team">Italian F4</div>
-                </div>
-                <div class="points">178</div>
-            </div>
 
             <div class="standing-row">
-                <span class="position">10</span>
+
+                <span class="position">
+                    03
+                </span>
+
                 <div>
-                    <div class="driver-name">Oleksandr Bondarev</div>
-                    <div class="driver-team">Italian F4</div>
+
+                    <div class="driver-name">
+                        R-ACE GP
+                    </div>
+
+                    <div class="driver-team">
+                        Italian F4
+                    </div>
+
                 </div>
-                <div class="points">135</div>
+
+                <div class="points">
+                    350
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <span class="position">
+                    04
+                </span>
+
+                <div>
+
+                    <div class="driver-name">
+                        Van Amersfoort Racing
+                    </div>
+
+                    <div class="driver-team">
+                        Italian F4
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    321
+                </div>
+
+            </div>
+
+
+            <div class="standing-row">
+
+                <span class="position">
+                    05
+                </span>
+
+                <div>
+
+                    <div class="driver-name">
+                        Jenzer Motorsport
+                    </div>
+
+                    <div class="driver-team">
+                        Italian F4
+                    </div>
+
+                </div>
+
+                <div class="points">
+                    250
+                </div>
+
             </div>
 
         </div>
@@ -770,82 +1236,281 @@ footer span {
 
 </section>
 
+
+<!-- =========================
+     GRID
+========================= -->
+
 <section>
 
-    <div class="section-number">05 / GRID</div>
+    <div class="section-number">
+        05 / GRID
+    </div>
 
     <div class="driver-grid">
 
+
         <div class="driver">
             <span class="driver-number">07</span>
-            <div class="driver-name-large">Luka<br>Sammalisto</div>
-            <div class="driver-team-small">US Racing</div>
+            <div class="driver-name-large">
+                Luka<br>Sammalisto
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">98</span>
-            <div class="driver-name-large">Cristofor<br>Cosma</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                David<br>Cosma-Cristofor
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">46</span>
-            <div class="driver-name-large">Ary<br>Bansal</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Ary<br>Bansal
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">10</span>
-            <div class="driver-name-large">Alp Hasan<br>Aksoy</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Alp Hasan<br>Aksoy
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">34</span>
-            <div class="driver-name-large">Kenzo<br>Craigie</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Kenzo<br>Craigie
+            </div>
+            <div class="driver-team-small">
+                R-ACE GP
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">09</span>
-            <div class="driver-name-large">Edward<br>Robinson</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Edward<br>Robinson
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">87</span>
-            <div class="driver-name-large">Thomas<br>Bearman</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Thomas<br>Bearman
+            </div>
+            <div class="driver-team-small">
+                Van Amersfoort Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">17</span>
-            <div class="driver-name-large">Oleksandr<br>Savinkov</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Oleksandr<br>Savinkov
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">19</span>
-            <div class="driver-name-large">Niccolò<br>Maccagnani</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Niccolò<br>Maccagnani
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">27</span>
-            <div class="driver-name-large">Oleksandr<br>Bondarev</div>
-            <div class="driver-team-small">Italian F4</div>
+            <div class="driver-name-large">
+                Oleksandr<br>Bondarev
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">29</span>
-            <div class="driver-name-large">Ludovico<br>Busso</div>
-            <div class="driver-team-small">US Racing</div>
+            <div class="driver-name-large">
+                Ludovico<br>Busso
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
         </div>
+
 
         <div class="driver">
             <span class="driver-number">30</span>
-            <div class="driver-name-large">Andy<br>Consani</div>
-            <div class="driver-team-small">R-ACE GP</div>
+            <div class="driver-name-large">
+                Andy<br>Consani
+            </div>
+            <div class="driver-team-small">
+                R-ACE GP
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">26</span>
+            <div class="driver-name-large">
+                Bader<br>Al Sulaiti
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">50</span>
+            <div class="driver-name-large">
+                Florentin<br>Hattemer
+            </div>
+            <div class="driver-team-small">
+                Trident Motorsport
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">21</span>
+            <div class="driver-name-large">
+                Levi<br>Arn
+            </div>
+            <div class="driver-team-small">
+                Jenzer Motorsport
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">63</span>
+            <div class="driver-name-large">
+                Roman<br>Kamyab
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">13</span>
+            <div class="driver-name-large">
+                Noah<br>Killion
+            </div>
+            <div class="driver-team-small">
+                US Racing
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">01</span>
+            <div class="driver-name-large">
+                Christian<br>Costoya
+            </div>
+            <div class="driver-team-small">
+                Prema Racing
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">42</span>
+            <div class="driver-name-large">
+                Emily<br>Cotty
+            </div>
+            <div class="driver-team-small">
+                R-ACE GP
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">41</span>
+            <div class="driver-name-large">
+                Oscar<br>Repetto
+            </div>
+            <div class="driver-team-small">
+                PHM Racing
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">50</span>
+            <div class="driver-name-large">
+                Dominik<br>Simek
+            </div>
+            <div class="driver-team-small">
+                Trident Motorsport
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">16</span>
+            <div class="driver-name-large">
+                Bernardo<br>Bernoldi
+            </div>
+            <div class="driver-team-small">
+                Trident Motorsport
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">51</span>
+            <div class="driver-name-large">
+                Augustus<br>Toniolo
+            </div>
+            <div class="driver-team-small">
+                Trident Motorsport
+            </div>
+        </div>
+
+
+        <div class="driver">
+            <span class="driver-number">99</span>
+            <div class="driver-name-large">
+                Fabricio<br>Fogaça
+            </div>
+            <div class="driver-team-small">
+                CRAM Motorsport
+            </div>
         </div>
 
     </div>
@@ -854,9 +1519,17 @@ footer span {
 
 </main>
 
+
 <footer>
-    <div>THE PADDOCK JOURNAL</div>
-    <div>F4 <span>ITALY</span> · 2026</div>
+
+    <div>
+        THE PADDOCK JOURNAL
+    </div>
+
+    <div>
+        F4 <span>ITALY</span> · 2026
+    </div>
+
 </footer>
 
 </body>
